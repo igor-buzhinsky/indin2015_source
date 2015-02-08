@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="NotGate" Comment="Negate the input Boolean value" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="The University of Auckland" Version="1.0" Author="Cheng Pang" Date="2008-11-09" Remarks="Stable build." />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" >
+        <With Var="QI" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="QI" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" >
+        <With Var="QO" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="QO" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="555.55554" y="427.77777" >
+      </ECState>
+      <ECState Name="REQ" Comment="Normal execution" x="216.66666" y="755.55554" >
+        <ECAction Algorithm="REQ" Output="CNF" />
+      </ECState>
+      <ECState Name="INIT" x="1183.3333" y="433.3333" >
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECTransition Source="START" Destination="REQ" Condition="REQ" x="555.55554" y="600.0" />
+      <ECTransition Source="REQ" Destination="START" Condition="1" x="216.66666" y="427.77777" />
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="899.99994" y="222.22221" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="872.22217" y="611.1111" />
+    </ECC>
+  <Algorithm Name="REQ" Comment="Normally executed algorithm" >
+    <Other Language="Java" Text="if(QI.value){&#10;  QO.value=false;&#10;}&#10;else{&#10;  QO.value=true;&#10;}&#10;//System.out.println(&#34;  NotGate.REQ: &#34;);&#10;//System.out.println(&#34;QI.value = &#34;+QI.value);&#10;" />
+  </Algorithm>
+  <Algorithm Name="INIT" >
+    <Other Language="Java" Text="if(QI.value){&#10;  QO.value=false;&#10;}&#10;else{&#10;  QO.value=true;&#10;}&#10;//System.out.println(&#34;  NotGate.INIT: &#34;);&#10;//System.out.println(&#34;QI.value = &#34;+QI.value);&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

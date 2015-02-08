@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="VaccumSlave" Comment="Basic Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-04" Remarks="Renamed for better indexing." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-11-05" Remarks="Corrected missing ST element in Algorithm REQ." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-30" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="OP1" Comment="Initialization Request" >
+      </Event>
+      <Event Name="OP2" Comment="Normal Execution Request" >
+      </Event>
+      <Event Name="REQ" >
+        <With Var="VACCUM" />
+      </Event>
+      <Event Name="INIT" >
+        <With Var="VACCUM" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="Completed" Comment="Initialization Confirm" >
+        <With Var="READY" />
+      </Event>
+      <Event Name="CNF" >
+        <With Var="VaccumOn" />
+        <With Var="VaccumOff" />
+      </Event>
+      <Event Name="INTO" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="VACCUM" Type="BOOL" Comment="Input event qualifier" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="READY" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="VaccumOn" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="VaccumOff" Type="BOOL" Comment="Output event qualifier" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="855.55554" y="716.6666" >
+      </ECState>
+      <ECState Name="OP11" Comment="Initialization" x="1516.6666" y="155.55554" >
+        <ECAction Algorithm="OP11" Output="CNF" />
+      </ECState>
+      <ECState Name="OP22" Comment="Normal execution" x="1605.5555" y="1694.4443" >
+        <ECAction Algorithm="OP22" Output="CNF" />
+      </ECState>
+      <ECState Name="OP12" Comment="Initialization" x="2250.0" y="716.6666" >
+        <ECAction Algorithm="OP12" Output="CNF" />
+      </ECState>
+      <ECState Name="OP21" Comment="Normal execution" x="372.2222" y="1605.5555" >
+        <ECAction Algorithm="OP22" Output="CNF" />
+      </ECState>
+      <ECState Name="Vaccum" x="2866.6665" y="1283.3333" >
+        <ECAction Algorithm="Vaccum" Output="CNF" />
+        <ECAction Output="Completed" />
+      </ECState>
+      <ECState Name="INIT" x="272.2222" y="333.3333" >
+        <ECAction Algorithm="INIT" Output="INTO" />
+      </ECState>
+      <ECTransition Source="START" Destination="OP11" Condition="OP1&#38;VACCUM" x="944.4444" y="155.55554" />
+      <ECTransition Source="START" Destination="OP22" Condition="OP2&#38;!VACCUM" x="1194.4445" y="1327.7777" />
+      <ECTransition Source="START" Destination="OP12" Condition="OP1&#38;!VACCUM" x="1683.3333" y="483.3333" />
+      <ECTransition Source="START" Destination="OP21" Condition="OP2&#38;VACCUM" x="711.1111" y="1266.6666" />
+      <ECTransition Source="OP12" Destination="Vaccum" Condition="REQ&#38;VACCUM" x="2438.889" y="949.99994" />
+      <ECTransition Source="Vaccum" Destination="START" Condition="1" x="1938.8888" y="1138.8888" />
+      <ECTransition Source="OP11" Destination="Vaccum" Condition="REQ&#38;!VACCUM" x="3627.7776" y="633.3333" />
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="272.2222" y="488.88885" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="655.55554" y="583.3333" />
+    </ECC>
+  <Algorithm Name="REQ" Comment="Normally executed algorithm" >
+    <ST Text="" />
+  </Algorithm>
+  <Algorithm Name="OP11" >
+    <ST Text="VaccumOff := TRUE;&#10;VaccumOn := FALSE;&#10;READY := FALSE;&#10;System.out.println(&#34;OP11!!&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="OP12" >
+    <ST Text="VaccumOff := FALSE;&#10;VaccumOn := TRUE;&#10;READY := FALSE;&#10;System.out.println(&#34;OP12!!&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="OP21" >
+    <ST Text="VaccumOff := TRUE;&#10;VaccumOn := FALSE;&#10;READY := FALSE;&#10;System.out.println(&#34;OP21!!&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="OP22" >
+    <ST Text="VaccumOff := TRUE;&#10;VaccumOn := FALSE;&#10;READY := FALSE;&#10;System.out.println(&#34;OP22!!&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="Vaccum" >
+    <ST Text="READY := TRUE;&#10;System.out.println(&#34;Vaccum!!&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="INIT" >
+    <ST Text="VACCUM := FALSE;&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

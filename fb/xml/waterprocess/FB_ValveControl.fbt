@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd" >
+<FBType Name="FB_ValveControl" Comment="Basic Function Block Type" >
+  
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="wildai" Date="2014-5-4" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="IsControlValve" />
+        <With Var="RangeOutMin" />
+        <With Var="RangeOutMax" />
+        <With Var="RequestStart" />
+        <With Var="ReadyToStart" />
+        <With Var="RequestValue" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="IsControlValve" />
+        <With Var="RangeOutMin" />
+        <With Var="RangeOutMax" />
+        <With Var="RequestStart" />
+        <With Var="ReadyToStart" />
+        <With Var="RequestValue" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="ValveOn" />
+        <With Var="InvalidRange" />
+        <With Var="ValveValue" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="ValveOn" />
+        <With Var="InvalidRange" />
+        <With Var="ValveValue" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="IsControlValve" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="RangeOutMin" Type="REAL" />
+      <VarDeclaration Name="RangeOutMax" Type="REAL" />
+      <VarDeclaration Name="RequestStart" Type="BOOL" />
+      <VarDeclaration Name="ReadyToStart" Type="BOOL" />
+      <VarDeclaration Name="RequestValue" Type="REAL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="ValveOn" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="InvalidRange" Type="BOOL" />
+      <VarDeclaration Name="ValveValue" Type="REAL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="552.9412" y="429.4117" />
+      <ECState Name="INIT" Comment="Initialization" x="923.5294" y="141.1765">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="REQ" Comment="Normal execution" x="217.647" y="752.9412">
+        <ECAction Algorithm="REQ" Output="CNF" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="731.1476" y="204.8375" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="797.5924" y="348.3232" />
+      <ECTransition Source="START" Destination="REQ" Condition="REQ" x="447.8488" y="648.3352" />
+      <ECTransition Source="REQ" Destination="START" Condition="1" x="372.8767" y="512.7991" />
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";&#xD;&#xA;&#xD;&#xA;ValveOn := FALSE;&#xD;&#xA;InvalidRange := FALSE;&#xD;&#xA;ValveValue := 0.0;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="REQ" Comment="Normally executed algorithm">
+      <ST Text=";&#xD;&#xA;&#xD;&#xA;IF IsControlValve AND RequestStart AND ReadyToStart THEN&#xD;&#xA;	IF RequestValue &gt;= RangeOutMin AND RequestValue &lt;= RangeOutMax THEN&#xD;&#xA;		ValveValue := RequestValue;&#xD;&#xA;		InvalidRange := FALSE;&#xD;&#xA;		ValveOn := TRUE;&#xD;&#xA;	ELSE&#xD;&#xA;		ValveValue := 0.0;&#xD;&#xA;		InvalidRange := TRUE;&#xD;&#xA;		ValveOn := FALSE;&#xD;&#xA;	END_IF;&#xD;&#xA;ELSE&#xD;&#xA;	ValveOn := FALSE;&#xD;&#xA;	ValveValue := 0.0;&#xD;&#xA;END_IF;&#xD;&#xA;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

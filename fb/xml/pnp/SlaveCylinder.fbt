@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="SlaveCylinder" Comment="Basic Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-04" Remarks="Renamed for better indexing." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-11-05" Remarks="Corrected missing ST element in Algorithm REQ." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-30" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="Extend" Comment="Initialization Request" >
+      </Event>
+      <Event Name="Retract" Comment="Normal Execution Request" >
+      </Event>
+      <Event Name="REQ" >
+        <With Var="HOME" />
+        <With Var="MID" />
+        <With Var="END" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="Completed" Comment="Initialization Confirm" >
+        <With Var="READY" />
+      </Event>
+      <Event Name="CNF" >
+        <With Var="GoOut" />
+        <With Var="GoIn" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="HOME" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="MID" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="END" Type="BOOL" Comment="Input event qualifier" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="READY" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="GoOut" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="GoIn" Type="BOOL" Comment="Output event qualifier" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="788.88885" y="622.22217" >
+      </ECState>
+      <ECState Name="Extend" Comment="Initialization" x="1100.0" y="111.11111" >
+        <ECAction Algorithm="Extend" Output="CNF" />
+      </ECState>
+      <ECState Name="Retract" Comment="Normal execution" x="238.88889" y="988.88885" >
+        <ECAction Algorithm="Retract" Output="CNF" />
+      </ECState>
+      <ECState Name="End" Comment="Normal execution" x="2388.889" y="377.77777" >
+        <ECAction Algorithm="End" Output="CNF" />
+        <ECAction Output="Completed" />
+      </ECState>
+      <ECState Name="Home" Comment="Normal execution" x="1100.0" y="1350.0" >
+        <ECAction Algorithm="Home" Output="CNF" />
+        <ECAction Output="Completed" />
+      </ECState>
+      <ECTransition Source="START" Destination="Extend" Condition="Extend" x="788.88885" y="111.11111" />
+      <ECTransition Source="START" Destination="Retract" Condition="Retract" x="238.88889" y="622.22217" />
+      <ECTransition Source="Retract" Destination="Home" Condition="REQ&#38;HOME" x="238.88889" y="1350.0" />
+      <ECTransition Source="Home" Destination="START" Condition="1" x="916.6666" y="905.55554" />
+      <ECTransition Source="Extend" Destination="End" Condition="REQ&#38;END" x="1100.0" y="377.77777" />
+      <ECTransition Source="End" Destination="START" Condition="1" x="2388.889" y="622.22217" />
+    </ECC>
+  <Algorithm Name="Extend" Comment="Initialization algorithm" >
+    <ST Text="GoOut := TRUE;&#10;GoIn := FALSE;&#10;READY := FALSE;&#10;System.out.println(&#34;Extend!!&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="REQ" Comment="Normally executed algorithm" >
+    <ST Text="System.out.println(&#34;REQ!!&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="Retract" >
+    <ST Text="GoIn := TRUE;&#10;GoOut := FALSE;&#10;READY := FALSE;&#10;System.out.println(&#34;Retract!!&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="Home" >
+    <ST Text="READY := TRUE;&#10;GoIn := FALSE;&#10;System.out.println(&#34;Home!!&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="End" >
+    <ST Text="READY := TRUE;&#10;GoOut := FALSE;&#10;System.out.println(&#34;End!!&#34;);&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

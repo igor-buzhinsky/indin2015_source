@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="PICKER_HMI_ADP" Comment="Composite FB For HMI Plug" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="Tray1" />
+        <With Var="Tray2" />
+        <With Var="Tray3" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="Tray1" Type="BOOL" />
+      <VarDeclaration Name="Tray2" Type="BOOL" />
+      <VarDeclaration Name="Tray3" Type="BOOL" />
+    </InputVars>
+    <Plugs>
+      <AdapterDeclaration Name="PLUG" Type="PICKER_SI" x="1455.5555" y="122.22221" />
+    </Plugs>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="PICKER_HMI" Type="PICKER_HMI" x="444.44443" y="83.33333" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="PICKER_HMI.INIT" dx1="338.8889" dx2="0.0" dy="233.33333" />
+      <Connection Source="PICKER_HMI.INITO" Destination="INITO" dx1="961.1111" dx2="0.0" dy="233.33333" />
+      <Connection Source="PICKER_HMI.REQ" Destination="PLUG.REQ" dx1="1138.8888" dx2="0.0" dy="158.82353" />
+      <Connection Source="PLUG.CNF" Destination="PICKER_HMI.CNF" dx1="27.777777" dx2="238.88889" dy="-227.77777" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="PLUG.wp_sucked_in" Destination="PICKER_HMI.wp_sucked_in" dx1="27.777777" dx2="16.666666" dy="83.33333" />
+      <Connection Source="PLUG.wp11" Destination="PICKER_HMI.wp11" dx1="27.777777" dx2="22.222221" dy="194.44444" />
+      <Connection Source="PLUG.wp14" Destination="PICKER_HMI.wp14" dx1="27.777777" dx2="27.777777" dy="311.11108" />
+      <Connection Source="PLUG.wp13" Destination="PICKER_HMI.wp13" dx1="33.333332" dx2="33.333332" dy="422.2222" />
+      <Connection Source="PLUG.wp12" Destination="PICKER_HMI.wp12" dx1="38.888885" dx2="38.888885" dy="538.88885" />
+      <Connection Source="PLUG.vcend" Destination="PICKER_HMI.vcend" dx1="44.444443" dx2="44.444443" dy="650.0" />
+      <Connection Source="PLUG.vchome" Destination="PICKER_HMI.vchome" dx1="55.555553" dx2="55.555553" dy="766.6666" />
+      <Connection Source="PLUG.S14" Destination="PICKER_HMI.S14" dx1="66.666664" dx2="66.666664" dy="883.3333" />
+      <Connection Source="PLUG.S13" Destination="PICKER_HMI.S13" dx1="77.77777" dx2="77.77777" dy="994.4444" />
+      <Connection Source="PLUG.S12" Destination="PICKER_HMI.S12" dx1="94.44444" dx2="94.44444" dy="1111.1111" />
+      <Connection Source="PLUG.S11" Destination="PICKER_HMI.S11" dx1="111.11111" dx2="111.11111" dy="1222.2222" />
+      <Connection Source="PICKER_HMI.add1" Destination="PLUG.add1" dx1="411.11108" />
+      <Connection Source="PICKER_HMI.add2" Destination="PLUG.add2" dx1="444.44443" />
+      <Connection Source="PICKER_HMI.add3" Destination="PLUG.add3" dx1="477.77777" />
+      <Connection Source="Tray1" Destination="PICKER_HMI.Tray1" dx1="316.66666" />
+      <Connection Source="Tray2" Destination="PICKER_HMI.Tray2" dx1="316.66666" />
+      <Connection Source="Tray3" Destination="PICKER_HMI.Tray3" dx1="316.66666" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

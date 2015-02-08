@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="MACHADO_SFC_VIEW" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <CompilerInfo header="package fb.rt.pnp;import fb.rt.vhmi.*;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="x1" />
+        <With Var="x2" />
+        <With Var="x3" />
+        <With Var="x4" />
+        <With Var="pp1" />
+        <With Var="pp2" />
+        <With Var="pp3" />
+        <With Var="x10" />
+        <With Var="x11" />
+        <With Var="x20" />
+        <With Var="x21" />
+        <With Var="c1_front" />
+        <With Var="c1_back" />
+        <With Var="c2_front" />
+        <With Var="c2_back" />
+        <With Var="s1" />
+        <With Var="s3" />
+        <With Var="x30" />
+        <With Var="x31" />
+        <With Var="x32" />
+        <With Var="s2" />
+        <With Var="x33" />
+        <With Var="x34" />
+        <With Var="x35" />
+        <With Var="x36" />
+        <With Var="x37" />
+        <With Var="x38" />
+        <With Var="vcd30" />
+        <With Var="venturi_on" />
+        <With Var="s0" />
+        <With Var="pp0" />
+        <With Var="vcd31" />
+        <With Var="vcd35" />
+        <With Var="vcd37" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="x1" />
+        <With Var="x2" />
+        <With Var="x3" />
+        <With Var="x4" />
+        <With Var="pp1" />
+        <With Var="pp2" />
+        <With Var="pp3" />
+        <With Var="c1_front" />
+        <With Var="c1_back" />
+        <With Var="c2_front" />
+        <With Var="c2_back" />
+        <With Var="x10" />
+        <With Var="x11" />
+        <With Var="x20" />
+        <With Var="x21" />
+        <With Var="s1" />
+        <With Var="s3" />
+        <With Var="x30" />
+        <With Var="x31" />
+        <With Var="x32" />
+        <With Var="s2" />
+        <With Var="x33" />
+        <With Var="x34" />
+        <With Var="x35" />
+        <With Var="x36" />
+        <With Var="x37" />
+        <With Var="x38" />
+        <With Var="vcd30" />
+        <With Var="venturi_on" />
+        <With Var="s0" />
+        <With Var="pp0" />
+        <With Var="vcd31" />
+        <With Var="vcd35" />
+        <With Var="vcd37" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+      <Event Name="CNF" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="x1" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="x2" Type="BOOL" />
+      <VarDeclaration Name="x3" Type="BOOL" />
+      <VarDeclaration Name="x4" Type="BOOL" />
+      <VarDeclaration Name="x10" Type="BOOL" />
+      <VarDeclaration Name="x11" Type="BOOL" />
+      <VarDeclaration Name="x20" Type="BOOL" />
+      <VarDeclaration Name="x21" Type="BOOL" />
+      <VarDeclaration Name="x30" Type="BOOL" />
+      <VarDeclaration Name="x31" Type="BOOL" />
+      <VarDeclaration Name="x32" Type="BOOL" />
+      <VarDeclaration Name="x33" Type="BOOL" />
+      <VarDeclaration Name="x34" Type="BOOL" />
+      <VarDeclaration Name="x35" Type="BOOL" />
+      <VarDeclaration Name="x36" Type="BOOL" />
+      <VarDeclaration Name="x37" Type="BOOL" />
+      <VarDeclaration Name="x38" Type="BOOL" />
+      <VarDeclaration Name="pp0" Type="BOOL" />
+      <VarDeclaration Name="pp1" Type="BOOL" />
+      <VarDeclaration Name="pp2" Type="BOOL" />
+      <VarDeclaration Name="pp3" Type="BOOL" />
+      <VarDeclaration Name="c1_front" Type="BOOL" />
+      <VarDeclaration Name="c1_back" Type="BOOL" />
+      <VarDeclaration Name="c2_front" Type="BOOL" />
+      <VarDeclaration Name="c2_back" Type="BOOL" />
+      <VarDeclaration Name="s0" Type="BOOL" />
+      <VarDeclaration Name="s1" Type="BOOL" />
+      <VarDeclaration Name="s2" Type="BOOL" />
+      <VarDeclaration Name="s3" Type="BOOL" />
+      <VarDeclaration Name="vcd30" Type="BOOL" />
+      <VarDeclaration Name="vcd31" Type="BOOL" />
+      <VarDeclaration Name="vcd35" Type="BOOL" />
+      <VarDeclaration Name="vcd37" Type="BOOL" />
+      <VarDeclaration Name="venturi_on" Type="BOOL" />
+    </InputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="COORD" Type="SFC_COORD" x="288.8889" y="288.8889" />
+    <FB Name="SFC2_SFC3" Type="SFC2_SFC3_VIEW" x="3111.111" y="605.55554" />
+    <FB Name="SFC1_VIEW" Type="SFC1_VIEW" x="1644.4443" y="55.555553" />
+    <FB Name="SFC4_VIEW" Type="SFC4_VIEW" x="5427.7773" y="550.0" />
+    <FB Name="NotVcd31" Type="NotGate" x="4672.222" y="3394.4443" />
+    <FB Name="NotVcd37" Type="NotGate" x="4022.2222" y="3100.0" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="COORD.INIT" dx1="183.33333" />
+      <Connection Source="REQ" Destination="COORD.REQ" dx1="177.77777" />
+      <Connection Source="REQ" Destination="SFC2_SFC3.REQ" dx1="3000.0" />
+      <Connection Source="COORD.INITO" Destination="SFC1_VIEW.INIT" dx1="744.4444" />
+      <Connection Source="SFC1_VIEW.INITO" Destination="SFC2_SFC3.INIT" dx1="1005.55554" />
+      <Connection Source="COORD.CNF" Destination="SFC1_VIEW.NAME_CHG" dx1="705.55554" />
+      <Connection Source="COORD.CNF" Destination="SFC2_SFC3.NAME_CHG" dx1="1966.6666" />
+      <Connection Source="REQ" Destination="SFC1_VIEW.REQ" dx1="1533.3333" />
+      <Connection Source="COORD.CNF" Destination="SFC4_VIEW.NAME_CHG" dx1="3194.4443" />
+      <Connection Source="SFC4_VIEW.INITO" Destination="INITO" dx1="6033.333" />
+      <Connection Source="SFC4_VIEW.CNF" Destination="CNF" dx1="6011.111" />
+      <Connection Source="NotVcd37.INITO" Destination="NotVcd31.INIT" dx1="161.1111" />
+      <Connection Source="NotVcd37.CNF" Destination="NotVcd31.REQ" dx1="83.33333" />
+      <Connection Source="NotVcd31.CNF" Destination="SFC4_VIEW.REQ" dx1="211.1111" />
+      <Connection Source="NotVcd31.INITO" Destination="SFC4_VIEW.INIT" dx1="311.11108" />
+      <Connection Source="SFC2_SFC3.INITO" Destination="NotVcd37.INIT" dx1="183.33333" />
+      <Connection Source="SFC2_SFC3.CNF" Destination="NotVcd37.REQ" dx1="305.55554" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="x1" Destination="COORD.X1" dx1="205.55554" />
+      <Connection Source="x4" Destination="COORD.X4" dx1="205.55554" />
+      <Connection Source="c1_front" Destination="COORD.c1front" dx1="127.77777" />
+      <Connection Source="c1_back" Destination="COORD.c1back" dx1="127.77777" />
+      <Connection Source="c2_front" Destination="COORD.c2front" dx1="127.77777" />
+      <Connection Source="c2_back" Destination="COORD.c2back" dx1="127.77777" />
+      <Connection Source="x2" Destination="COORD.X2" dx1="205.55554" />
+      <Connection Source="x3" Destination="COORD.X3" dx1="205.55554" />
+      <Connection Source="COORD.X10_IMG" Destination="SFC2_SFC3.X10_NAME" dx1="2266.6665" />
+      <Connection Source="COORD.X11_IMG" Destination="SFC2_SFC3.X11_NAME" dx1="2205.5554" />
+      <Connection Source="COORD.L1C_IMG" Destination="SFC2_SFC3.L1CGO_NAME" dx1="1644.4443" />
+      <Connection Source="COORD.X20_IMG" Destination="SFC2_SFC3.X20_NAME" dx1="2155.5554" />
+      <Connection Source="COORD.X21_IMG" Destination="SFC2_SFC3.X21_NAME" dx1="2094.4443" />
+      <Connection Source="COORD.L2C_IMG" Destination="SFC2_SFC3.L2CGO_NAME" dx1="1594.4443" />
+      <Connection Source="x10" Destination="COORD.X10" dx1="188.88889" />
+      <Connection Source="x11" Destination="COORD.X11" dx1="188.88889" />
+      <Connection Source="x20" Destination="COORD.X20" dx1="188.88889" />
+      <Connection Source="x21" Destination="COORD.X21" dx1="188.88889" />
+      <Connection Source="x1" Destination="SFC2_SFC3.x1" dx1="3027.7776" />
+      <Connection Source="x3" Destination="SFC2_SFC3.x3" dx1="3027.7776" />
+      <Connection Source="x30" Destination="SFC2_SFC3.x30" dx1="3011.111" />
+      <Connection Source="s1" Destination="SFC2_SFC3.S1" dx1="3033.3333" />
+      <Connection Source="s3" Destination="SFC2_SFC3.S3" dx1="3033.3333" />
+      <Connection Source="x2" Destination="SFC2_SFC3.x2" dx1="3027.7776" />
+      <Connection Source="s2" Destination="SFC2_SFC3.S2" dx1="3033.3333" />
+      <Connection Source="COORD.X4_IMG" Destination="SFC1_VIEW.x4" dx1="305.55554" />
+      <Connection Source="COORD.X1_IMG" Destination="SFC1_VIEW.x1" dx1="605.55554" />
+      <Connection Source="COORD.X2_IMG" Destination="SFC1_VIEW.x2" dx1="594.4444" />
+      <Connection Source="COORD.X3_IMG" Destination="SFC1_VIEW.x3" dx1="555.55554" />
+      <Connection Source="pp1" Destination="SFC1_VIEW.PP1" dx1="1544.4443" />
+      <Connection Source="pp2" Destination="SFC1_VIEW.PP2" dx1="1544.4443" />
+      <Connection Source="pp3" Destination="SFC1_VIEW.PP3" dx1="1544.4443" />
+      <Connection Source="COORD.X30_IMG" Destination="SFC4_VIEW.X30_NAME" dx1="1633.3333" />
+      <Connection Source="COORD.X31_IMG" Destination="SFC4_VIEW.X31_NAME" dx1="1705.5555" />
+      <Connection Source="COORD.X32_IMG" Destination="SFC4_VIEW.X32_NAME" dx1="1794.4443" />
+      <Connection Source="COORD.X33_IMG" Destination="SFC4_VIEW.X33_NAME" dx1="1888.8888" />
+      <Connection Source="COORD.X34_IMG" Destination="SFC4_VIEW.X34_NAME" dx1="1966.6666" />
+      <Connection Source="COORD.X35_IMG" Destination="SFC4_VIEW.X35_NAME" dx1="2055.5554" />
+      <Connection Source="COORD.X36_IMG" Destination="SFC4_VIEW.X36_NAME" dx1="2138.889" />
+      <Connection Source="COORD.X37_IMG" Destination="SFC4_VIEW.X37_NAME" dx1="2233.3333" />
+      <Connection Source="COORD.X38_IMG" Destination="SFC4_VIEW.X38_NAME" dx1="2305.5554" />
+      <Connection Source="COORD.venturi_IMG" Destination="SFC4_VIEW.VENTURI_NAME" dx1="2488.8887" />
+      <Connection Source="x30" Destination="COORD.X30" dx1="188.88889" />
+      <Connection Source="x31" Destination="COORD.X31" dx1="188.88889" />
+      <Connection Source="x32" Destination="COORD.X32" dx1="188.88889" />
+      <Connection Source="x33" Destination="COORD.X33" dx1="188.88889" />
+      <Connection Source="x34" Destination="COORD.X34" dx1="188.88889" />
+      <Connection Source="x35" Destination="COORD.X35" dx1="188.88889" />
+      <Connection Source="x36" Destination="COORD.X36" dx1="188.88889" />
+      <Connection Source="x37" Destination="COORD.X37" dx1="188.88889" />
+      <Connection Source="x38" Destination="COORD.X38" dx1="188.88889" />
+      <Connection Source="venturi_on" Destination="COORD.venturi_on" dx1="100.0" />
+      <Connection Source="s0" Destination="SFC4_VIEW.s0" dx1="5350.0" />
+      <Connection Source="s1" Destination="SFC4_VIEW.s1" dx1="5350.0" />
+      <Connection Source="s2" Destination="SFC4_VIEW.s2" dx1="5350.0" />
+      <Connection Source="s3" Destination="SFC4_VIEW.s3" dx1="5350.0" />
+      <Connection Source="x1" Destination="SFC4_VIEW.x1" dx1="5344.4443" />
+      <Connection Source="x2" Destination="SFC4_VIEW.x2" dx1="5344.4443" />
+      <Connection Source="x3" Destination="SFC4_VIEW.x3" dx1="5344.4443" />
+      <Connection Source="venturi_on" Destination="SFC4_VIEW.vacuum" dx1="5238.8887" />
+      <Connection Source="x11" Destination="SFC4_VIEW.x11" dx1="5327.7773" />
+      <Connection Source="x21" Destination="SFC4_VIEW.x21" dx1="5327.7773" />
+      <Connection Source="pp0" Destination="SFC4_VIEW.pp0" dx1="5327.7773" />
+      <Connection Source="COORD.L1CGI_IMG" Destination="SFC4_VIEW.L1CGI_NAME" dx1="2688.8887" />
+      <Connection Source="COORD.L2CGI_IMG" Destination="SFC4_VIEW.L2CGI_NAME" dx1="2766.6665" />
+      <Connection Source="vcd30" Destination="COORD.vcd30" dx1="155.55554" />
+      <Connection Source="vcd31" Destination="COORD.vcd31" dx1="155.55554" />
+      <Connection Source="vcd35" Destination="COORD.vcd35" dx1="155.55554" />
+      <Connection Source="vcd37" Destination="COORD.vcd37" dx1="155.55554" />
+      <Connection Source="COORD.vcd30_IMG" Destination="SFC4_VIEW.VCGD30_NAME" dx1="2194.4443" />
+      <Connection Source="COORD.vcd31_IMG" Destination="SFC4_VIEW.VCGD31_NAME" dx1="2277.7776" />
+      <Connection Source="COORD.vcd35_IMG" Destination="SFC4_VIEW.VCGD35_NAME" dx1="2350.0" />
+      <Connection Source="COORD.vcd37_IMG" Destination="SFC4_VIEW.VCGD37_NAME" dx1="2433.3333" />
+      <Connection Source="vcd30" Destination="SFC4_VIEW.vcd30" dx1="5294.4443" />
+      <Connection Source="vcd35" Destination="SFC4_VIEW.vcd35" dx1="5294.4443" />
+      <Connection Source="NotVcd31.QO" Destination="SFC4_VIEW.vcu31" dx1="100.0" />
+      <Connection Source="NotVcd37.QO" Destination="SFC4_VIEW.vcu37" dx1="300.0" />
+      <Connection Source="vcd31" Destination="NotVcd31.QI" dx1="4538.8887" />
+      <Connection Source="vcd37" Destination="NotVcd37.QI" dx1="3888.8887" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="WPMaster" Comment="Basic Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-04" Remarks="Renamed for better indexing." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-11-05" Remarks="Corrected missing ST element in Algorithm REQ." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-30" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="pp0" />
+        <With Var="pp1" />
+        <With Var="pp2" />
+        <With Var="pp3" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="pp0" />
+        <With Var="pp1" />
+        <With Var="pp2" />
+        <With Var="pp3" />
+      </Event>
+      <Event Name="LC_CONF" >
+        <With Var="LC_READY" />
+      </Event>
+      <Event Name="RC_CONF" >
+        <With Var="RC_READY" />
+      </Event>
+      <Event Name="VC_CONF" >
+        <With Var="VC_READY" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+      </Event>
+      <Event Name="LC_Op1" >
+      </Event>
+      <Event Name="LC_Op2" >
+      </Event>
+      <Event Name="RC_Op1" >
+      </Event>
+      <Event Name="RC_Op2" >
+      </Event>
+      <Event Name="VC_Op1" >
+      </Event>
+      <Event Name="VC_Op2" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="pp0" Type="BOOL" />
+      <VarDeclaration Name="pp1" Type="BOOL" />
+      <VarDeclaration Name="pp2" Type="BOOL" />
+      <VarDeclaration Name="pp3" Type="BOOL" />
+      <VarDeclaration Name="LC_READY" Type="BOOL" />
+      <VarDeclaration Name="RC_READY" Type="BOOL" />
+      <VarDeclaration Name="VC_READY" Type="BOOL" />
+    </InputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Name="Flag" Type="BOOL" />
+    </InternalVars>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="2422.2222" y="544.4444" >
+      </ECState>
+      <ECState Name="INIT" Comment="Initialization" x="2811.111" y="172.22221" >
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="Pick1" x="3861.111" y="1200.0" >
+        <ECAction Output="LC_Op1" />
+      </ECState>
+      <ECState Name="Pick2" x="2422.2222" y="1200.0" >
+        <ECAction Output="RC_Op1" />
+      </ECState>
+      <ECState Name="Pick3" x="1094.4445" y="1200.0" >
+        <ECAction Output="LC_Op1" />
+        <ECAction Output="RC_Op1" />
+      </ECState>
+      <ECState Name="VCDown" x="2422.2222" y="1905.5555" >
+        <ECAction Output="VC_Op1" />
+      </ECState>
+      <ECState Name="VCUp" x="4233.333" y="1855.5555" >
+        <ECAction Algorithm="ChangeFlag" Output="VC_Op2" />
+      </ECState>
+      <ECState Name="CylGoBack" x="4222.222" y="2250.0" >
+        <ECAction Output="LC_Op2" />
+        <ECAction Output="RC_Op2" />
+      </ECState>
+      <ECState Name="Temp1" x="533.3333" y="1638.8888" >
+      </ECState>
+      <ECState Name="Temp2" x="1711.1111" y="1644.4443" >
+      </ECState>
+      <ECState Name="Temp3" x="3572.2222" y="2611.111" >
+      </ECState>
+      <ECState Name="Temp4" x="4555.555" y="2633.3333" >
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="2422.2222" y="172.22221" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="2572.2222" y="272.2222" />
+      <ECTransition Source="START" Destination="Pick1" Condition="REQ&#38;pp1" x="3861.111" y="544.4444" />
+      <ECTransition Source="START" Destination="Pick2" Condition="REQ&#38;pp2 AND NOT pp1" x="2422.2222" y="899.99994" />
+      <ECTransition Source="START" Destination="Pick3" Condition="REQ&#38;pp3 AND NOT pp1 AND NOT  pp2" x="1094.4445" y="544.4444" />
+      <ECTransition Source="Pick1" Destination="VCDown" Condition="LC_CONF&#38;LC_READY" x="3738.8887" y="1655.5555" />
+      <ECTransition Source="Pick2" Destination="VCDown" Condition="RC_CONF&#38;RC_READY" x="2422.2222" y="1611.1111" />
+      <ECTransition Source="VCDown" Destination="VCUp" Condition="VC_CONF&#38;VC_READY" x="3605.5554" y="1855.5555" />
+      <ECTransition Source="VCUp" Destination="CylGoBack" Condition="VC_CONF&#38;VC_READY&#38;Flag" x="4222.222" y="2022.2222" />
+      <ECTransition Source="Pick3" Destination="Temp1" Condition="LC_CONF&#38;LC_READY" x="722.22217" y="1488.8888" />
+      <ECTransition Source="Pick3" Destination="Temp2" Condition="RC_CONF&#38;RC_READY" x="1344.4443" y="1494.4443" />
+      <ECTransition Source="Temp2" Destination="VCDown" Condition="LC_CONF&#38;LC_READY" x="1711.1111" y="1905.5555" />
+      <ECTransition Source="Temp1" Destination="VCDown" Condition="RC_CONF&#38;RC_READY" x="938.88885" y="2205.5554" />
+      <ECTransition Source="CylGoBack" Destination="Temp3" Condition="LC_CONF&#38;LC_READY" x="3788.8887" y="2483.3333" />
+      <ECTransition Source="CylGoBack" Destination="Temp4" Condition="RC_CONF&#38;RC_READY" x="4438.8887" y="2500.0" />
+      <ECTransition Source="Temp3" Destination="VCDown" Condition="RC_CONF&#38;RC_READY" x="2533.3333" y="2611.111" />
+      <ECTransition Source="Temp4" Destination="VCDown" Condition="LC_CONF&#38;LC_READY" x="3094.4443" y="2772.2222" />
+      <ECTransition Source="VCUp" Destination="START" Condition="VC_CONF&#38;VC_READY&#38;!Flag" x="5244.4443" y="811.1111" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+    <ST Text="Flag := FALSE;&#10;" />
+  </Algorithm>
+  <Algorithm Name="REQ" Comment="Normally executed algorithm" >
+    <ST Text="" />
+  </Algorithm>
+  <Algorithm Name="ChangeFlag" >
+    <ST Text="if Flag THEN&#10;Flag := FALSE;&#10;ELSE&#10;Flag := TRUE;&#10;END_IF&#10;&#10;System.out.println(&#34;ChangeFlag!!&#34;+Flag);&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

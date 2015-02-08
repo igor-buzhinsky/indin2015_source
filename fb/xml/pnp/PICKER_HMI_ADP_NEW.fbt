@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="PICKER_HMI_ADP_NEW" Comment="Composite FB For HMI Plug" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+    </EventOutputs>
+    <Plugs>
+      <AdapterDeclaration Name="PLUG" Type="PICKER_IN" x="1455.5555" y="122.22221" />
+    </Plugs>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="PICKER_HMI" Type="PICKER_HMI_NEW" x="333.3333" y="11.111111" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="PICKER_HMI.INIT" dx1="227.77777" dx2="0.0" dy="161.1111" />
+      <Connection Source="PICKER_HMI.INITO" Destination="INITO" dx1="994.4444" dx2="0.0" dy="161.1111" />
+      <Connection Source="PICKER_HMI.REQ" Destination="PLUG.REQ" dx1="1138.8888" dx2="0.0" dy="158.82353" />
+      <Connection Source="PLUG.CNF" Destination="PICKER_HMI.CNF" dx1="27.777777" dx2="238.88889" dy="-227.77777" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="PICKER_HMI.add1" Destination="PLUG.add1" dx1="411.11108" />
+      <Connection Source="PICKER_HMI.add2" Destination="PLUG.add2" dx1="444.44443" />
+      <Connection Source="PICKER_HMI.add3" Destination="PLUG.add3" dx1="477.77777" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

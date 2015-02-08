@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="WPsensorBA" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="WP1_X" />
+        <With Var="WP1_Y" />
+        <With Var="WP2_X" />
+        <With Var="WP2_Y" />
+        <With Var="WP3_Y" />
+        <With Var="WP3_X" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="WP1_Y" />
+        <With Var="WP1_X" />
+        <With Var="WP2_X" />
+        <With Var="WP2_Y" />
+        <With Var="WP3_X" />
+        <With Var="WP3_Y" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="wp12" />
+        <With Var="wp14" />
+        <With Var="wp11" />
+        <With Var="wp13" />
+        <With Var="wp15" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="wp12" />
+        <With Var="wp13" />
+        <With Var="wp14" />
+        <With Var="wp11" />
+        <With Var="wp15" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="WP1_X" Type="UINT" />
+      <VarDeclaration Name="WP1_Y" Type="UINT" />
+      <VarDeclaration Name="WP2_X" Type="UINT" />
+      <VarDeclaration Name="WP2_Y" Type="UINT" />
+      <VarDeclaration Name="WP3_X" Type="UINT" />
+      <VarDeclaration Name="WP3_Y" Type="UINT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="wp12" Type="BOOL" />
+      <VarDeclaration Name="wp13" Type="BOOL" />
+      <VarDeclaration Name="wp14" Type="BOOL" />
+      <VarDeclaration Name="wp15" Type="BOOL" />
+      <VarDeclaration Name="wp11" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="WP1" Type="my_sensor2" x="531.25" y="87.5" >
+      <Parameter Name="zone1" Value="[529,539]" />
+      <Parameter Name="zone2" Value="[383,393]" />
+    </FB>
+    <FB Name="WP2" Type="my_sensor2" x="1737.5" y="87.5" >
+      <Parameter Name="zone1" Value="[604,614]" />
+      <Parameter Name="zone2" Value="[533,543]" />
+    </FB>
+    <FB Name="WP3" Type="my_sensor2" x="3206.25" y="87.5" >
+      <Parameter Name="zone1" Value="[679,689]" />
+      <Parameter Name="zone2" Value="[458,468]" />
+    </FB>
+    <FB Name="WP01" Type="my_sensor2" x="518.75" y="1256.25" >
+      <Parameter Name="zone2" Value="[210,225]" />
+      <Parameter Name="zone1" Value="[370,380]" />
+    </FB>
+    <FB Name="WP02" Type="my_sensor2" x="1743.75" y="1256.25" >
+      <Parameter Name="zone2" Value="[210,225]" />
+      <Parameter Name="zone1" Value="[370,380]" />
+    </FB>
+    <FB Name="WP03" Type="my_sensor2" x="3206.25" y="1256.25" >
+      <Parameter Name="zone2" Value="[210,225]" />
+      <Parameter Name="zone1" Value="[370,380]" />
+    </FB>
+    <FB Name="WP0" Type="OR" x="6343.75" y="3112.5" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="WP1.INIT" dx1="418.75" />
+      <Connection Source="REQ" Destination="WP1.REQ" dx1="412.5" />
+      <Connection Source="REQ" Destination="WP2.REQ" dx1="1618.75" />
+      <Connection Source="REQ" Destination="WP3.REQ" dx1="3087.5" />
+      <Connection Source="WP1.INITO" Destination="WP2.INIT" dx1="262.5" />
+      <Connection Source="WP2.INITO" Destination="WP3.INIT" dx1="275.0" />
+      <Connection Source="WP1.CNF" Destination="CNF" dx1="1043.75" />
+      <Connection Source="WP2.CNF" Destination="CNF" dx1="2250.0" />
+      <Connection Source="WP3.CNF" Destination="CNF" dx1="3718.75" />
+      <Connection Source="REQ" Destination="WP01.REQ" dx1="400.0" />
+      <Connection Source="WP01.INITO" Destination="WP02.INIT" dx1="131.25" />
+      <Connection Source="WP02.INITO" Destination="WP03.INIT" dx1="287.5" />
+      <Connection Source="REQ" Destination="WP02.REQ" dx1="1625.0" />
+      <Connection Source="REQ" Destination="WP03.REQ" dx1="3087.5" />
+      <Connection Source="WP03.CNF" Destination="WP0.REQ" dx1="531.25" dx2="25.0" dy="987.5" />
+      <Connection Source="WP02.CNF" Destination="WP0.REQ" dx1="437.5" />
+      <Connection Source="WP01.CNF" Destination="WP0.REQ" dx1="356.25" />
+      <Connection Source="WP0.CNF" Destination="CNF" dx1="6800.0" />
+      <Connection Source="WP3.INITO" Destination="WP01.INIT" dx1="31.25" dx2="31.25" dy="-75.0" />
+      <Connection Source="WP03.INITO" Destination="WP0.INIT" dx1="1775.0" />
+      <Connection Source="WP0.INITO" Destination="INITO" dx1="6812.5" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="WP1.QO" Destination="wp12" dx1="1056.25" />
+      <Connection Source="WP2.QO" Destination="wp13" dx1="2262.5" />
+      <Connection Source="WP3.QO" Destination="wp14" dx1="3731.25" />
+      <Connection Source="WP1_X" Destination="WP1.In1" dx1="375.0" />
+      <Connection Source="WP1_Y" Destination="WP1.In2" dx1="375.0" />
+      <Connection Source="WP2_X" Destination="WP2.In1" dx1="1581.25" />
+      <Connection Source="WP2_Y" Destination="WP2.In2" dx1="1581.25" />
+      <Connection Source="WP3_X" Destination="WP3.In1" dx1="3050.0" />
+      <Connection Source="WP3_Y" Destination="WP3.In2" dx1="3050.0" />
+      <Connection Source="WP1_X" Destination="WP01.In1" dx1="362.5" />
+      <Connection Source="WP1_Y" Destination="WP01.In2" dx1="362.5" />
+      <Connection Source="WP2_X" Destination="WP02.In1" dx1="1587.5" />
+      <Connection Source="WP2_Y" Destination="WP02.In2" dx1="1587.5" />
+      <Connection Source="WP3_X" Destination="WP03.In1" dx1="3050.0" />
+      <Connection Source="WP3_Y" Destination="WP03.In2" dx1="3050.0" />
+      <Connection Source="WP03.QO" Destination="WP0.i3" dx1="387.5" dx2="37.5" dy="1818.75" />
+      <Connection Source="WP02.QO" Destination="WP0.i2" dx1="331.25" />
+      <Connection Source="WP01.QO" Destination="WP0.i1" dx1="250.0" />
+      <Connection Source="WP0.o" Destination="wp15" dx1="6812.5" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

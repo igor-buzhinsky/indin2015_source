@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="GenericCylinderModelType1" Comment="Linear motor with two position sensors and load" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="The University of Auckland" Version="1.0" Author="Sandeep Patil" Date="2011-04-20" Remarks="First build." />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="ForwardSpeed" />
+        <With Var="BackwardSpeed" />
+        <With Var="Extend" />
+        <With Var="Retract" />
+        <With Var="HomeSensorRange" />
+        <With Var="EndSensorRange" />
+        <With Var="InitialPosition" />
+        <With Var="LoadType" />
+        <With Var="MovingtDistance" />
+        <With Var="Loaded" />
+        <With Var="MidSensorRange" />
+      </Event>
+      <Event Name="CLK" Comment="Clock signal" >
+        <With Var="LoadType" />
+        <With Var="Loaded" />
+      </Event>
+      <Event Name="FAULT" >
+      </Event>
+      <Event Name="RESUME" >
+      </Event>
+      <Event Name="CYL_IND" >
+        <With Var="Extend" />
+        <With Var="Retract" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="AbsolutePos" />
+        <With Var="AtHome" />
+        <With Var="AtEnd" />
+        <With Var="AtMid" />
+      </Event>
+      <Event Name="CHG" Comment="Indicate data outputs changed" >
+        <With Var="AtEnd" />
+        <With Var="AtHome" />
+        <With Var="AtMid" />
+      </Event>
+      <Event Name="OFAULT" >
+      </Event>
+      <Event Name="CNF" >
+        <With Var="AbsolutePos" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="ForwardSpeed" Type="UINT" Comment="Forward speed" />
+      <VarDeclaration Name="BackwardSpeed" Type="UINT" Comment="Backward speed" />
+      <VarDeclaration Name="InitialPosition" Type="REAL" Comment="Initial position" />
+      <VarDeclaration Name="MovingtDistance" Type="UINT" Comment="Moving distance" />
+      <VarDeclaration Name="HomeSensorRange" Type="UINT" ArraySize="2" Comment="Detection range of home sensor" />
+      <VarDeclaration Name="MidSensorRange" Type="UINT" ArraySize="2" Comment="Detection range of home sensor" />
+      <VarDeclaration Name="EndSensorRange" Type="UINT" ArraySize="2" Comment="Detection range of end sensor" />
+      <VarDeclaration Name="Extend" Type="BOOL" />
+      <VarDeclaration Name="Retract" Type="BOOL" />
+      <VarDeclaration Name="Loaded" Type="BOOL" />
+      <VarDeclaration Name="LoadType" Type="UINT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="AbsolutePos" Type="UINT" Comment="Current position" />
+      <VarDeclaration Name="AtHome" Type="BOOL" Comment="Detected at home position" />
+      <VarDeclaration Name="AtEnd" Type="BOOL" Comment="Detected at end position" />
+      <VarDeclaration Name="AtMid" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="Home" Type="PnPSensor" x="4277.778" y="377.77777" />
+    <FB Name="Middle" Type="PnPSensor" x="4261.111" y="1277.7777" />
+    <FB Name="End" Type="PnPSensor" x="4266.6665" y="2122.2222" />
+    <FB Name="MovingStatus" Type="MovementBlockType1" x="1316.6666" y="538.88885" />
+    <FB Name="Position" Type="LinearMotionLoad" x="2577.7776" y="644.4444" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="MovingStatus.INIT" dx1="1211.1111" />
+      <Connection Source="FAULT" Destination="MovingStatus.FAULT" dx1="1172.2222" />
+      <Connection Source="RESUME" Destination="MovingStatus.RESUME" dx1="1144.4445" />
+      <Connection Source="Home.CHG" Destination="CHG" dx1="4883.333" />
+      <Connection Source="End.CHG" Destination="CHG" dx1="4872.222" />
+      <Connection Source="End.INITO" Destination="INITO" dx1="4888.8887" />
+      <Connection Source="MovingStatus.OFAULT" Destination="OFAULT" dx1="2088.889" />
+      <Connection Source="MovingStatus.INITO" Destination="Position.INIT" dx1="422.2222" />
+      <Connection Source="Position.INITO" Destination="Home.INIT" dx1="311.11108" />
+      <Connection Source="Position.CHG" Destination="Home.CLK" dx1="411.11108" />
+      <Connection Source="Position.CHG" Destination="End.CLK" dx1="394.44443" />
+      <Connection Source="Home.INITO" Destination="Middle.INIT" dx1="300.0" dx2="200.0" dy="711.1111" />
+      <Connection Source="Middle.INITO" Destination="End.INIT" dx1="122.22221" dx2="122.22221" dy="672.22217" />
+      <Connection Source="Position.CHG" Destination="Middle.CLK" dx1="794.4444" />
+      <Connection Source="Position.CHG" Destination="CNF" dx1="3461.111" />
+      <Connection Source="Middle.CHG" Destination="CHG" dx1="4866.6665" />
+      <Connection Source="CLK" Destination="Position.CLK" dx1="2472.2222" />
+      <Connection Source="CYL_IND" Destination="MovingStatus.CLK" dx1="1150.0" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="EndSensorRange" Destination="End.Zone" dx1="3988.8887" />
+      <Connection Source="MovingStatus.C_FWD" Destination="Position.MoveForwards" dx1="133.33333" />
+      <Connection Source="MovingStatus.C_BWD" Destination="Position.MoveBackwards" dx1="83.33333" />
+      <Connection Source="Loaded" Destination="Position.Loaded" dx1="2427.7776" />
+      <Connection Source="ForwardSpeed" Destination="Position.ForwardSpeed" dx1="2338.889" />
+      <Connection Source="BackwardSpeed" Destination="Position.BackwardSpeed" dx1="2316.6665" />
+      <Connection Source="LoadType" Destination="Position.LoadType" dx1="2394.4443" />
+      <Connection Source="Position.AbsolutePos" Destination="AbsolutePos" dx1="3566.6665" />
+      <Connection Source="MovingtDistance" Destination="Position.MovingDistance" dx1="2311.111" />
+      <Connection Source="Home.Detected" Destination="AtHome" dx1="4922.222" />
+      <Connection Source="End.Detected" Destination="AtEnd" dx1="4888.8887" />
+      <Connection Source="InitialPosition" Destination="Position.InitialPosition" dx1="2344.4443" />
+      <Connection Source="HomeSensorRange" Destination="Home.Zone" dx1="3977.7776" />
+      <Connection Source="Position.RelativePos" Destination="Home.Position" dx1="155.55554" />
+      <Connection Source="Position.RelativePos" Destination="End.Position" dx1="166.66666" />
+      <Connection Source="Position.RelativePos" Destination="Middle.Position" dx1="638.88885" />
+      <Connection Source="MidSensorRange" Destination="Middle.Zone" dx1="3988.8887" />
+      <Connection Source="Middle.Detected" Destination="AtMid" dx1="4877.778" />
+      <Connection Source="Extend" Destination="MovingStatus.Extend" dx1="1172.2222" />
+      <Connection Source="Retract" Destination="MovingStatus.Retract" dx1="1172.2222" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

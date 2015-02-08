@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="PICKER_HMI" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <CompilerInfo header="package fb.rt.pnp;import fb.rt.hmi.*;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" >
+        <With Var="Tray1" />
+        <With Var="Tray2" />
+        <With Var="Tray3" />
+      </Event>
+      <Event Name="CNF" Comment="Confirmation from Plug" >
+        <With Var="S11" />
+        <With Var="S12" />
+        <With Var="S13" />
+        <With Var="S14" />
+        <With Var="vchome" />
+        <With Var="vcend" />
+        <With Var="wp12" />
+        <With Var="wp13" />
+        <With Var="wp14" />
+        <With Var="wp11" />
+        <With Var="wp_sucked_in" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" >
+      </Event>
+      <Event Name="REQ" Comment="Request from Socket" >
+        <With Var="add1" />
+        <With Var="add2" />
+        <With Var="add3" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="S11" Type="BOOL" />
+      <VarDeclaration Name="S12" Type="BOOL" />
+      <VarDeclaration Name="S13" Type="BOOL" />
+      <VarDeclaration Name="S14" Type="BOOL" />
+      <VarDeclaration Name="vchome" Type="BOOL" />
+      <VarDeclaration Name="vcend" Type="BOOL" />
+      <VarDeclaration Name="wp12" Type="BOOL" />
+      <VarDeclaration Name="wp13" Type="BOOL" />
+      <VarDeclaration Name="wp14" Type="BOOL" />
+      <VarDeclaration Name="wp11" Type="BOOL" />
+      <VarDeclaration Name="wp_sucked_in" Type="BOOL" />
+      <VarDeclaration Name="Tray1" Type="BOOL" />
+      <VarDeclaration Name="Tray2" Type="BOOL" />
+      <VarDeclaration Name="Tray3" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="add1" Type="BOOL" />
+      <VarDeclaration Name="add2" Type="BOOL" />
+      <VarDeclaration Name="add3" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="WP14" Type="OUT_BOOL" x="5605.555" y="683.3333" >
+      <Parameter Name="QI" Value="1" />
+      <Parameter Name="LABEL" Value="&#34;WP14&#34;" />
+    </FB>
+    <FB Name="WP11" Type="OUT_BOOL" x="6277.7773" y="883.3333" >
+      <Parameter Name="LABEL" Value="&#34;WP11&#34;" />
+      <Parameter Name="QI" Value="1" />
+    </FB>
+    <FB Name="WP_SUCKED_IN" Type="OUT_BOOL" x="6955.555" y="1200.0" >
+      <Parameter Name="LABEL" Value="&#34;WP SUCKED IN&#34;" />
+      <Parameter Name="QI" Value="1" />
+    </FB>
+    <FB Name="VC_HOME" Type="OUT_BOOL" x="2377.7776" y="677.7778" >
+      <Parameter Name="LABEL" Value="&#34;VC HOME&#34;" />
+      <Parameter Name="QI" Value="1" />
+    </FB>
+    <FB Name="VC_END" Type="OUT_BOOL" x="2883.3333" y="855.55554" >
+      <Parameter Name="QI" Value="1" />
+      <Parameter Name="LABEL" Value="&#34;VC END&#34;" />
+    </FB>
+    <FB Name="WP12" Type="OUT_BOOL" x="4327.778" y="222.22221" >
+      <Parameter Name="QI" Value="1" />
+      <Parameter Name="LABEL" Value="&#34;WP12&#34;" />
+    </FB>
+    <FB Name="WP13" Type="OUT_BOOL" x="4933.333" y="433.3333" >
+      <Parameter Name="QI" Value="1" />
+      <Parameter Name="LABEL" Value="&#34;WP13&#34;" />
+    </FB>
+    <FB Name="Sensor11" Type="OUT_BOOL" x="344.44443" y="55.555553" >
+      <Parameter Name="QI" Value="1" />
+      <Parameter Name="LABEL" Value="&#34;S11_ON&#34;" />
+    </FB>
+    <FB Name="Sensor12" Type="OUT_BOOL" x="866.6666" y="194.44444" >
+      <Parameter Name="QI" Value="1" />
+      <Parameter Name="LABEL" Value="&#34;S12_ON&#34;" />
+    </FB>
+    <FB Name="Sensor13" Type="OUT_BOOL" x="1372.2222" y="400.0" >
+      <Parameter Name="QI" Value="1" />
+      <Parameter Name="LABEL" Value="&#34;S13_ON&#34;" />
+    </FB>
+    <FB Name="Sensor14" Type="OUT_BOOL" x="1877.7777" y="550.0" >
+      <Parameter Name="QI" Value="1" />
+      <Parameter Name="LABEL" Value="&#34;S14_ON&#34;" />
+    </FB>
+    <FB Name="Add1" Type="IN_BOOL" x="1177.7777" y="1927.7777" >
+      <Parameter Name="QI" Value="1" />
+      <Parameter Name="LABEL" Value="&#34;Add/Rmv1&#34;" />
+    </FB>
+    <FB Name="Add2" Type="IN_BOOL" x="2255.5554" y="1927.7777" >
+      <Parameter Name="QI" Value="1" />
+      <Parameter Name="LABEL" Value="&#34;Add/Rmv2&#34;" />
+    </FB>
+    <FB Name="Add3" Type="IN_BOOL" x="3561.111" y="1938.8888" >
+      <Parameter Name="QI" Value="1" />
+      <Parameter Name="LABEL" Value="&#34;Add/Rmv3&#34;" />
+    </FB>
+    <FB Name="TRAY_DECIDER" Type="TRAY_HMI" x="3499.9998" y="449.99997" />
+    <EventConnections>
+      <Connection Source="CNF" Destination="WP14.REQ" dx1="5500.0" />
+      <Connection Source="WP11.INITO" Destination="WP_SUCKED_IN.INIT" dx1="77.77777" dx2="70.588234" dy="-64.70588" />
+      <Connection Source="CNF" Destination="WP11.REQ" dx1="6172.222" />
+      <Connection Source="CNF" Destination="WP_SUCKED_IN.REQ" dx1="6849.9995" />
+      <Connection Source="CNF" Destination="VC_HOME.REQ" dx1="2272.2222" />
+      <Connection Source="CNF" Destination="VC_END.REQ" dx1="2777.7776" />
+      <Connection Source="CNF" Destination="WP12.REQ" dx1="4222.222" />
+      <Connection Source="CNF" Destination="WP13.REQ" dx1="4827.778" />
+      <Connection Source="Sensor11.INITO" Destination="Sensor12.INIT" dx1="55.555553" />
+      <Connection Source="Sensor12.INITO" Destination="Sensor13.INIT" dx1="55.555553" />
+      <Connection Source="Sensor13.INITO" Destination="Sensor14.INIT" dx1="77.77777" />
+      <Connection Source="CNF" Destination="Sensor11.REQ" dx1="238.88889" />
+      <Connection Source="CNF" Destination="Sensor12.REQ" dx1="761.1111" />
+      <Connection Source="CNF" Destination="Sensor13.REQ" dx1="1266.6666" />
+      <Connection Source="CNF" Destination="Sensor14.REQ" dx1="1772.2222" />
+      <Connection Source="INIT" Destination="Sensor11.INIT" dx1="238.88889" />
+      <Connection Source="Sensor14.INITO" Destination="VC_HOME.INIT" dx1="83.33333" />
+      <Connection Source="VC_HOME.INITO" Destination="VC_END.INIT" dx1="105.55555" />
+      <Connection Source="Add1.IND" Destination="REQ" dx1="1633.3333" />
+      <Connection Source="Add2.IND" Destination="REQ" dx1="2711.111" />
+      <Connection Source="Add3.IND" Destination="REQ" dx1="4016.6665" />
+      <Connection Source="VC_END.INITO" Destination="TRAY_DECIDER.INIT" dx1="94.44444" />
+      <Connection Source="TRAY_DECIDER.INIT1" Destination="WP12.INIT" dx1="116.666664" />
+      <Connection Source="TRAY_DECIDER.INIT2" Destination="WP13.INIT" dx1="283.3333" />
+      <Connection Source="TRAY_DECIDER.INIT3" Destination="WP14.INIT" dx1="1272.2222" />
+      <Connection Source="TRAY_DECIDER.INITO" Destination="WP11.INIT" dx1="1672.2222" />
+      <Connection Source="WP12.INITO" Destination="Add1.INIT" dx1="27.777777" dx2="5.5555553" dy="1377.7777" />
+      <Connection Source="WP13.INITO" Destination="Add2.INIT" dx1="27.777777" dx2="11.111111" dy="1333.3333" />
+      <Connection Source="WP14.INITO" Destination="Add3.INIT" dx1="27.777777" dx2="11.111111" dy="1038.8888" />
+      <Connection Source="WP_SUCKED_IN.INITO" Destination="INITO" dx1="7422.222" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="S11" Destination="Sensor11.IN" dx1="244.44443" />
+      <Connection Source="S12" Destination="Sensor12.IN" dx1="766.6666" />
+      <Connection Source="S13" Destination="Sensor13.IN" dx1="1272.2222" />
+      <Connection Source="S14" Destination="Sensor14.IN" dx1="1777.7777" />
+      <Connection Source="vchome" Destination="VC_HOME.IN" dx1="2222.2222" />
+      <Connection Source="vcend" Destination="VC_END.IN" dx1="2755.5554" />
+      <Connection Source="wp12" Destination="WP12.IN" dx1="4211.111" />
+      <Connection Source="wp13" Destination="WP13.IN" dx1="4816.6665" />
+      <Connection Source="wp14" Destination="WP14.IN" dx1="5488.8887" />
+      <Connection Source="wp11" Destination="WP11.IN" dx1="6161.111" />
+      <Connection Source="wp_sucked_in" Destination="WP_SUCKED_IN.IN" dx1="6722.222" />
+      <Connection Source="Add1.OUT" Destination="add1" dx1="1644.4443" />
+      <Connection Source="Add2.OUT" Destination="add2" dx1="2722.2222" />
+      <Connection Source="Add3.OUT" Destination="add3" dx1="4027.7776" />
+      <Connection Source="Tray1" Destination="TRAY_DECIDER.Tray1" dx1="3372.2222" />
+      <Connection Source="Tray2" Destination="TRAY_DECIDER.Tray2" dx1="3372.2222" />
+      <Connection Source="Tray3" Destination="TRAY_DECIDER.Tray3" dx1="3372.2222" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

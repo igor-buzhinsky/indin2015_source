@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="shift" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <CompilerInfo header="package fb.rt.pnp; import fb.rt.vmath.*;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="X1" />
+        <With Var="Y1" />
+        <With Var="X2" />
+        <With Var="Y2" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="DONE" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="X1" Type="UINT" />
+      <VarDeclaration Name="Y1" Type="UINT" />
+      <VarDeclaration Name="X2" Type="UINT" />
+      <VarDeclaration Name="Y2" Type="UINT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="X" Type="UINT" />
+      <VarDeclaration Name="Y" Type="UINT" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="ADDX" Type="FB_ADD_UINT" x="3843.75" y="300.0" />
+    <FB Name="ADDY" Type="FB_ADD_UINT" x="3875.0" y="1181.25" />
+    <EventConnections>
+      <Connection Source="ADDX.CNF" Destination="DONE" dx1="4450.0" />
+      <Connection Source="REQ" Destination="ADDX.REQ" dx1="3725.0" />
+      <Connection Source="REQ" Destination="ADDY.REQ" dx1="3756.25" />
+      <Connection Source="ADDY.CNF" Destination="DONE" dx1="4481.25" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="X1" Destination="ADDX.IN1" dx1="3756.25" />
+      <Connection Source="X2" Destination="ADDX.IN2" dx1="3756.25" />
+      <Connection Source="ADDX.OUT" Destination="X" dx1="4368.75" />
+      <Connection Source="Y1" Destination="ADDY.IN1" dx1="3781.25" />
+      <Connection Source="Y2" Destination="ADDY.IN2" dx1="3781.25" />
+      <Connection Source="ADDY.OUT" Destination="Y" dx1="4406.25" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="MasterSlave_TEST" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Majid Sorouri" Date="2011-03-19" Remarks="template" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="vacuum" />
+        <With Var="pp0" />
+        <With Var="pp1" />
+        <With Var="pp2" />
+        <With Var="pp3" />
+        <With Var="cyl1home" />
+        <With Var="cyl1end" />
+        <With Var="cyl2home" />
+        <With Var="cyl2end" />
+        <With Var="cyl3home" />
+        <With Var="cyl3mid" />
+        <With Var="cyl3end" />
+        <With Var="vcyl1home" />
+        <With Var="vcyl1end" />
+        <With Var="vcyl2home" />
+        <With Var="vcyl2end" />
+        <With Var="vcyl3home" />
+        <With Var="vcyl3end" />
+        <With Var="pp4" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="vacuum" />
+        <With Var="pp0" />
+        <With Var="pp1" />
+        <With Var="pp2" />
+        <With Var="pp3" />
+        <With Var="cyl1home" />
+        <With Var="cyl1end" />
+        <With Var="cyl2home" />
+        <With Var="cyl2end" />
+        <With Var="cyl3home" />
+        <With Var="cyl3mid" />
+        <With Var="cyl3end" />
+        <With Var="vcyl1home" />
+        <With Var="vcyl1end" />
+        <With Var="vcyl2home" />
+        <With Var="vcyl2end" />
+        <With Var="vcyl3home" />
+        <With Var="vcyl3end" />
+        <With Var="pp4" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="venturi_off" />
+        <With Var="venturi_on" />
+        <With Var="cyl1MoveOut" />
+        <With Var="cyl1MoveIn" />
+        <With Var="cyl2MoveOut" />
+        <With Var="cyl2MoveIn" />
+        <With Var="cyl3MoveOut" />
+        <With Var="cyl3MoveIn" />
+        <With Var="vcyl1MoveOut" />
+        <With Var="vcyl1MoveIn" />
+        <With Var="vcyl2MoveOut" />
+        <With Var="vcyl2MoveIn" />
+        <With Var="vcyl3MoveOut" />
+        <With Var="vcyl3MoveIn" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="venturi_on" />
+        <With Var="venturi_off" />
+        <With Var="cyl1MoveOut" />
+        <With Var="cyl1MoveIn" />
+        <With Var="cyl2MoveOut" />
+        <With Var="cyl2MoveIn" />
+        <With Var="cyl3MoveOut" />
+        <With Var="cyl3MoveIn" />
+        <With Var="vcyl1MoveOut" />
+        <With Var="vcyl1MoveIn" />
+        <With Var="vcyl2MoveOut" />
+        <With Var="vcyl2MoveIn" />
+        <With Var="vcyl3MoveOut" />
+        <With Var="vcyl3MoveIn" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="cyl1home" Type="BOOL" />
+      <VarDeclaration Name="cyl1end" Type="BOOL" />
+      <VarDeclaration Name="cyl2home" Type="BOOL" />
+      <VarDeclaration Name="cyl2end" Type="BOOL" />
+      <VarDeclaration Name="cyl3home" Type="BOOL" />
+      <VarDeclaration Name="cyl3mid" Type="BOOL" />
+      <VarDeclaration Name="cyl3end" Type="BOOL" />
+      <VarDeclaration Name="vcyl1home" Type="BOOL" />
+      <VarDeclaration Name="vcyl1end" Type="BOOL" />
+      <VarDeclaration Name="vcyl2home" Type="BOOL" />
+      <VarDeclaration Name="vcyl2end" Type="BOOL" />
+      <VarDeclaration Name="vcyl3home" Type="BOOL" />
+      <VarDeclaration Name="vcyl3end" Type="BOOL" />
+      <VarDeclaration Name="vacuum" Type="BOOL" />
+      <VarDeclaration Name="pp0" Type="BOOL" />
+      <VarDeclaration Name="pp1" Type="BOOL" />
+      <VarDeclaration Name="pp2" Type="BOOL" />
+      <VarDeclaration Name="pp3" Type="BOOL" />
+      <VarDeclaration Name="pp4" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="venturi_on" Type="BOOL" />
+      <VarDeclaration Name="venturi_off" Type="BOOL" />
+      <VarDeclaration Name="cyl1MoveOut" Type="BOOL" />
+      <VarDeclaration Name="cyl1MoveIn" Type="BOOL" />
+      <VarDeclaration Name="cyl2MoveOut" Type="BOOL" />
+      <VarDeclaration Name="cyl2MoveIn" Type="BOOL" />
+      <VarDeclaration Name="cyl3MoveOut" Type="BOOL" />
+      <VarDeclaration Name="cyl3MoveIn" Type="BOOL" />
+      <VarDeclaration Name="vcyl1MoveOut" Type="BOOL" />
+      <VarDeclaration Name="vcyl1MoveIn" Type="BOOL" />
+      <VarDeclaration Name="vcyl2MoveOut" Type="BOOL" />
+      <VarDeclaration Name="vcyl2MoveIn" Type="BOOL" />
+      <VarDeclaration Name="vcyl3MoveOut" Type="BOOL" />
+      <VarDeclaration Name="vcyl3MoveIn" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="CYL3spring" Type="SpringCyl" x="8162.5" y="2343.75" />
+    <FB Name="CYL1spring" Type="SpringCyl" x="4137.5" y="568.75" />
+    <FB Name="VCYL1spring" Type="SpringCyl" x="4212.5" y="2343.75" />
+    <FB Name="CYL2spring" Type="SpringCyl" x="6087.5" y="568.75" />
+    <FB Name="VCYL2spring" Type="SpringCyl" x="6093.75" y="2343.75" />
+    <FB Name="CYL1" Type="SlaveCylinder_TEST" x="3200.0" y="231.25" >
+      <Parameter Name="Size" Value="1" />
+    </FB>
+    <FB Name="CYL2" Type="SlaveCylinder_TEST" x="4993.75" y="231.25" >
+      <Parameter Name="Size" Value="1" />
+    </FB>
+    <FB Name="CYL3" Type="SlaveCylinder_TEST" x="7150.0" y="231.25" >
+      <Parameter Name="Size" Value="2" />
+      <Parameter Name="DONE" Value="1" />
+    </FB>
+    <FB Name="VCYL1" Type="SlaveCylinder_TEST" x="3225.0" y="2006.25" >
+      <Parameter Name="Size" Value="1" />
+    </FB>
+    <FB Name="VCYL2" Type="SlaveCylinder_TEST" x="5012.5" y="2006.25" >
+      <Parameter Name="Size" Value="1" />
+    </FB>
+    <FB Name="VCYL3" Type="SlaveCylinder_TEST" x="7006.25" y="2006.25" >
+      <Parameter Name="Size" Value="1" />
+      <Parameter Name="DONE" Value="1" />
+    </FB>
+    <FB Name="MASTER" Type="Master_TEST" x="1218.75" y="1206.25" />
+    <EventConnections>
+      <Connection Source="CYL1spring.CNF" Destination="CNF" dx1="4593.75" />
+      <Connection Source="VCYL1spring.CNF" Destination="CNF" dx1="4668.75" />
+      <Connection Source="VCYL2spring.CNF" Destination="CNF" dx1="6550.0" />
+      <Connection Source="CYL2spring.CNF" Destination="CNF" dx1="6543.75" />
+      <Connection Source="REQ" Destination="CYL2spring.REQ" dx1="5968.75" />
+      <Connection Source="REQ" Destination="VCYL2spring.REQ" dx1="5975.0" />
+      <Connection Source="CYL3spring.CNF" Destination="CNF" dx1="8618.75" />
+      <Connection Source="REQ" Destination="CYL3spring.REQ" dx1="8043.75" />
+      <Connection Source="REQ" Destination="CYL3.REQ" dx1="7031.25" />
+      <Connection Source="REQ" Destination="CYL2.REQ" dx1="4875.0" />
+      <Connection Source="REQ" Destination="CYL1.REQ" dx1="3081.25" />
+      <Connection Source="CYL1.OrderOutput" Destination="CYL2.Order" dx1="156.25" />
+      <Connection Source="CYL2.OrderOutput" Destination="CYL3.Order" dx1="225.0" />
+      <Connection Source="CYL2.InitO" Destination="CYL3.INIT" dx1="137.5" />
+      <Connection Source="CYL1.InitO" Destination="CYL2.INIT" dx1="93.75" />
+      <Connection Source="VCYL1.OrderOutput" Destination="VCYL2.Order" dx1="100.0" />
+      <Connection Source="VCYL2.OrderOutput" Destination="VCYL3.Order" dx1="112.5" />
+      <Connection Source="VCYL2.InitO" Destination="VCYL3.INIT" dx1="581.25" />
+      <Connection Source="VCYL1.InitO" Destination="VCYL2.INIT" dx1="456.25" />
+      <Connection Source="REQ" Destination="VCYL2.REQ" dx1="4893.75" />
+      <Connection Source="REQ" Destination="VCYL3.REQ" dx1="6887.5" />
+      <Connection Source="REQ" Destination="VCYL1.REQ" dx1="3106.25" />
+      <Connection Source="REQ" Destination="VCYL1spring.REQ" dx1="4093.75" />
+      <Connection Source="REQ" Destination="CYL1spring.REQ" dx1="4018.75" />
+      <Connection Source="CYL3.InitO" Destination="VCYL1.INIT" dx1="668.75" dx2="62.5" dy="1518.75" />
+      <Connection Source="MASTER.Order" Destination="CYL1.Order" dx1="543.75" />
+      <Connection Source="MASTER.Order" Destination="VCYL1.Order" dx1="775.0" />
+      <Connection Source="INIT" Destination="MASTER.INIT" dx1="1106.25" />
+      <Connection Source="REQ" Destination="MASTER.REQ" dx1="1100.0" />
+      <Connection Source="MASTER.INITO" Destination="CYL1.INIT" dx1="468.75" />
+      <Connection Source="VCYL3.InitO" Destination="INITO" dx1="7875.0" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="CYL1spring.Out1" Destination="cyl1MoveOut" dx1="4725.0" />
+      <Connection Source="VCYL1spring.Out1" Destination="vcyl1MoveOut" dx1="4818.75" />
+      <Connection Source="CYL2spring.Out1" Destination="cyl2MoveOut" dx1="6675.0" />
+      <Connection Source="VCYL2spring.Out1" Destination="vcyl2MoveOut" dx1="6700.0" />
+      <Connection Source="CYL3spring.Out1" Destination="vcyl3MoveOut" dx1="8768.75" />
+      <Connection Source="cyl1home" Destination="CYL1.HOME" dx1="3006.25" />
+      <Connection Source="cyl1end" Destination="CYL1.END" dx1="3031.25" />
+      <Connection Source="cyl2home" Destination="CYL2.HOME" dx1="4800.0" />
+      <Connection Source="cyl2end" Destination="CYL2.END" dx1="4825.0" />
+      <Connection Source="cyl3home" Destination="CYL3.HOME" dx1="6956.25" />
+      <Connection Source="cyl3end" Destination="CYL3.END" dx1="6981.25" />
+      <Connection Source="vcyl1home" Destination="VCYL1.HOME" dx1="3012.5" />
+      <Connection Source="vcyl1end" Destination="VCYL1.END" dx1="3037.5" />
+      <Connection Source="vcyl2home" Destination="VCYL2.HOME" dx1="4800.0" />
+      <Connection Source="vcyl2end" Destination="VCYL2.END" dx1="4825.0" />
+      <Connection Source="vcyl3home" Destination="VCYL3.HOME" dx1="6793.75" />
+      <Connection Source="vcyl3end" Destination="VCYL3.END" dx1="6818.75" />
+      <Connection Source="CYL1.PositionOutput" Destination="CYL2.Position" dx1="275.0" />
+      <Connection Source="CYL2.PositionOutput" Destination="CYL3.Position" dx1="393.75" />
+      <Connection Source="VCYL1.PositionOutput" Destination="VCYL2.Position" dx1="262.5" />
+      <Connection Source="VCYL2.PositionOutput" Destination="VCYL3.Position" dx1="331.25" />
+      <Connection Source="CYL1.GoOut" Destination="CYL1spring.In1" dx1="175.0" />
+      <Connection Source="CYL1.GoIn" Destination="CYL1spring.In2" dx1="168.75" />
+      <Connection Source="CYL2.GoOut" Destination="CYL2spring.In1" dx1="331.25" />
+      <Connection Source="CYL2.GoIn" Destination="CYL2spring.In2" dx1="318.75" />
+      <Connection Source="VCYL1.GoOut" Destination="VCYL1spring.In1" dx1="131.25" />
+      <Connection Source="VCYL1.GoIn" Destination="VCYL1spring.In2" dx1="131.25" />
+      <Connection Source="VCYL2.GoOut" Destination="VCYL2spring.In1" dx1="250.0" />
+      <Connection Source="VCYL2.GoIn" Destination="VCYL2spring.In2" dx1="262.5" />
+      <Connection Source="VCYL3.GoOut" Destination="CYL3spring.In1" dx1="87.5" />
+      <Connection Source="VCYL3.GoIn" Destination="CYL3spring.In2" dx1="75.0" />
+      <Connection Source="CYL2.READY" Destination="CYL1.DONE" dx1="93.75" dx2="406.25" dy="750.0" />
+      <Connection Source="CYL3.READY" Destination="CYL2.DONE" dx1="406.25" dx2="406.25" dy="700.0" />
+      <Connection Source="VCYL3.READY" Destination="VCYL2.DONE" dx1="150.0" dx2="150.0" dy="656.25" />
+      <Connection Source="VCYL2.READY" Destination="VCYL1.DONE" dx1="150.0" dx2="150.0" dy="693.75" />
+      <Connection Source="CYL3.GoOut" Destination="cyl3MoveOut" dx1="8137.5" />
+      <Connection Source="CYL3.GoIn" Destination="cyl3MoveIn" dx1="8106.25" />
+      <Connection Source="MASTER.X_ORDER" Destination="CYL1.Position" dx1="656.25" />
+      <Connection Source="MASTER.Y_ORDER" Destination="VCYL1.Position" dx1="625.0" />
+      <Connection Source="VCYL3.PositionOutput" Destination="MASTER.Y_POS" dx1="100.0" dx2="100.0" dy="525.0" />
+      <Connection Source="CYL3.PositionOutput" Destination="MASTER.X_POS" dx1="518.75" dx2="356.25" dy="-1300.0" />
+      <Connection Source="VCYL1.READY" Destination="MASTER.Y_READY" dx1="150.0" dx2="150.0" dy="656.25" />
+      <Connection Source="CYL1.READY" Destination="MASTER.X_READY" dx1="100.0" dx2="293.75" dy="-875.0" />
+      <Connection Source="pp0" Destination="MASTER.pp0" dx1="1112.5" />
+      <Connection Source="pp1" Destination="MASTER.pp1" dx1="1112.5" />
+      <Connection Source="pp2" Destination="MASTER.pp2" dx1="1112.5" />
+      <Connection Source="pp3" Destination="MASTER.pp3" dx1="1112.5" />
+      <Connection Source="pp4" Destination="MASTER.pp4" dx1="1112.5" />
+      <Connection Source="MASTER.Vacuum_ORDER" Destination="venturi_on" dx1="2137.5" />
+      <Connection Source="MASTER.Vacuum_nORDER" Destination="venturi_off" dx1="2143.75" />
+      <Connection Source="cyl3mid" Destination="CYL3.MID" dx1="6987.5" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

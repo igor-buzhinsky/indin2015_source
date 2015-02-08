@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="PICKER_MODEL_TYPE1_TEST" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialisation" >
+        <With Var="BASEX" />
+        <With Var="BASEY" />
+      </Event>
+      <Event Name="CLK" >
+        <With Var="CYL1_SPEED" />
+        <With Var="CYL2_SPEED" />
+        <With Var="CYL3_SPEED" />
+        <With Var="VCYL1_SPEED" />
+        <With Var="VCYL2_SPEED" />
+        <With Var="VCYL3_SPEED" />
+      </Event>
+      <Event Name="ADD_WP" >
+        <With Var="AddedWP_X" />
+        <With Var="AddedWP_Y" />
+      </Event>
+      <Event Name="ADD_WP00" >
+      </Event>
+      <Event Name="REMOVE_WP" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+      <Event Name="WP_ADDED" >
+      </Event>
+      <Event Name="WP_REMOVED" >
+        <With Var="RemovedWP_X" />
+        <With Var="RemovedWP_Y" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="BASEX" Type="UINT" />
+      <VarDeclaration Name="BASEY" Type="UINT" />
+      <VarDeclaration Name="CYL1_SPEED" Type="UINT" />
+      <VarDeclaration Name="CYL2_SPEED" Type="UINT" />
+      <VarDeclaration Name="CYL3_SPEED" Type="UINT" />
+      <VarDeclaration Name="VCYL1_SPEED" Type="UINT" />
+      <VarDeclaration Name="VCYL2_SPEED" Type="UINT" />
+      <VarDeclaration Name="VCYL3_SPEED" Type="UINT" />
+      <VarDeclaration Name="AddedWP_X" Type="UINT" />
+      <VarDeclaration Name="AddedWP_Y" Type="UINT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="RemovedWP_X" Type="UINT" />
+      <VarDeclaration Name="RemovedWP_Y" Type="UINT" />
+    </OutputVars>
+    <Sockets>
+      <AdapterDeclaration Name="FROM_HMI" Type="PICKER_IN_BA" x="344.44443" y="2944.4443" />
+      <AdapterDeclaration Name="View" Type="PICKER_STATE_BA" x="3933.3333" y="916.6666" />
+    </Sockets>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="Model" Type="ModelBA" x="1666.6666" y="355.55554" />
+    <FB Name="Control" Type="MasterSlave_TEST" x="8361.11" y="3377.7776" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="Model.INIT" dx1="1561.1111" />
+      <Connection Source="Model.INITO" Destination="View.INIT" dx1="1255.5555" />
+      <Connection Source="CLK" Destination="Model.CLK" dx1="1561.1111" />
+      <Connection Source="ADD_WP" Destination="Model.ADD_WP" dx1="1494.4443" />
+      <Connection Source="REMOVE_WP" Destination="Model.REMOVE_WP" dx1="1427.7777" />
+      <Connection Source="Model.WP_ADDED" Destination="WP_ADDED" dx1="2633.3333" />
+      <Connection Source="Model.WP_REMOVED" Destination="WP_REMOVED" dx1="2683.3333" />
+      <Connection Source="ADD_WP00" Destination="Model.ADD_WP00" dx1="1461.1111" />
+      <Connection Source="Model.CNF" Destination="View.CHG" dx1="1211.1111" />
+      <Connection Source="FROM_HMI.REQ" Destination="Model.REQ" dx1="200.0" />
+      <Connection Source="Model.INITO" Destination="Control.INIT" dx1="5211.111" />
+      <Connection Source="Model.CHG" Destination="Control.REQ" dx1="5127.7773" />
+      <Connection Source="Control.INITO" Destination="INITO" dx1="9155.556" />
+      <Connection Source="Control.CNF" Destination="Model.CYL_IND" dx1="155.55554" dx2="155.55554" dy="-3422.2222" />
+      <Connection Source="CLK" Destination="Control.REQ" dx1="8255.556" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="Model.BASE_X" Destination="View.BASE_X" dx1="338.8889" />
+      <Connection Source="Model.BASE_Y" Destination="View.BASE_Y" dx1="361.11108" />
+      <Connection Source="Model.CYL1_X" Destination="View.CYL1_X" dx1="383.3333" />
+      <Connection Source="Model.CYL1_Y" Destination="View.CYL1_Y" dx1="405.55554" />
+      <Connection Source="Model.CYL2_X" Destination="View.CYL2_X" dx1="427.77777" />
+      <Connection Source="Model.CYL2_Y" Destination="View.CYL2_Y" dx1="449.99997" />
+      <Connection Source="Model.VCYL1_X" Destination="View.VCYL1_X" dx1="511.11108" />
+      <Connection Source="Model.VCYL1_Y" Destination="View.VCYL1_Y" dx1="533.3333" />
+      <Connection Source="Model.WP1_X" Destination="View.WP1_X" dx1="644.4444" />
+      <Connection Source="Model.WP1_Y" Destination="View.WP1_Y" dx1="661.1111" />
+      <Connection Source="Model.VACUUM_ON" Destination="View.VACUUM_ON" dx1="811.1111" />
+      <Connection Source="BASEX" Destination="Model.BASEX" dx1="1516.6666" />
+      <Connection Source="BASEY" Destination="Model.BASEY" dx1="1516.6666" />
+      <Connection Source="CYL1_SPEED" Destination="Model.CYL1_SPEED" dx1="1427.7777" />
+      <Connection Source="CYL2_SPEED" Destination="Model.CYL2_SPEED" dx1="1427.7777" />
+      <Connection Source="VCYL1_SPEED" Destination="Model.VCYL1_SPEED" dx1="1411.1111" />
+      <Connection Source="AddedWP_X" Destination="Model.AddedWP_X" dx1="1450.0" />
+      <Connection Source="AddedWP_Y" Destination="Model.AddedWP_Y" dx1="1450.0" />
+      <Connection Source="Model.RemovedWP_X" Destination="RemovedWP_X" dx1="2683.3333" />
+      <Connection Source="Model.RemovedWP_Y" Destination="RemovedWP_Y" dx1="2683.3333" />
+      <Connection Source="Model.WP3_X" Destination="View.WP3_X" dx1="727.7778" />
+      <Connection Source="Model.WP3_Y" Destination="View.WP3_Y" dx1="750.0" />
+      <Connection Source="Model.WP2_X" Destination="View.WP2_X" dx1="683.3333" />
+      <Connection Source="Model.WP2_Y" Destination="View.WP2_Y" dx1="705.55554" />
+      <Connection Source="FROM_HMI.add1" Destination="Model.Add1" dx1="483.3333" />
+      <Connection Source="FROM_HMI.add2" Destination="Model.Add2" dx1="494.44443" />
+      <Connection Source="FROM_HMI.add3" Destination="Model.Add3" dx1="511.11108" />
+      <Connection Source="Model.VACUUM_ON" Destination="Control.vacuum" dx1="2438.889" />
+      <Connection Source="Model.pp0" Destination="Control.pp0" dx1="4650.0" />
+      <Connection Source="Model.pp1" Destination="Control.pp1" dx1="4738.8887" />
+      <Connection Source="Model.pp2" Destination="Control.pp2" dx1="4827.778" />
+      <Connection Source="Model.pp3" Destination="Control.pp3" dx1="4916.6665" />
+      <Connection Source="Model.CYL3_Y" Destination="View.CYL3_Y" dx1="488.88885" />
+      <Connection Source="Model.CYL3_X" Destination="View.CYL3_X" dx1="466.66666" />
+      <Connection Source="Model.VCYL2_X" Destination="View.VCYL2_X" dx1="555.55554" />
+      <Connection Source="Model.VCYL2_Y" Destination="View.VCYL2_Y" dx1="577.7778" />
+      <Connection Source="Model.VCYL3_X" Destination="View.VCYL3_X" dx1="600.0" />
+      <Connection Source="Model.VCYL3_Y" Destination="View.VCYL3_Y" dx1="616.6666" />
+      <Connection Source="Model.WP4_X" Destination="View.WP4_X" dx1="766.6666" />
+      <Connection Source="Model.WP4_Y" Destination="View.WP4_Y" dx1="794.4444" />
+      <Connection Source="FROM_HMI.add4" Destination="Model.Add4" dx1="527.7778" />
+      <Connection Source="CYL3_SPEED" Destination="Model.CYL3_SPEED" dx1="1427.7777" />
+      <Connection Source="VCYL2_SPEED" Destination="Model.VCYL2_SPEED" dx1="1411.1111" />
+      <Connection Source="VCYL3_SPEED" Destination="Model.VCYL3_SPEED" dx1="1411.1111" />
+      <Connection Source="Model.cyl1home" Destination="Control.cyl1home" dx1="3488.8887" />
+      <Connection Source="Model.cyl1end" Destination="Control.cyl1end" dx1="3577.7776" />
+      <Connection Source="Model.cyl2home" Destination="Control.cyl2home" dx1="3661.111" />
+      <Connection Source="Model.cyl2end" Destination="Control.cyl2end" dx1="3749.9998" />
+      <Connection Source="Model.cyl3home" Destination="Control.cyl3home" dx1="3844.4443" />
+      <Connection Source="Model.cyl3end" Destination="Control.cyl3end" dx1="4016.6665" />
+      <Connection Source="Model.vcyl1home" Destination="Control.vcyl1home" dx1="4111.111" />
+      <Connection Source="Model.vcyl1end" Destination="Control.vcyl1end" dx1="4200.0" />
+      <Connection Source="Model.vcyl2home" Destination="Control.vcyl2home" dx1="4288.8887" />
+      <Connection Source="Model.vcyl2end" Destination="Control.vcyl2end" dx1="4383.333" />
+      <Connection Source="Model.vcyl3home" Destination="Control.vcyl3home" dx1="4466.6665" />
+      <Connection Source="Model.vcyl3end" Destination="Control.vcyl3end" dx1="4555.555" />
+      <Connection Source="Model.pp4" Destination="Control.pp4" dx1="5005.555" />
+      <Connection Source="Control.venturi_on" Destination="Model.vacuum_on" dx1="127.77777" dx2="255.55554" dy="2377.7776" />
+      <Connection Source="Control.venturi_off" Destination="Model.vacuum_off" dx1="127.77777" dx2="183.33333" dy="2261.111" />
+      <Connection Source="Control.cyl1MoveOut" Destination="Model.cyl1_fwd" dx1="116.666664" dx2="677.7778" dy="2144.4443" />
+      <Connection Source="Control.cyl2MoveOut" Destination="Model.cyl2_fwd" dx1="105.55555" dx2="600.0" dy="1916.6666" />
+      <Connection Source="Control.cyl3MoveOut" Destination="Model.cyl3_fwd" dx1="100.0" dx2="544.4444" dy="1694.4443" />
+      <Connection Source="Control.cyl3MoveIn" Destination="Model.cyl3_back" dx1="94.44444" dx2="494.44443" dy="1583.3333" />
+      <Connection Source="Control.vcyl1MoveOut" Destination="Model.vcyl1_down" dx1="88.888885" dx2="444.44443" dy="1461.1111" />
+      <Connection Source="Control.vcyl2MoveOut" Destination="Model.vcyl2_down" dx1="83.33333" dx2="394.44443" dy="1238.8888" />
+      <Connection Source="Control.vcyl3MoveOut" Destination="Model.vcyl3_down" dx1="77.77777" dx2="327.77777" dy="1011.1111" />
+      <Connection Source="Model.cyl3mid" Destination="Control.cyl3mid" dx1="3933.3333" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="MyPICKER_VIEW_STEP1" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <CompilerInfo header="package fb.rt.pnp;import fb.rt.vhmi.*;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+      </Event>
+      <Event Name="CLK" Comment="Clock" >
+        <With Var="LCPos" />
+        <With Var="RCPos" />
+        <With Var="VCPos" />
+        <With Var="vacuumon" />
+        <With Var="HC3Pos" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="LCPos" Type="UINT" />
+      <VarDeclaration Name="RCPos" Type="UINT" />
+      <VarDeclaration Name="VCPos" Type="UINT" />
+      <VarDeclaration Name="vacuumon" Type="BOOL" />
+      <VarDeclaration Name="HC3Pos" Type="UINT" />
+    </InputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="PICKER_BASE" Type="Render" x="1462.5" y="212.5" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/picker_base.png&#34;" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="Layer" Value="13" />
+    </FB>
+    <FB Name="PICKER_CYL1" Type="Render" x="2487.5" y="225.0" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/picker_cyl1.png&#34;" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="Layer" Value="12" />
+    </FB>
+    <FB Name="PICKER_CYL2" Type="Render" x="3350.0" y="56.25" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/picker_cyl2.png&#34;" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="Layer" Value="11" />
+    </FB>
+    <FB Name="PICKER_VCYL" Type="Render" x="4450.0" y="218.75" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/picker_vcyl.png&#34;" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="Layer" Value="10" />
+    </FB>
+    <FB Name="WP1" Type="Render" x="5312.5" y="168.75" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/workpiece.png&#34;" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="Layer" Value="14" />
+    </FB>
+    <FB Name="PICKER_VAC" Type="Render" x="7306.25" y="231.25" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/picker_vacuum.png&#34;" />
+      <Parameter Name="Layer" Value="15" />
+    </FB>
+    <FB Name="wp_place1" Type="Render" x="4587.5" y="2031.25" >
+      <Parameter Name="PosX" Value="376" />
+      <Parameter Name="PosY" Value="220" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="Layer" Value="1" />
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/wp_place.png&#34;" />
+    </FB>
+    <FB Name="wp_place2" Type="Render" x="5318.75" y="2000.0" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/wp_place.png&#34;" />
+      <Parameter Name="PosX" Value="451" />
+      <Parameter Name="PosY" Value="220" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="Layer" Value="1" />
+    </FB>
+    <FB Name="wp_piece3" Type="Render" x="6531.25" y="2031.25" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/wp_place.png&#34;" />
+      <Parameter Name="PosX" Value="526" />
+      <Parameter Name="PosY" Value="220" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="Layer" Value="1" />
+    </FB>
+    <FB Name="slider" Type="Render" x="7331.25" y="1993.75" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/Slider.png&#34;" />
+      <Parameter Name="PosX" Value="301" />
+      <Parameter Name="PosY" Value="210" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="Layer" Value="1" />
+    </FB>
+    <FB Name="WP2" Type="Render" x="5831.25" y="231.25" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/workpiece1.png&#34;" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="Layer" Value="14" />
+    </FB>
+    <FB Name="WP3" Type="Render" x="6556.25" y="231.25" >
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="Layer" Value="14" />
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/workpiece3.png&#34;" />
+    </FB>
+    <FB Name="XYCal" Type="MyPnpXYCalculatorStep1" x="418.75" y="1087.5" >
+      <Parameter Name="BASEX" Value="5" />
+      <Parameter Name="BASEY" Value="25" />
+    </FB>
+    <EventConnections>
+      <Connection Source="PICKER_BASE.INITO" Destination="PICKER_CYL1.INIT" dx1="262.5" />
+      <Connection Source="PICKER_CYL1.INITO" Destination="PICKER_CYL2.INIT" dx1="131.25" />
+      <Connection Source="PICKER_CYL2.INITO" Destination="PICKER_VCYL.INIT" dx1="162.5" />
+      <Connection Source="PICKER_VCYL.INITO" Destination="WP1.INIT" dx1="243.75" />
+      <Connection Source="WP1.INITO" Destination="WP2.INIT" dx1="37.5" />
+      <Connection Source="WP2.INITO" Destination="WP3.INIT" dx1="700.0" />
+      <Connection Source="WP3.INITO" Destination="PICKER_VAC.INIT" dx1="762.5" />
+      <Connection Source="PICKER_VAC.INITO" Destination="wp_place1.INIT" dx1="212.5" dx2="412.5" dy="1281.25" />
+      <Connection Source="wp_place1.INITO" Destination="wp_place2.INIT" dx1="256.25" />
+      <Connection Source="wp_place2.INITO" Destination="wp_piece3.INIT" dx1="368.75" />
+      <Connection Source="wp_piece3.INITO" Destination="slider.INIT" dx1="562.5" />
+      <Connection Source="INIT" Destination="XYCal.INIT" dx1="312.5" />
+      <Connection Source="CLK" Destination="XYCal.CLK" dx1="312.5" />
+      <Connection Source="XYCal.INITO" Destination="PICKER_BASE.INIT" dx1="331.25" />
+      <Connection Source="XYCal.CNF" Destination="PICKER_BASE.ChangeXY" dx1="343.75" />
+      <Connection Source="XYCal.CNF" Destination="PICKER_CYL1.ChangeXY" dx1="656.25" />
+      <Connection Source="XYCal.CNF" Destination="PICKER_CYL2.ChangeXY" dx1="1018.75" />
+      <Connection Source="XYCal.CNF" Destination="PICKER_VCYL.ChangeXY" dx1="1356.25" />
+      <Connection Source="XYCal.CNF" Destination="WP1.ChangeXY" dx1="1662.5" />
+      <Connection Source="XYCal.CNF" Destination="WP2.ChangeXY" dx1="1956.25" />
+      <Connection Source="XYCal.CNF" Destination="WP3.ChangeXY" dx1="2281.25" />
+      <Connection Source="XYCal.CNF" Destination="PICKER_VAC.ChangeXY" dx1="2587.5" />
+      <Connection Source="XYCal.CNF" Destination="PICKER_VAC.ChangeValidity" dx1="2587.5" />
+      <Connection Source="slider.INITO" Destination="INITO" dx1="7906.25" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="XYCal.BASE_Y" Destination="PICKER_BASE.PosY" dx1="300.0" dx2="283.3333" dy="1427.7777" />
+      <Connection Source="XYCal.BASE_X" Destination="PICKER_BASE.PosX" dx1="200.0" />
+      <Connection Source="XYCal.CYL1_X" Destination="PICKER_CYL1.PosX" dx1="1068.75" />
+      <Connection Source="XYCal.CYL1_Y" Destination="PICKER_CYL1.PosY" dx1="1181.25" />
+      <Connection Source="XYCal.CYL2_X" Destination="PICKER_CYL2.PosX" dx1="1993.75" />
+      <Connection Source="XYCal.CYL2_Y" Destination="PICKER_CYL2.PosY" dx1="2131.25" />
+      <Connection Source="XYCal.VCYL_X" Destination="PICKER_VCYL.PosX" dx1="2806.25" />
+      <Connection Source="XYCal.VCYL_Y" Destination="PICKER_VCYL.PosY" dx1="2306.25" />
+      <Connection Source="XYCal.WP_X" Destination="WP1.PosX" dx1="2931.25" />
+      <Connection Source="XYCal.WP_Y" Destination="WP1.PosY" dx1="3031.25" />
+      <Connection Source="XYCal.WP2_X" Destination="WP2.PosX" dx1="3681.25" />
+      <Connection Source="XYCal.WP2_Y" Destination="WP2.PosY" dx1="3781.25" />
+      <Connection Source="XYCal.WP3_X" Destination="WP3.PosX" dx1="5018.75" />
+      <Connection Source="XYCal.WP3_Y" Destination="WP3.PosY" dx1="5100.0" />
+      <Connection Source="XYCal.VCYL_X" Destination="PICKER_VAC.PosX" dx1="4306.25" />
+      <Connection Source="XYCal.VCYL_Y" Destination="PICKER_VAC.PosY" dx1="4456.25" />
+      <Connection Source="LCPos" Destination="XYCal.LCPos" dx1="281.25" />
+      <Connection Source="RCPos" Destination="XYCal.RCPos" dx1="275.0" />
+      <Connection Source="VCPos" Destination="XYCal.VCPos" dx1="275.0" />
+      <Connection Source="vacuumon" Destination="XYCal.vacuumon" dx1="231.25" />
+      <Connection Source="vacuumon" Destination="PICKER_VAC.Display" dx1="7118.75" />
+      <Connection Source="HC3Pos" Destination="XYCal.HC3Pos" dx1="256.25" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

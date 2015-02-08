@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="CLOCK" Comment="Clock signal generator" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="The University of Auckland" Version="1.0" Author="Cheng Pang" Date="2008-11-09" Remarks="Stable build." />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="START" >
+        <With Var="Period" />
+      </Event>
+      <Event Name="STOP" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CLK" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="Period" Type="TIME" />
+    </InputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="DLY" Type="E_DELAY" x="1377.7777" y="416.66666" >
+      <Parameter Name="DT" Value="t#1ms" />
+    </FB>
+    <FB Name="CYCLE" Type="E_CYCLE" x="2155.5554" y="661.1111" />
+    <EventConnections>
+      <Connection Source="START" Destination="DLY.START" dx1="1227.7777" />
+      <Connection Source="STOP" Destination="CYCLE.STOP" dx1="2022.2222" />
+      <Connection Source="START" Destination="CYCLE.START" dx1="2005.5554" />
+      <Connection Source="CYCLE.EO" Destination="CLK" dx1="2577.7776" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="Period" Destination="CYCLE.DT" dx1="2022.2222" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

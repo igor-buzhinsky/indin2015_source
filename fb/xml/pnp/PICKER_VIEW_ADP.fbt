@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="PICKER_VIEW_ADP" Comment="View Composite FB with adapter interface" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <CompilerInfo header="package fb.rt.pnp;import fb.rt.vhmi.*;import fb.rt.math.*;import fb.rt.vmath.*;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+    </EventOutputs>
+    <Plugs>
+      <AdapterDeclaration Name="FROM_MODEL" Type="PICKER_STATE" x="166.66666" y="122.22221" />
+    </Plugs>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="VIEW" Type="PICKER_VIEW" x="1316.6666" y="122.22221" />
+    <EventConnections>
+      <Connection Source="FROM_MODEL.CHG" Destination="VIEW.REQ" dx1="166.66666" />
+      <Connection Source="FROM_MODEL.INIT" Destination="VIEW.INIT" dx1="127.77777" />
+      <Connection Source="VIEW.INITO" Destination="INITO" dx1="1855.5555" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="FROM_MODEL.CYL1_X" Destination="VIEW.CYL1_X" dx1="361.11108" />
+      <Connection Source="FROM_MODEL.VCYL_X" Destination="VIEW.VCYL_X" dx1="511.11108" />
+      <Connection Source="FROM_MODEL.VCYL_Y" Destination="VIEW.VCYL_Y" dx1="544.4444" />
+      <Connection Source="FROM_MODEL.CYL2_X" Destination="VIEW.CYL2_X" dx1="433.3333" />
+      <Connection Source="FROM_MODEL.VACUUM_ON" Destination="VIEW.VACUUM_ON" dx1="666.6666" />
+      <Connection Source="FROM_MODEL.BASE_X" Destination="VIEW.BASE_X" dx1="283.3333" />
+      <Connection Source="FROM_MODEL.BASE_Y" Destination="VIEW.BASE_Y" dx1="316.66666" />
+      <Connection Source="FROM_MODEL.CYL1_Y" Destination="VIEW.CYL1_Y" dx1="394.44443" />
+      <Connection Source="FROM_MODEL.CYL2_Y" Destination="VIEW.CYL2_Y" dx1="472.2222" />
+      <Connection Source="FROM_MODEL.WP1_X" Destination="VIEW.WP_X" dx1="427.77777" />
+      <Connection Source="FROM_MODEL.WP1_Y" Destination="VIEW.WP_Y" dx1="455.55554" />
+      <Connection Source="FROM_MODEL.WP2_X" Destination="VIEW.WP2_X" dx1="483.3333" />
+      <Connection Source="FROM_MODEL.WP2_Y" Destination="VIEW.WP2_Y" dx1="511.11108" />
+      <Connection Source="FROM_MODEL.WP3_X" Destination="VIEW.WP3_X" dx1="538.88885" />
+      <Connection Source="FROM_MODEL.WP3_Y" Destination="VIEW.WP3_Y" dx1="572.2222" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="SFC_COORD" Comment="Basic Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-04" Remarks="Renamed for better indexing." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-11-05" Remarks="Corrected missing ST element in Algorithm REQ." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-30" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="X1" />
+        <With Var="X2" />
+        <With Var="X3" />
+        <With Var="X4" />
+        <With Var="X30" />
+        <With Var="X31" />
+        <With Var="X32" />
+        <With Var="X10" />
+        <With Var="X11" />
+        <With Var="X20" />
+        <With Var="X21" />
+        <With Var="c1front" />
+        <With Var="c1back" />
+        <With Var="c2front" />
+        <With Var="c2back" />
+        <With Var="X33" />
+        <With Var="X34" />
+        <With Var="X35" />
+        <With Var="X36" />
+        <With Var="X37" />
+        <With Var="X38" />
+        <With Var="vcd30" />
+        <With Var="vcd31" />
+        <With Var="vcd35" />
+        <With Var="vcd37" />
+        <With Var="venturi_on" />
+        <With Var="X50" />
+        <With Var="X51" />
+        <With Var="X52" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="X1" />
+        <With Var="X2" />
+        <With Var="X3" />
+        <With Var="X4" />
+        <With Var="X30" />
+        <With Var="X31" />
+        <With Var="X32" />
+        <With Var="c1front" />
+        <With Var="c1back" />
+        <With Var="c2front" />
+        <With Var="X10" />
+        <With Var="X11" />
+        <With Var="X20" />
+        <With Var="X21" />
+        <With Var="c2back" />
+        <With Var="X33" />
+        <With Var="X34" />
+        <With Var="X35" />
+        <With Var="X36" />
+        <With Var="X37" />
+        <With Var="X38" />
+        <With Var="vcd30" />
+        <With Var="vcd31" />
+        <With Var="vcd35" />
+        <With Var="vcd37" />
+        <With Var="venturi_on" />
+        <With Var="X50" />
+        <With Var="X51" />
+        <With Var="X52" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="X1_IMG" />
+        <With Var="X2_IMG" />
+        <With Var="X3_IMG" />
+        <With Var="X4_IMG" />
+        <With Var="vcd30_IMG" />
+        <With Var="vcd31_IMG" />
+        <With Var="vcd35_IMG" />
+        <With Var="vcd37_IMG" />
+        <With Var="venturi_IMG" />
+        <With Var="X10_IMG" />
+        <With Var="X11_IMG" />
+        <With Var="X20_IMG" />
+        <With Var="X21_IMG" />
+        <With Var="L1C_IMG" />
+        <With Var="L2C_IMG" />
+        <With Var="X30_IMG" />
+        <With Var="X31_IMG" />
+        <With Var="X32_IMG" />
+        <With Var="X33_IMG" />
+        <With Var="X34_IMG" />
+        <With Var="X35_IMG" />
+        <With Var="X36_IMG" />
+        <With Var="X37_IMG" />
+        <With Var="X38_IMG" />
+        <With Var="L1CGI_IMG" />
+        <With Var="L2CGI_IMG" />
+        <With Var="N_X11_X21" />
+        <With Var="X50_IMG" />
+        <With Var="X51_IMG" />
+        <With Var="X52_IMG" />
+        <With Var="L1CGI_IMG_A" />
+        <With Var="L2CGI_IMG_A" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="X1_IMG" />
+        <With Var="X2_IMG" />
+        <With Var="X3_IMG" />
+        <With Var="X4_IMG" />
+        <With Var="vcd30_IMG" />
+        <With Var="vcd31_IMG" />
+        <With Var="vcd35_IMG" />
+        <With Var="vcd37_IMG" />
+        <With Var="venturi_IMG" />
+        <With Var="X10_IMG" />
+        <With Var="X11_IMG" />
+        <With Var="X20_IMG" />
+        <With Var="X21_IMG" />
+        <With Var="L1C_IMG" />
+        <With Var="L2C_IMG" />
+        <With Var="X30_IMG" />
+        <With Var="X31_IMG" />
+        <With Var="X32_IMG" />
+        <With Var="X33_IMG" />
+        <With Var="X34_IMG" />
+        <With Var="X35_IMG" />
+        <With Var="X36_IMG" />
+        <With Var="X37_IMG" />
+        <With Var="X38_IMG" />
+        <With Var="L1CGI_IMG" />
+        <With Var="L2CGI_IMG" />
+        <With Var="N_X11_X21" />
+        <With Var="X50_IMG" />
+        <With Var="X51_IMG" />
+        <With Var="X52_IMG" />
+        <With Var="L1CGI_IMG_A" />
+        <With Var="L2CGI_IMG_A" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="X1" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="X2" Type="BOOL" />
+      <VarDeclaration Name="X3" Type="BOOL" />
+      <VarDeclaration Name="X4" Type="BOOL" />
+      <VarDeclaration Name="X10" Type="BOOL" />
+      <VarDeclaration Name="X11" Type="BOOL" />
+      <VarDeclaration Name="X20" Type="BOOL" />
+      <VarDeclaration Name="X21" Type="BOOL" />
+      <VarDeclaration Name="X30" Type="BOOL" />
+      <VarDeclaration Name="X31" Type="BOOL" />
+      <VarDeclaration Name="X32" Type="BOOL" />
+      <VarDeclaration Name="X33" Type="BOOL" />
+      <VarDeclaration Name="X34" Type="BOOL" />
+      <VarDeclaration Name="X35" Type="BOOL" />
+      <VarDeclaration Name="X36" Type="BOOL" />
+      <VarDeclaration Name="X37" Type="BOOL" />
+      <VarDeclaration Name="X38" Type="BOOL" />
+      <VarDeclaration Name="X50" Type="BOOL" />
+      <VarDeclaration Name="X51" Type="BOOL" />
+      <VarDeclaration Name="X52" Type="BOOL" />
+      <VarDeclaration Name="c1front" Type="BOOL" />
+      <VarDeclaration Name="c1back" Type="BOOL" />
+      <VarDeclaration Name="c2front" Type="BOOL" />
+      <VarDeclaration Name="c2back" Type="BOOL" />
+      <VarDeclaration Name="vcd30" Type="BOOL" />
+      <VarDeclaration Name="vcd31" Type="BOOL" />
+      <VarDeclaration Name="vcd35" Type="BOOL" />
+      <VarDeclaration Name="vcd37" Type="BOOL" />
+      <VarDeclaration Name="venturi_on" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="X1_IMG" Type="WSTRING" Comment="Output event qualifier" />
+      <VarDeclaration Name="X2_IMG" Type="WSTRING" />
+      <VarDeclaration Name="X3_IMG" Type="WSTRING" />
+      <VarDeclaration Name="X4_IMG" Type="WSTRING" />
+      <VarDeclaration Name="X10_IMG" Type="WSTRING" />
+      <VarDeclaration Name="X11_IMG" Type="WSTRING" />
+      <VarDeclaration Name="X20_IMG" Type="WSTRING" />
+      <VarDeclaration Name="X21_IMG" Type="WSTRING" />
+      <VarDeclaration Name="X30_IMG" Type="WSTRING" />
+      <VarDeclaration Name="X31_IMG" Type="WSTRING" />
+      <VarDeclaration Name="X32_IMG" Type="WSTRING" />
+      <VarDeclaration Name="X33_IMG" Type="WSTRING" />
+      <VarDeclaration Name="X34_IMG" Type="WSTRING" />
+      <VarDeclaration Name="X35_IMG" Type="WSTRING" />
+      <VarDeclaration Name="X36_IMG" Type="WSTRING" />
+      <VarDeclaration Name="X37_IMG" Type="WSTRING" />
+      <VarDeclaration Name="X38_IMG" Type="WSTRING" />
+      <VarDeclaration Name="X50_IMG" Type="WSTRING" />
+      <VarDeclaration Name="X51_IMG" Type="WSTRING" />
+      <VarDeclaration Name="X52_IMG" Type="WSTRING" />
+      <VarDeclaration Name="vcd30_IMG" Type="WSTRING" />
+      <VarDeclaration Name="vcd31_IMG" Type="WSTRING" />
+      <VarDeclaration Name="vcd35_IMG" Type="WSTRING" />
+      <VarDeclaration Name="vcd37_IMG" Type="WSTRING" />
+      <VarDeclaration Name="venturi_IMG" Type="WSTRING" />
+      <VarDeclaration Name="L1C_IMG" Type="WSTRING" />
+      <VarDeclaration Name="L2C_IMG" Type="WSTRING" />
+      <VarDeclaration Name="L1CGI_IMG" Type="WSTRING" />
+      <VarDeclaration Name="L2CGI_IMG" Type="WSTRING" />
+      <VarDeclaration Name="L1CGI_IMG_A" Type="WSTRING" />
+      <VarDeclaration Name="L2CGI_IMG_A" Type="WSTRING" />
+      <VarDeclaration Name="N_X11_X21" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="555.55554" y="427.77777" >
+      </ECState>
+      <ECState Name="INIT" Comment="Initialization" x="922.22217" y="138.88889" >
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="REQ" Comment="Normal execution" x="216.66666" y="755.55554" >
+        <ECAction Algorithm="REQ" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="922.22217" y="427.77777" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="555.55554" y="138.88889" />
+      <ECTransition Source="START" Destination="REQ" Condition="REQ" x="555.55554" y="600.0" />
+      <ECTransition Source="REQ" Destination="START" Condition="1" x="216.66666" y="427.77777" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+    <ST Text="X1_IMG := &#34;/fb/rt/pnp/pics/S1.png&#34;;&#10;X2_IMG := &#34;/fb/rt/pnp/pics/S2.png&#34;;&#10;X3_IMG := &#34;/fb/rt/pnp/pics/S3.png&#34;;&#10;X4_IMG := &#34;/fb/rt/pnp/pics/S4.png&#34;;&#10;X10_IMG := &#34;/fb/rt/pnp/pics/S10.png&#34;;&#10;X11_IMG := &#34;/fb/rt/pnp/pics/S11.png&#34;;&#10;X20_IMG := &#34;/fb/rt/pnp/pics/S20.png&#34;;&#10;X21_IMG := &#34;/fb/rt/pnp/pics/S21.png&#34;;&#10;X30_IMG := &#34;/fb/rt/pnp/pics/S30.png&#34;;&#10;X31_IMG := &#34;/fb/rt/pnp/pics/S31.png&#34;;&#10;X32_IMG := &#34;/fb/rt/pnp/pics/S32.png&#34;;&#10;X33_IMG := &#34;/fb/rt/pnp/pics/S33.png&#34;;&#10;X34_IMG := &#34;/fb/rt/pnp/pics/S34.png&#34;;&#10;X35_IMG := &#34;/fb/rt/pnp/pics/S35.png&#34;;&#10;X36_IMG := &#34;/fb/rt/pnp/pics/S36.png&#34;;&#10;X37_IMG := &#34;/fb/rt/pnp/pics/S37.png&#34;;&#10;X38_IMG := &#34;/fb/rt/pnp/pics/S38.png&#34;;&#10;X50_IMG := &#34;/fb/rt/pnp/pics/S50.png&#34;;&#10;X51_IMG := &#34;/fb/rt/pnp/pics/S51.png&#34;;&#10;X52_IMG := &#34;/fb/rt/pnp/pics/S52.png&#34;;&#10;vcd30_IMG := &#34;/fb/rt/pnp/pics/VCGD.png&#34;;&#10;vcd31_IMG := &#34;/fb/rt/pnp/pics/VCGD.png&#34;;&#10;vcd35_IMG := &#34;/fb/rt/pnp/pics/VCGD.png&#34;;&#10;vcd37_IMG := &#34;/fb/rt/pnp/pics/VCGD.png&#34;;&#10;venturi_IMG := &#34;/fb/rt/pnp/pics/VENTURI.png&#34;;&#10;L1C_IMG := &#34;/fb/rt/pnp/pics/L1C.png&#34;;&#10;L2C_IMG := &#34;/fb/rt/pnp/pics/L2C.png&#34;;&#10;L1CGI_IMG := &#34;/fb/rt/pnp/pics/L1CGI.png&#34;;&#10;L2CGI_IMG := &#34;/fb/rt/pnp/pics/L2CGI.png&#34;;&#10;L1CGI_IMG_A := &#34;/fb/rt/pnp/pics/L1CGI.png&#34;;&#10;L2CGI_IMG_A := &#34;/fb/rt/pnp/pics/L2CGI.png&#34;;&#10;N_X11_X21 := NOT (X11 OR X21);&#10;" />
+  </Algorithm>
+  <Algorithm Name="REQ" Comment="Normally executed algorithm" >
+    <ST Text="IF X1 THEN&#10;IF X1_IMG = &#34;/fb/rt/pnp/pics/S1.png&#34; THEN&#10;X1_IMG := &#34;/fb/rt/pnp/pics/S1G.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF X1_IMG = &#34;/fb/rt/pnp/pics/S1G.png&#34; THEN&#10;X1_IMG := &#34;/fb/rt/pnp/pics/S1.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF X2 THEN&#10;IF X2_IMG = &#34;/fb/rt/pnp/pics/S2.png&#34; THEN&#10;X2_IMG := &#34;/fb/rt/pnp/pics/S2G.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF X2_IMG = &#34;/fb/rt/pnp/pics/S2G.png&#34; THEN&#10;X2_IMG := &#34;/fb/rt/pnp/pics/S2.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF X3 THEN&#10;IF X3_IMG = &#34;/fb/rt/pnp/pics/S3.png&#34; THEN&#10;X3_IMG := &#34;/fb/rt/pnp/pics/S3G.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF X3_IMG = &#34;/fb/rt/pnp/pics/S3G.png&#34; THEN&#10;X3_IMG := &#34;/fb/rt/pnp/pics/S3.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF X4 THEN&#10;IF X4_IMG = &#34;/fb/rt/pnp/pics/S4.png&#34; THEN&#10;X4_IMG := &#34;/fb/rt/pnp/pics/S4G.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF X4_IMG = &#34;/fb/rt/pnp/pics/S4G.png&#34; THEN&#10;X4_IMG := &#34;/fb/rt/pnp/pics/S4.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF X10 THEN&#10;IF X10_IMG = &#34;/fb/rt/pnp/pics/S10.png&#34; THEN&#10;X10_IMG := &#34;/fb/rt/pnp/pics/S10G.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF X10_IMG = &#34;/fb/rt/pnp/pics/S10G.png&#34; THEN&#10;X10_IMG := &#34;/fb/rt/pnp/pics/S10.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF X11 THEN&#10;IF X11_IMG = &#34;/fb/rt/pnp/pics/S11.png&#34; THEN&#10;X11_IMG := &#34;/fb/rt/pnp/pics/S11G.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF X11_IMG = &#34;/fb/rt/pnp/pics/S11G.png&#34; THEN&#10;X11_IMG := &#34;/fb/rt/pnp/pics/S11.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF X20 THEN&#10;IF X20_IMG = &#34;/fb/rt/pnp/pics/S20.png&#34; THEN&#10;X20_IMG := &#34;/fb/rt/pnp/pics/S20G.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF X20_IMG = &#34;/fb/rt/pnp/pics/S20G.png&#34; THEN&#10;X20_IMG := &#34;/fb/rt/pnp/pics/S20.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF X21 THEN&#10;IF X21_IMG = &#34;/fb/rt/pnp/pics/S21.png&#34; THEN&#10;X21_IMG := &#34;/fb/rt/pnp/pics/S21G.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF X21_IMG = &#34;/fb/rt/pnp/pics/S21G.png&#34; THEN&#10;X21_IMG := &#34;/fb/rt/pnp/pics/S21.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF X30 THEN&#10;IF X30_IMG = &#34;/fb/rt/pnp/pics/S30.png&#34; THEN&#10;X30_IMG := &#34;/fb/rt/pnp/pics/S30G.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF X30_IMG = &#34;/fb/rt/pnp/pics/S30G.png&#34; THEN&#10;X30_IMG := &#34;/fb/rt/pnp/pics/S30.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF X31 THEN&#10;IF X31_IMG = &#34;/fb/rt/pnp/pics/S31.png&#34; THEN&#10;X31_IMG := &#34;/fb/rt/pnp/pics/S31G.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF X31_IMG = &#34;/fb/rt/pnp/pics/S31G.png&#34; THEN&#10;X31_IMG := &#34;/fb/rt/pnp/pics/S31.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF X32 THEN&#10;IF X32_IMG = &#34;/fb/rt/pnp/pics/S32.png&#34; THEN&#10;X32_IMG := &#34;/fb/rt/pnp/pics/S32G.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF X32_IMG = &#34;/fb/rt/pnp/pics/S32G.png&#34; THEN&#10;X32_IMG := &#34;/fb/rt/pnp/pics/S32.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF X33 THEN&#10;IF X33_IMG = &#34;/fb/rt/pnp/pics/S33.png&#34; THEN&#10;X33_IMG := &#34;/fb/rt/pnp/pics/S33G.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF X33_IMG = &#34;/fb/rt/pnp/pics/S33G.png&#34; THEN&#10;X33_IMG := &#34;/fb/rt/pnp/pics/S33.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF X34 THEN&#10;IF X34_IMG = &#34;/fb/rt/pnp/pics/S34.png&#34; THEN&#10;X34_IMG := &#34;/fb/rt/pnp/pics/S34G.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF X34_IMG = &#34;/fb/rt/pnp/pics/S34G.png&#34; THEN&#10;X34_IMG := &#34;/fb/rt/pnp/pics/S34.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF X35 THEN&#10;IF X35_IMG = &#34;/fb/rt/pnp/pics/S35.png&#34; THEN&#10;X35_IMG := &#34;/fb/rt/pnp/pics/S35G.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF X35_IMG = &#34;/fb/rt/pnp/pics/S35G.png&#34; THEN&#10;X35_IMG := &#34;/fb/rt/pnp/pics/S35.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF X36 THEN&#10;IF X36_IMG = &#34;/fb/rt/pnp/pics/S36.png&#34; THEN&#10;X36_IMG := &#34;/fb/rt/pnp/pics/S36G.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF X36_IMG = &#34;/fb/rt/pnp/pics/S36G.png&#34; THEN&#10;X36_IMG := &#34;/fb/rt/pnp/pics/S36.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF X37 THEN&#10;IF X37_IMG = &#34;/fb/rt/pnp/pics/S37.png&#34; THEN&#10;X37_IMG := &#34;/fb/rt/pnp/pics/S37G.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF X37_IMG = &#34;/fb/rt/pnp/pics/S37G.png&#34; THEN&#10;X37_IMG := &#34;/fb/rt/pnp/pics/S37.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF X38 THEN&#10;IF X38_IMG = &#34;/fb/rt/pnp/pics/S38.png&#34; THEN&#10;X38_IMG := &#34;/fb/rt/pnp/pics/S38G.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF X38_IMG = &#34;/fb/rt/pnp/pics/S38G.png&#34; THEN&#10;X38_IMG := &#34;/fb/rt/pnp/pics/S38.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF X50 THEN&#10;IF X50_IMG = &#34;/fb/rt/pnp/pics/S50.png&#34; THEN&#10;X50_IMG := &#34;/fb/rt/pnp/pics/S50G.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF X50_IMG = &#34;/fb/rt/pnp/pics/S50G.png&#34; THEN&#10;X50_IMG := &#34;/fb/rt/pnp/pics/S50.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF X51 THEN&#10;IF X51_IMG = &#34;/fb/rt/pnp/pics/S51.png&#34; THEN&#10;X51_IMG := &#34;/fb/rt/pnp/pics/S51G.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF X51_IMG = &#34;/fb/rt/pnp/pics/S51G.png&#34; THEN&#10;X51_IMG := &#34;/fb/rt/pnp/pics/S51.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF X52 THEN&#10;IF X52_IMG = &#34;/fb/rt/pnp/pics/S52.png&#34; THEN&#10;X52_IMG := &#34;/fb/rt/pnp/pics/S52G.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF X52_IMG = &#34;/fb/rt/pnp/pics/S52G.png&#34; THEN&#10;X52_IMG := &#34;/fb/rt/pnp/pics/S52.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF c1front THEN&#10;IF L1C_IMG = &#34;/fb/rt/pnp/pics/L1C.png&#34; THEN&#10;L1C_IMG := &#34;/fb/rt/pnp/pics/L1CG.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF L1C_IMG = &#34;/fb/rt/pnp/pics/L1CG.png&#34; THEN&#10;L1C_IMG := &#34;/fb/rt/pnp/pics/L1C.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF c2front THEN&#10;IF L2C_IMG = &#34;/fb/rt/pnp/pics/L2C.png&#34; THEN&#10;L2C_IMG := &#34;/fb/rt/pnp/pics/L2CG.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF L2C_IMG = &#34;/fb/rt/pnp/pics/L2CG.png&#34; THEN&#10;L2C_IMG := &#34;/fb/rt/pnp/pics/L2C.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF vcd30 THEN&#10;IF vcd30_IMG = &#34;/fb/rt/pnp/pics/VCGD.png&#34; THEN&#10;vcd30_IMG := &#34;/fb/rt/pnp/pics/VCGDG.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF vcd30_IMG = &#34;/fb/rt/pnp/pics/VCGDG.png&#34; THEN&#10;vcd30_IMG := &#34;/fb/rt/pnp/pics/VCGD.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF vcd31 THEN&#10;IF vcd31_IMG = &#34;/fb/rt/pnp/pics/VCGD.png&#34; THEN&#10;vcd31_IMG := &#34;/fb/rt/pnp/pics/VCGDG.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF vcd31_IMG = &#34;/fb/rt/pnp/pics/VCGDG.png&#34; THEN&#10;vcd31_IMG := &#34;/fb/rt/pnp/pics/VCGD.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF vcd35 THEN&#10;IF vcd35_IMG = &#34;/fb/rt/pnp/pics/VCGD.png&#34; THEN&#10;vcd35_IMG := &#34;/fb/rt/pnp/pics/VCGDG.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF vcd35_IMG = &#34;/fb/rt/pnp/pics/VCGDG.png&#34; THEN&#10;vcd35_IMG := &#34;/fb/rt/pnp/pics/VCGD.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF vcd37 THEN&#10;IF vcd37_IMG = &#34;/fb/rt/pnp/pics/VCGD.png&#34; THEN&#10;vcd37_IMG := &#34;/fb/rt/pnp/pics/VCGDG.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF vcd37_IMG = &#34;/fb/rt/pnp/pics/VCGDG.png&#34; THEN&#10;vcd37_IMG := &#34;/fb/rt/pnp/pics/VCGD.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF venturi_on THEN&#10;IF venturi_IMG = &#34;/fb/rt/pnp/pics/VENTURI.png&#34; THEN&#10;venturi_IMG := &#34;/fb/rt/pnp/pics/VENTURIG.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF venturi_IMG = &#34;/fb/rt/pnp/pics/VENTURIG.png&#34; THEN&#10;venturi_IMG := &#34;/fb/rt/pnp/pics/VENTURI.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF c1back &#38; X33 THEN&#10;IF L1CGI_IMG = &#34;/fb/rt/pnp/pics/L1CGI.png&#34; THEN&#10;L1CGI_IMG := &#34;/fb/rt/pnp/pics/L1CGIG.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF L1CGI_IMG = &#34;/fb/rt/pnp/pics/L1CGIG.png&#34; THEN&#10;L1CGI_IMG := &#34;/fb/rt/pnp/pics/L1CGI.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF c2back &#38; X34 THEN&#10;IF L2CGI_IMG = &#34;/fb/rt/pnp/pics/L2CGI.png&#34; THEN&#10;L2CGI_IMG := &#34;/fb/rt/pnp/pics/L2CGIG.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF L2CGI_IMG = &#34;/fb/rt/pnp/pics/L2CGIG.png&#34; THEN&#10;L2CGI_IMG := &#34;/fb/rt/pnp/pics/L2CGI.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF c1back &#38; X51 THEN&#10;IF L1CGI_IMG_A = &#34;/fb/rt/pnp/pics/L1CGI.png&#34; THEN&#10;L1CGI_IMG_A := &#34;/fb/rt/pnp/pics/L1CGIG.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF L1CGI_IMG_A = &#34;/fb/rt/pnp/pics/L1CGIG.png&#34; THEN&#10;L1CGI_IMG_A := &#34;/fb/rt/pnp/pics/L1CGI.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;IF c2back &#38; X52 THEN&#10;IF L2CGI_IMG_A = &#34;/fb/rt/pnp/pics/L2CGI.png&#34; THEN&#10;L2CGI_IMG_A := &#34;/fb/rt/pnp/pics/L2CGIG.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;ELSE&#10;IF L2CGI_IMG_A = &#34;/fb/rt/pnp/pics/L2CGIG.png&#34; THEN&#10;L2CGI_IMG_A := &#34;/fb/rt/pnp/pics/L2CGI.png&#34;;&#10;CNF.serviceEvent(this);&#10;END_IF&#10;END_IF&#10;&#10;N_X11_X21 := NOT (X11 OR X21);&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

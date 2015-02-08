@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="MachadoSFC" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" >
+        <With Var="s10" />
+        <With Var="s11" />
+        <With Var="s13" />
+        <With Var="s12" />
+        <With Var="vcu" />
+        <With Var="vcd" />
+        <With Var="pp0" />
+        <With Var="pp1" />
+        <With Var="pp2" />
+        <With Var="pp3" />
+        <With Var="vacuum" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="s10" />
+        <With Var="s11" />
+        <With Var="s12" />
+        <With Var="s13" />
+        <With Var="vcu" />
+        <With Var="vcd" />
+        <With Var="pp0" />
+        <With Var="pp1" />
+        <With Var="pp2" />
+        <With Var="pp3" />
+        <With Var="vacuum" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" >
+        <With Var="c1_front" />
+        <With Var="c1_back" />
+        <With Var="c2_front" />
+        <With Var="c2_back" />
+        <With Var="vc_down" />
+        <With Var="venturi_on" />
+        <With Var="venturi_off" />
+        <With Var="X1" />
+        <With Var="X2" />
+        <With Var="X3" />
+        <With Var="X4" />
+        <With Var="X10" />
+        <With Var="X11" />
+        <With Var="X20" />
+        <With Var="X21" />
+        <With Var="X30" />
+        <With Var="X31" />
+        <With Var="X32" />
+        <With Var="X33" />
+        <With Var="X34" />
+        <With Var="X35" />
+        <With Var="X36" />
+        <With Var="X37" />
+        <With Var="X38" />
+        <With Var="vc_down30" />
+        <With Var="vc_down31" />
+        <With Var="vc_down35" />
+        <With Var="vc_down37" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="c1_front" />
+        <With Var="c1_back" />
+        <With Var="c2_front" />
+        <With Var="c2_back" />
+        <With Var="vc_down" />
+        <With Var="venturi_on" />
+        <With Var="venturi_off" />
+        <With Var="X1" />
+        <With Var="X2" />
+        <With Var="X3" />
+        <With Var="X4" />
+        <With Var="X10" />
+        <With Var="X11" />
+        <With Var="X20" />
+        <With Var="X21" />
+        <With Var="X30" />
+        <With Var="X31" />
+        <With Var="X32" />
+        <With Var="X33" />
+        <With Var="X34" />
+        <With Var="X35" />
+        <With Var="X36" />
+        <With Var="X37" />
+        <With Var="X38" />
+        <With Var="vc_down30" />
+        <With Var="vc_down31" />
+        <With Var="vc_down35" />
+        <With Var="vc_down37" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="s10" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="s11" Type="BOOL" />
+      <VarDeclaration Name="s12" Type="BOOL" />
+      <VarDeclaration Name="s13" Type="BOOL" />
+      <VarDeclaration Name="vcu" Type="BOOL" />
+      <VarDeclaration Name="vcd" Type="BOOL" />
+      <VarDeclaration Name="pp0" Type="BOOL" />
+      <VarDeclaration Name="pp1" Type="BOOL" />
+      <VarDeclaration Name="pp2" Type="BOOL" />
+      <VarDeclaration Name="pp3" Type="BOOL" />
+      <VarDeclaration Name="vacuum" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="c1_front" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="c1_back" Type="BOOL" />
+      <VarDeclaration Name="c2_front" Type="BOOL" />
+      <VarDeclaration Name="c2_back" Type="BOOL" />
+      <VarDeclaration Name="vc_down" Type="BOOL" />
+      <VarDeclaration Name="vc_down30" Type="BOOL" />
+      <VarDeclaration Name="vc_down31" Type="BOOL" />
+      <VarDeclaration Name="vc_down35" Type="BOOL" />
+      <VarDeclaration Name="vc_down37" Type="BOOL" />
+      <VarDeclaration Name="venturi_on" Type="BOOL" />
+      <VarDeclaration Name="venturi_off" Type="BOOL" />
+      <VarDeclaration Name="X1" Type="BOOL" />
+      <VarDeclaration Name="X2" Type="BOOL" />
+      <VarDeclaration Name="X3" Type="BOOL" />
+      <VarDeclaration Name="X4" Type="BOOL" />
+      <VarDeclaration Name="X10" Type="BOOL" />
+      <VarDeclaration Name="X11" Type="BOOL" />
+      <VarDeclaration Name="X20" Type="BOOL" />
+      <VarDeclaration Name="X21" Type="BOOL" />
+      <VarDeclaration Name="X30" Type="BOOL" />
+      <VarDeclaration Name="X31" Type="BOOL" />
+      <VarDeclaration Name="X32" Type="BOOL" />
+      <VarDeclaration Name="X33" Type="BOOL" />
+      <VarDeclaration Name="X34" Type="BOOL" />
+      <VarDeclaration Name="X35" Type="BOOL" />
+      <VarDeclaration Name="X36" Type="BOOL" />
+      <VarDeclaration Name="X37" Type="BOOL" />
+      <VarDeclaration Name="X38" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="SFC1" Type="SFC1" x="949.99994" y="422.2222" />
+    <FB Name="SFC2" Type="SFC2" x="2627.7776" y="366.66666" />
+    <FB Name="SFC3" Type="SFC2" x="1855.5555" y="1572.2222" />
+    <FB Name="SFC4" Type="SFC4" x="3344.4443" y="1916.6666" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="SFC1.INIT" dx1="844.4444" />
+      <Connection Source="REQ" Destination="SFC1.REQ" dx1="838.88885" />
+      <Connection Source="SFC1.CNF" Destination="SFC2.REQ" dx1="155.55554" />
+      <Connection Source="SFC3.CNF" Destination="CNF" dx1="2272.2222" />
+      <Connection Source="SFC2.CNF" Destination="CNF" dx1="3044.4443" />
+      <Connection Source="SFC1.INITO" Destination="SFC2.INIT" dx1="183.33333" />
+      <Connection Source="SFC2.INITO" Destination="SFC3.INIT" dx1="27.777777" dx2="22.222221" dy="-105.55555" />
+      <Connection Source="SFC3.INITO" Destination="SFC4.INIT" dx1="622.22217" />
+      <Connection Source="SFC3.CNF" Destination="SFC4.REQ" dx1="505.55554" />
+      <Connection Source="SFC2.CNF" Destination="SFC4.REQ" dx1="183.33333" />
+      <Connection Source="SFC4.INITO" Destination="INITO" dx1="4027.7776" />
+      <Connection Source="SFC4.CNF" Destination="CNF" dx1="4005.5554" />
+      <Connection Source="SFC4.CNF" Destination="SFC2.REQ" dx1="166.66666" dx2="166.66666" dy="-1949.9999" />
+      <Connection Source="SFC4.CNF" Destination="SFC1.REQ" dx1="166.66666" dx2="166.66666" dy="-1949.9999" />
+      <Connection Source="REQ" Destination="SFC4.REQ" dx1="3233.3333" />
+      <Connection Source="REQ" Destination="SFC3.REQ" dx1="1744.4443" />
+      <Connection Source="SFC1.CNF" Destination="SFC3.REQ" dx1="511.11108" />
+      <Connection Source="REQ" Destination="SFC2.REQ" dx1="2516.6665" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="pp1" Destination="SFC1.pp1" dx1="849.99994" />
+      <Connection Source="pp2" Destination="SFC1.pp2" dx1="849.99994" />
+      <Connection Source="pp3" Destination="SFC1.pp3" dx1="849.99994" />
+      <Connection Source="s12" Destination="SFC3.s12" dx1="1761.1111" />
+      <Connection Source="s13" Destination="SFC3.s3" dx1="1761.1111" />
+      <Connection Source="SFC1.X2" Destination="SFC3.X12" dx1="383.3333" />
+      <Connection Source="SFC1.X3" Destination="SFC3.X3" dx1="272.2222" />
+      <Connection Source="SFC1.X1" Destination="SFC2.X12" dx1="961.1111" />
+      <Connection Source="s13" Destination="SFC2.s3" dx1="2533.3333" />
+      <Connection Source="SFC1.X3" Destination="SFC2.X3" dx1="849.99994" />
+      <Connection Source="s10" Destination="SFC4.s0" dx1="3249.9998" />
+      <Connection Source="s11" Destination="SFC4.s1" dx1="3249.9998" />
+      <Connection Source="s12" Destination="SFC4.s2" dx1="3249.9998" />
+      <Connection Source="s13" Destination="SFC4.s3" dx1="3249.9998" />
+      <Connection Source="SFC1.X1" Destination="SFC4.X1" dx1="1327.7777" />
+      <Connection Source="SFC1.X2" Destination="SFC4.X2" dx1="1266.6666" />
+      <Connection Source="SFC1.X3" Destination="SFC4.X3" dx1="1222.2222" />
+      <Connection Source="SFC2.CGO" Destination="SFC4.X11" dx1="27.777777" />
+      <Connection Source="SFC3.CGO" Destination="SFC4.X21" dx1="466.66666" />
+      <Connection Source="pp0" Destination="SFC4.pp0" dx1="3244.4443" />
+      <Connection Source="vcu" Destination="SFC4.vcu" dx1="3244.4443" />
+      <Connection Source="vcd" Destination="SFC4.vcd" dx1="3244.4443" />
+      <Connection Source="vacuum" Destination="SFC4.vacuum" dx1="3188.8887" />
+      <Connection Source="SFC2.CGO" Destination="c1_front" dx1="3094.4443" />
+      <Connection Source="SFC3.CGO" Destination="c2_front" dx1="2322.2222" />
+      <Connection Source="SFC4.L1CGI" Destination="c1_back" dx1="4061.1108" />
+      <Connection Source="SFC4.L2CGI" Destination="c2_back" dx1="4061.1108" />
+      <Connection Source="SFC1.X1" Destination="X1" dx1="1344.4443" />
+      <Connection Source="SFC1.X2" Destination="X2" dx1="1344.4443" />
+      <Connection Source="SFC1.X3" Destination="X3" dx1="1344.4443" />
+      <Connection Source="SFC4.X30" Destination="SFC3.X30" dx1="111.11111" dx2="111.11111" dy="983.3333" />
+      <Connection Source="SFC4.X30" Destination="SFC2.X30" dx1="111.11111" dx2="111.11111" dy="983.3333" />
+      <Connection Source="SFC4.vc_down30" Destination="vc_down30" dx1="4100.0" />
+      <Connection Source="SFC4.vc_down31" Destination="vc_down31" dx1="4100.0" />
+      <Connection Source="SFC4.vc_down35" Destination="vc_down35" dx1="4100.0" />
+      <Connection Source="SFC4.vc_down37" Destination="vc_down37" dx1="4100.0" />
+      <Connection Source="SFC4.venturi_on" Destination="venturi_on" dx1="4088.8887" />
+      <Connection Source="SFC4.venturi_off" Destination="venturi_off" dx1="4088.8887" />
+      <Connection Source="SFC4.X30" Destination="X30" dx1="3999.9998" />
+      <Connection Source="SFC4.X31" Destination="X31" dx1="3999.9998" />
+      <Connection Source="SFC4.X32" Destination="X32" dx1="3999.9998" />
+      <Connection Source="SFC4.X33" Destination="X33" dx1="3999.9998" />
+      <Connection Source="SFC4.X34" Destination="X34" dx1="3999.9998" />
+      <Connection Source="SFC4.X35" Destination="X35" dx1="3999.9998" />
+      <Connection Source="SFC4.X36" Destination="X36" dx1="3999.9998" />
+      <Connection Source="SFC4.X37" Destination="X37" dx1="3999.9998" />
+      <Connection Source="SFC4.X38" Destination="X38" dx1="3999.9998" />
+      <Connection Source="SFC4.VCGD" Destination="vc_down" dx1="4061.1108" />
+      <Connection Source="SFC1.X4" Destination="X4" dx1="1344.4443" />
+      <Connection Source="SFC2.X11" Destination="X11" dx1="3038.8887" />
+      <Connection Source="SFC3.X10" Destination="X20" dx1="2266.6665" />
+      <Connection Source="SFC3.X11" Destination="X21" dx1="2266.6665" />
+      <Connection Source="SFC2.X10" Destination="X10" dx1="3038.8887" />
+      <Connection Source="s11" Destination="SFC2.s12" dx1="2533.3333" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

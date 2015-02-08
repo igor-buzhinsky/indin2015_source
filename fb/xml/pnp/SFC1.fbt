@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="SFC1" Comment="Basic Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-04" Remarks="Renamed for better indexing." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-11-05" Remarks="Corrected missing ST element in Algorithm REQ." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-30" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="pp1" />
+        <With Var="pp2" />
+        <With Var="pp3" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="pp1" />
+        <With Var="pp2" />
+        <With Var="pp3" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="X1" />
+        <With Var="X3" />
+        <With Var="X2" />
+        <With Var="X4" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="X1" />
+        <With Var="X2" />
+        <With Var="X3" />
+        <With Var="X4" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="pp1" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="pp2" Type="BOOL" />
+      <VarDeclaration Name="pp3" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="X1" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="X2" Type="BOOL" />
+      <VarDeclaration Name="X3" Type="BOOL" />
+      <VarDeclaration Name="X4" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="X4" Comment="Initial State" x="1272.2222" y="361.11108" >
+        <ECAction Algorithm="X4" Output="CNF" />
+      </ECState>
+      <ECState Name="INIT" Comment="Initialization" x="1538.8888" y="88.888885" >
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="X1" Comment="Normal execution" x="666.6666" y="955.55554" >
+        <ECAction Algorithm="X1" Output="CNF" />
+      </ECState>
+      <ECState Name="X2" x="1238.8888" y="949.99994" >
+        <ECAction Algorithm="X2" Output="CNF" />
+      </ECState>
+      <ECState Name="X3" x="1966.6666" y="911.1111" >
+        <ECAction Algorithm="X3" Output="CNF" />
+      </ECState>
+      <ECTransition Source="X4" Destination="INIT" Condition="INIT" x="1561.1111" y="172.22221" />
+      <ECTransition Source="INIT" Destination="X4" Condition="1" x="1361.1111" y="88.888885" />
+      <ECTransition Source="X4" Destination="X1" Condition="REQ&#38;pp1" x="700.0" y="361.11108" />
+      <ECTransition Source="X4" Destination="X2" Condition="REQ&#38;(pp2 &#38; NOT pp1)" x="1122.2222" y="627.7778" />
+      <ECTransition Source="X4" Destination="X3" Condition="REQ&#38;(pp3 &#38; NOT pp1 &#38; NOT pp2)" x="2650.0" y="361.11108" />
+      <ECTransition Source="X1" Destination="X4" Condition="REQ&#38;NOT pp1" x="333.3333" y="116.666664" />
+      <ECTransition Source="X2" Destination="X4" Condition="REQ&#38;NOT pp2" x="1538.8888" y="727.7778" />
+      <ECTransition Source="X3" Destination="X4" Condition="REQ&#38;NOT pp3" x="1966.6666" y="561.1111" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+    <ST Text="X1:=false;&#10;X2:=false;&#10;X3:=false;&#10;X4:=false;&#10;System.out.println(&#34;SFC1: INIT&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="REQ" Comment="Normally executed algorithm" >
+    <ST Text="" />
+  </Algorithm>
+  <Algorithm Name="X4" >
+    <ST Text="X4:=true;&#10;IF NOT pp1 THEN&#10;X1:=false;&#10;END_IF&#10;IF NOT pp2 THEN&#10;X2:=false;&#10;END_IF&#10;IF NOT pp3 THEN&#10;X3:=false;&#10;END_IF&#10;System.out.println(&#34;SFC1: X4&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="X1" >
+    <ST Text="X1:= true;&#10;X4:=false;&#10;System.out.println(&#34;SFC1: X1&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="X2" >
+    <ST Text="X2:= true;&#10;X4:=false;&#10;System.out.println(&#34;SFC1: X2&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="X3" >
+    <ST Text="X3:= true;&#10;X4:=false;&#10;System.out.println(&#34;SFC1: X3&#34;);&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd" >
+<FBType Name="FB_TankControl" Comment="Basic Function Block Type" >
+  
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="wildai" Date="2014-5-4" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="TempSensorIsConfigured" />
+        <With Var="TempSensorHHAlarm" />
+        <With Var="TempSensorHealthy" />
+        <With Var="PressureSensorIsConfigured" />
+        <With Var="PressureSensorHHAlarm" />
+        <With Var="PressureSensorHealthy" />
+        <With Var="WaterLevelSensorHighIsConfigured" />
+        <With Var="WaterLevelSensorHHAlarm" />
+        <With Var="WaterLevelSensorHighHealthy" />
+        <With Var="WaterLevelSensorOverflowIsConfigured" />
+        <With Var="WaterLevelSensorOverflowAlarm" />
+        <With Var="WaterLevelSensorOverflowHealthy" />
+        <With Var="WaterLevelSensorLowIsConfigured" />
+        <With Var="WaterLevelSensorLLAlarm" />
+        <With Var="WaterLevelSensorLowHealthy" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="TempSensorIsConfigured" />
+        <With Var="TempSensorHHAlarm" />
+        <With Var="TempSensorHealthy" />
+        <With Var="PressureSensorIsConfigured" />
+        <With Var="PressureSensorHHAlarm" />
+        <With Var="PressureSensorHealthy" />
+        <With Var="WaterLevelSensorHighIsConfigured" />
+        <With Var="WaterLevelSensorHHAlarm" />
+        <With Var="WaterLevelSensorHighHealthy" />
+        <With Var="WaterLevelSensorOverflowIsConfigured" />
+        <With Var="WaterLevelSensorOverflowAlarm" />
+        <With Var="WaterLevelSensorOverflowHealthy" />
+        <With Var="WaterLevelSensorLowIsConfigured" />
+        <With Var="WaterLevelSensorLLAlarm" />
+        <With Var="WaterLevelSensorLowHealthy" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="Ready" />
+        <With Var="OverPresuure" />
+        <With Var="InfeedEnabled" />
+        <With Var="OutfeedEnabled" />
+        <With Var="HeatEnabled" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="Ready" />
+        <With Var="OverPresuure" />
+        <With Var="InfeedEnabled" />
+        <With Var="OutfeedEnabled" />
+        <With Var="HeatEnabled" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="TempSensorIsConfigured" Type="BOOL" />
+      <VarDeclaration Name="TempSensorHHAlarm" Type="BOOL" />
+      <VarDeclaration Name="TempSensorHealthy" Type="BOOL" />
+      <VarDeclaration Name="PressureSensorIsConfigured" Type="BOOL" />
+      <VarDeclaration Name="PressureSensorHHAlarm" Type="BOOL" />
+      <VarDeclaration Name="PressureSensorHealthy" Type="BOOL" />
+      <VarDeclaration Name="WaterLevelSensorHighIsConfigured" Type="BOOL" />
+      <VarDeclaration Name="WaterLevelSensorHHAlarm" Type="BOOL" />
+      <VarDeclaration Name="WaterLevelSensorHighHealthy" Type="BOOL" />
+      <VarDeclaration Name="WaterLevelSensorOverflowIsConfigured" Type="BOOL" />
+      <VarDeclaration Name="WaterLevelSensorOverflowAlarm" Type="BOOL" />
+      <VarDeclaration Name="WaterLevelSensorOverflowHealthy" Type="BOOL" />
+      <VarDeclaration Name="WaterLevelSensorLowIsConfigured" Type="BOOL" />
+      <VarDeclaration Name="WaterLevelSensorLLAlarm" Type="BOOL" />
+      <VarDeclaration Name="WaterLevelSensorLowHealthy" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Ready" Type="BOOL" />
+      <VarDeclaration Name="OverPresuure" Type="BOOL" />
+      <VarDeclaration Name="InfeedEnabled" Type="BOOL" />
+      <VarDeclaration Name="OutfeedEnabled" Type="BOOL" />
+      <VarDeclaration Name="HeatEnabled" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="552.9412" y="429.4117" />
+      <ECState Name="INIT" Comment="Initialization" x="923.5294" y="141.1765">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="REQ" Comment="Normal execution" x="217.647" y="752.9412">
+        <ECAction Algorithm="REQ" Output="CNF" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="731.1476" y="204.8375" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="797.5924" y="348.3232" />
+      <ECTransition Source="START" Destination="REQ" Condition="REQ" x="447.8488" y="648.3352" />
+      <ECTransition Source="REQ" Destination="START" Condition="1" x="372.8767" y="512.7991" />
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";&#xD;&#xA;Ready := FALSE;&#xD;&#xA;OverPresuure := FALSE;&#xD;&#xA;InfeedEnabled := FALSE;&#xD;&#xA;OutfeedEnabled := FALSE;&#xD;&#xA;HeatEnabled := FALSE;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="REQ" Comment="Normally executed algorithm">
+      <ST Text=";&#xD;&#xA;&#xD;&#xA;IF ((TempSensorIsConfigured AND NOT TempSensorHealthy) OR&#xD;&#xA;	(PressureSensorIsConfigured AND NOT PressureSensorHealthy) OR &#xD;&#xA;	(WaterLevelSensorHighIsConfigured AND NOT WaterLevelSensorHighHealthy) OR&#xD;&#xA;	(WaterLevelSensorOverflowIsConfigured AND NOT WaterLevelSensorOverflowHealthy) OR&#xD;&#xA;	(WaterLevelSensorLowIsConfigured AND NOT WaterLevelSensorLowHealthy)) THEN&#xD;&#xA;	Ready := FALSE;&#xD;&#xA;ELSE&#xD;&#xA;	Ready := TRUE;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;IF ((TempSensorIsConfigured AND NOT TempSensorHHAlarm) AND Ready) THEN&#xD;&#xA;	HeatEnabled := TRUE;&#xD;&#xA;ELSE&#xD;&#xA;	HeatEnabled := FALSE;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;IF (PressureSensorIsConfigured AND PressureSensorHHAlarm) THEN&#xD;&#xA;	OverPresuure := TRUE;&#xD;&#xA;ELSE&#xD;&#xA;	OverPresuure := FALSE;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;IF ((WaterLevelSensorHighIsConfigured AND WaterLevelSensorHHAlarm) OR (WaterLevelSensorOverflowIsConfigured AND WaterLevelSensorOverflowAlarm) OR NOT Ready OR (NOT WaterLevelSensorHighIsConfigured AND NOT WaterLevelSensorOverflowIsConfigured)) THEN&#xD;&#xA;	InfeedEnabled := FALSE;&#xD;&#xA;ELSE&#xD;&#xA;	InfeedEnabled := TRUE;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;IF ((WaterLevelSensorLowIsConfigured AND NOT WaterLevelSensorLLAlarm) AND Ready) THEN&#xD;&#xA;	OutfeedEnabled := TRUE;&#xD;&#xA;ELSE&#xD;&#xA;	OutfeedEnabled := FALSE;&#xD;&#xA;END_IF;&#xD;&#xA;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

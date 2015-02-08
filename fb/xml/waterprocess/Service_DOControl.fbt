@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd" >
+<FBType Name="Service_DOControl" Comment="Basic Function Block Type" >
+  
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="wildai" Date="2014-5-4" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="CMD_ON" />
+        <With Var="OM" />
+        <With Var="OM_ON" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="CMD_ON" />
+        <With Var="OM" />
+        <With Var="OM_ON" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="OUTPUT" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="OUTPUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="CMD_ON" Type="BOOL" />
+      <VarDeclaration Name="OM" Type="BOOL" />
+      <VarDeclaration Name="OM_ON" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUTPUT" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="552.9412" y="429.4117" />
+      <ECState Name="INIT" Comment="Initialization" x="923.5294" y="141.1765">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="REQ" Comment="Normal execution" x="217.647" y="752.9412">
+        <ECAction Algorithm="REQ" Output="CNF" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="731.1476" y="204.8375" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="797.5924" y="348.3232" />
+      <ECTransition Source="START" Destination="REQ" Condition="REQ" x="447.8488" y="648.3352" />
+      <ECTransition Source="REQ" Destination="START" Condition="1" x="372.8767" y="512.7991" />
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";&#xD;&#xA;OUTPUT := FALSE;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="REQ" Comment="Normally executed algorithm">
+      <ST Text=";&#xD;&#xA;&#xD;&#xA;IF ((CMD_ON AND NOT OM) OR (OM AND OM_ON)) THEN&#xD;&#xA;	OUTPUT := TRUE;&#xD;&#xA;ELSE&#xD;&#xA;	OUTPUT := FALSE;&#xD;&#xA;END_IF;&#xD;&#xA;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

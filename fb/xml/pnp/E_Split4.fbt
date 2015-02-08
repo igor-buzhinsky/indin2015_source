@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="E_Split4" Comment="Basic Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Administrator" Date="2011-02-28" Remarks="Template" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="E" Comment="Normal Execution Request" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="E1" Comment="Execution Confirmation" >
+      </Event>
+      <Event Name="E2" >
+      </Event>
+      <Event Name="E3" >
+      </Event>
+      <Event Name="E4" >
+      </Event>
+    </EventOutputs>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="552.9412" y="429.4117" >
+      </ECState>
+      <ECState Name="REQ" Comment="Normal execution" x="509.647" y="796.9412" >
+        <ECAction Output="E1" />
+        <ECAction Output="E2" />
+        <ECAction Output="E3" />
+        <ECAction Output="E4" />
+      </ECState>
+      <ECTransition Source="START" Destination="REQ" Condition="E" x="615.2344" y="621.9507" />
+      <ECTransition Source="REQ" Destination="START" Condition="1" x="530.3718" y="538.1764" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+    <ST Text=";&#10;" />
+  </Algorithm>
+  <Algorithm Name="REQ" Comment="Normally executed algorithm" >
+    <ST Text=";&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

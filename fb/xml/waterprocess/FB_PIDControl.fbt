@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd" >
+<FBType Name="FB_PIDControl" Comment="Basic Function Block Type" >
+  
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="wildai" Date="2014-5-4" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="AutoMode" />
+        <With Var="PV" />
+        <With Var="SP" />
+        <With Var="gain" />
+        <With Var="rate" />
+        <With Var="reset" />
+        <With Var="sample" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="AutoMode" />
+        <With Var="PV" />
+        <With Var="SP" />
+        <With Var="gain" />
+        <With Var="rate" />
+        <With Var="reset" />
+        <With Var="sample" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="Mode" />
+        <With Var="OUT" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="Mode" />
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="AutoMode" Type="BOOL" />
+      <VarDeclaration Name="PV" Type="REAL" />
+      <VarDeclaration Name="SP" Type="REAL" />
+      <VarDeclaration Name="gain" Type="REAL" />
+      <VarDeclaration Name="rate" Type="REAL" />
+      <VarDeclaration Name="reset" Type="REAL" />
+      <VarDeclaration Name="sample" Type="REAL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Mode" Type="BOOL" />
+      <VarDeclaration Name="OUT" Type="REAL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Name="SPin" Type="REAL" />
+      <VarDeclaration Name="PVscl" Type="REAL" />
+      <VarDeclaration Name="SPscl" Type="REAL" />
+      <VarDeclaration Name="OUTscl" Type="REAL" />
+      <VarDeclaration Name="error" Type="REAL" />
+      <VarDeclaration Name="bias" Type="REAL" />
+      <VarDeclaration Name="PVold" Type="REAL" />
+      <VarDeclaration Name="I_Coeff" Type="REAL" />
+      <VarDeclaration Name="D_Coeff" Type="REAL" />
+      <VarDeclaration Name="curMode" Type="BOOL" />
+      <VarDeclaration Name="firstCycle" Type="BOOL" />
+      <VarDeclaration Name="Mp" Type="REAL" />
+      <VarDeclaration Name="Mi" Type="REAL" />
+      <VarDeclaration Name="Md" Type="REAL" />
+      <VarDeclaration Name="Ma" Type="REAL" />
+    </InternalVars>
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="552.9412" y="429.4117" />
+      <ECState Name="INIT" Comment="Initialization" x="923.5294" y="141.1765">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="REQ" Comment="Normal execution" x="217.647" y="752.9412">
+        <ECAction Algorithm="REQ" Output="CNF" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="731.1476" y="204.8375" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="797.5924" y="348.3232" />
+      <ECTransition Source="START" Destination="REQ" Condition="REQ" x="447.8488" y="648.3352" />
+      <ECTransition Source="REQ" Destination="START" Condition="1" x="372.8767" y="512.7991" />
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";&#xD;&#xA;&#xD;&#xA;Mode := FALSE;&#xD;&#xA;OUT := 0.0;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="REQ" Comment="Normally executed algorithm">
+      <ST Text=";&#xD;&#xA;&#xD;&#xA;/* Precalculate PID cofeeicients */&#xD;&#xA;I_Coeff := 0.0;&#xD;&#xA;SPin := SP;&#xD;&#xA;IF reset &lt;&gt; 0 THEN&#xD;&#xA;	I_Coeff := sample / reset;&#xD;&#xA;END_IF;&#xD;&#xA;D_Coeff := rate / sample;&#xD;&#xA;&#xD;&#xA;/* Multiply I, D cofficeints by gain if gain is used */&#xD;&#xA;IF gain &lt;&gt; 0 THEN&#xD;&#xA;	I_Coeff := I_Coeff * gain;&#xD;&#xA;	D_Coeff := D_Coeff * gain;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;/* Auto -&gt; Manual Transition */&#xD;&#xA;IF ((NOT AutoMode) AND curMode) THEN&#xD;&#xA;	firstCycle := TRUE;&#xD;&#xA;	curMode := FALSE;&#xD;&#xA;	Mode := FALSE;&#xD;&#xA;/* Manual -&gt; Auto Transition */&#xD;&#xA;ELSIF (AutoMode AND (NOT curMode)) THEN&#xD;&#xA;	bias := OUT / 27648;&#xD;&#xA;	SPin := PV;&#xD;&#xA;	firstCycle := TRUE;&#xD;&#xA;	curMode := TRUE;&#xD;&#xA;	Mode := TRUE;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;IF curMode THEN&#xD;&#xA;	/*Scale PV if &gt; 100% then clamp at 100%, if PV &lt; 0% then clamp to 0% */&#xD;&#xA;	IF PV &lt;= 0 THEN&#xD;&#xA;		PVscl := 0.0;&#xD;&#xA;	ELSIF PV &gt; 27648 THEN&#xD;&#xA;		PVscl := 1.0;&#xD;&#xA;	ELSE&#xD;&#xA;		PVscl := PV / 27648;&#xD;&#xA;	END_IF;&#xD;&#xA;	&#xD;&#xA;	/* Scale Setpoint if SP &gt; 100% then clamp to 100%, if SP &lt; 0% then clamp to 0% */&#xD;&#xA;	IF SPin &lt; 0 THEN&#xD;&#xA;		SPscl := 0.0;&#xD;&#xA;	ELSIF SPin &gt;= 27648 THEN&#xD;&#xA;		SPscl := 1.0;&#xD;&#xA;	ELSE&#xD;&#xA;		SPscl := SPin / 27648;&#xD;&#xA;	END_IF;&#xD;&#xA;	&#xD;&#xA;	/* Calculate Error */&#xD;&#xA;	error := SPin - PV;&#xD;&#xA;	/* Calculate PID terms */&#xD;&#xA;	Mp := gain * error;&#xD;&#xA;	Mi := bias + (I_Coeff * error);&#xD;&#xA;	Md := 0.0;&#xD;&#xA;	&#xD;&#xA;	/* If derivative used then calculate Md */&#xD;&#xA;	IF ((rate &lt;&gt; 0) AND (NOT firstCycle)) THEN&#xD;&#xA;		Md := D_Coeff * (PVold - PV);&#xD;&#xA;	END_IF;&#xD;&#xA;	&#xD;&#xA;	/* Calcuulate provisional output (before bias clamping) */&#xD;&#xA;	PVold := PVscl;&#xD;&#xA;	Ma := Mp + Md;&#xD;&#xA;	OUT := Ma + Mi;&#xD;&#xA;	&#xD;&#xA;	/* Bias Clamping: if Output &gt; 100%, clamp and backcalculate bias */&#xD;&#xA;	IF OUT &gt; 1 THEN&#xD;&#xA;		OUTscl := 1.0;&#xD;&#xA;		Mi := 1.0 - Ma;&#xD;&#xA;	ELSIF OUT &lt; 0 THEN&#xD;&#xA;		OUTscl := 0.0;&#xD;&#xA;		Mi := 0.0 - Ma;&#xD;&#xA;	END_IF;&#xD;&#xA;	&#xD;&#xA;	/* Clamp bias to 0 to 1 range */&#xD;&#xA;	IF I_Coeff &lt;&gt; 0.0 THEN&#xD;&#xA;		IF Mi &gt; 1.0 THEN&#xD;&#xA;			Mi := 1.0;&#xD;&#xA;		ELSIF Mi &lt; 0.0 THEN&#xD;&#xA;			Mi := 0.0;&#xD;&#xA;		ELSE&#xD;&#xA;			bias := Mi;&#xD;&#xA;		END_IF;&#xD;&#xA;	END_IF;&#xD;&#xA;	&#xD;&#xA;	/* Reset first cycle flag and unscale output */&#xD;&#xA;	firstCycle := FALSE;&#xD;&#xA;	OUT := OUTscl * 27648;&#xD;&#xA;END_IF;&#xD;&#xA;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

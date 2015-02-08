@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="Plant_SMV" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+      </Event>
+      <Event Name="CLK" Comment="Clock" >
+        <With Var="CYL1_SPEED" />
+        <With Var="CYL2_SPEED" />
+        <With Var="VCYL_SPEED" />
+      </Event>
+      <Event Name="REQ" >
+      </Event>
+      <Event Name="ADD_WP" >
+      </Event>
+      <Event Name="ADD_WP00" >
+      </Event>
+      <Event Name="REMOVE_WP" >
+      </Event>
+      <Event Name="CYL_IND" >
+        <With Var="cyl1_fwd" />
+        <With Var="cyl1_back" />
+        <With Var="cyl2_fwd" />
+        <With Var="cyl2_back" />
+        <With Var="vcyl_down" />
+        <With Var="vacuum_on" />
+        <With Var="vacuum_off" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+      <Event Name="CHG" Comment="View State Changed" >
+        <With Var="c1home" />
+        <With Var="c1end" />
+        <With Var="c2home" />
+        <With Var="c2end" />
+        <With Var="vchome" />
+        <With Var="vcend" />
+        <With Var="VACUUM_ON" />
+      </Event>
+      <Event Name="CNF" >
+      </Event>
+      <Event Name="WP_ADDED" >
+      </Event>
+      <Event Name="WP_REMOVED" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="CYL1_SPEED" Type="UINT" />
+      <VarDeclaration Name="CYL2_SPEED" Type="UINT" />
+      <VarDeclaration Name="VCYL_SPEED" Type="UINT" />
+      <VarDeclaration Name="cyl1_fwd" Type="BOOL" />
+      <VarDeclaration Name="cyl1_back" Type="BOOL" Comment="Response Data from Socket" />
+      <VarDeclaration Name="cyl2_fwd" Type="BOOL" />
+      <VarDeclaration Name="cyl2_back" Type="BOOL" />
+      <VarDeclaration Name="vcyl_down" Type="BOOL" />
+      <VarDeclaration Name="vacuum_on" Type="BOOL" />
+      <VarDeclaration Name="vacuum_off" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="VACUUM_ON" Type="BOOL" Comment="Response Data from Socket" />
+      <VarDeclaration Name="c1home" Type="BOOL" />
+      <VarDeclaration Name="c1end" Type="BOOL" />
+      <VarDeclaration Name="c2home" Type="BOOL" />
+      <VarDeclaration Name="c2end" Type="BOOL" />
+      <VarDeclaration Name="vchome" Type="BOOL" />
+      <VarDeclaration Name="vcend" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="Cylinder" Type="PnpCylinders" x="1188.8888" y="244.44443" >
+      <Parameter Name="InitialPosition" Value="0.0" />
+      <Parameter Name="HomeSensorRange" Value="[0,0]" />
+      <Parameter Name="MidSensorRange" Value="[50,50]" />
+      <Parameter Name="EndSensorRange" Value="[100,100]" />
+      <Parameter Name="Loaded" Value="0" />
+      <Parameter Name="LoadType" Value="0" />
+      <Parameter Name="LCMovingtDistance" Value="75" />
+      <Parameter Name="RCMovingtDistance" Value="150" />
+      <Parameter Name="VCMovingtDistance" Value="75" />
+    </FB>
+    <FB Name="SuctionUnit" Type="PnPVacuum" x="2888.8887" y="238.88889" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="Cylinder.INIT" dx1="1083.3333" />
+      <Connection Source="Cylinder.INITO" Destination="SuctionUnit.INIT" dx1="66.666664" />
+      <Connection Source="CLK" Destination="Cylinder.CLK" dx1="1083.3333" />
+      <Connection Source="CYL_IND" Destination="Cylinder.CYL_IND" dx1="1016.6666" />
+      <Connection Source="CYL_IND" Destination="SuctionUnit.CLK" dx1="2722.2222" />
+      <Connection Source="Cylinder.CHG" Destination="CHG" dx1="2255.5554" />
+      <Connection Source="SuctionUnit.CHG" Destination="CHG" dx1="3588.8887" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="CYL1_SPEED" Destination="Cylinder.LCForwardSpeed" dx1="949.99994" />
+      <Connection Source="CYL1_SPEED" Destination="Cylinder.LCBackwardSpeed" dx1="949.99994" />
+      <Connection Source="CYL2_SPEED" Destination="Cylinder.RCForwardSpeed" dx1="955.55554" />
+      <Connection Source="CYL2_SPEED" Destination="Cylinder.RCBackwardSpeed" dx1="955.55554" />
+      <Connection Source="VCYL_SPEED" Destination="Cylinder.VCSpeed" dx1="949.99994" />
+      <Connection Source="cyl1_fwd" Destination="Cylinder.LCExtend" dx1="1022.22217" />
+      <Connection Source="cyl1_back" Destination="Cylinder.LCRetract" dx1="1005.55554" />
+      <Connection Source="cyl2_fwd" Destination="Cylinder.RCExtend" dx1="1022.22217" />
+      <Connection Source="cyl2_back" Destination="Cylinder.RCRetract" dx1="1005.55554" />
+      <Connection Source="vcyl_down" Destination="Cylinder.VCExtend" dx1="999.99994" />
+      <Connection Source="Cylinder.LCAtHome" Destination="c1home" dx1="2300.0" />
+      <Connection Source="Cylinder.LCAtEnd" Destination="c1end" dx1="2277.7776" />
+      <Connection Source="Cylinder.RCAtHome" Destination="c2home" dx1="2300.0" />
+      <Connection Source="Cylinder.RCAtEnd" Destination="c2end" dx1="2272.2222" />
+      <Connection Source="Cylinder.VCAtHome" Destination="vchome" dx1="2300.0" />
+      <Connection Source="Cylinder.VCAtEnd" Destination="vcend" dx1="2272.2222" />
+      <Connection Source="SuctionUnit.VacState" Destination="VACUUM_ON" dx1="3705.5554" />
+      <Connection Source="vacuum_on" Destination="SuctionUnit.VacuumOn" dx1="2683.3333" />
+      <Connection Source="vacuum_off" Destination="SuctionUnit.VacuumOff" dx1="2683.3333" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

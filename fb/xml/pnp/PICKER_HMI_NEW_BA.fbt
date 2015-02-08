@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="PICKER_HMI_NEW_BA" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <CompilerInfo header="package fb.rt.pnp;import fb.rt.hmi.*;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" >
+      </Event>
+      <Event Name="CNF" Comment="Confirmation from Plug" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" >
+      </Event>
+      <Event Name="REQ" Comment="Request from Socket" >
+        <With Var="add1" />
+        <With Var="add2" />
+        <With Var="add3" />
+        <With Var="add4" />
+      </Event>
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="add1" Type="BOOL" />
+      <VarDeclaration Name="add2" Type="BOOL" />
+      <VarDeclaration Name="add3" Type="BOOL" />
+      <VarDeclaration Name="add4" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="Add1" Type="IN_BOOL" x="1172.2222" y="1927.7777" >
+      <Parameter Name="QI" Value="1" />
+      <Parameter Name="LABEL" Value="&#34;Add/Rmv1&#34;" />
+    </FB>
+    <FB Name="Add2" Type="IN_BOOL" x="2283.3333" y="1927.7777" >
+      <Parameter Name="QI" Value="1" />
+      <Parameter Name="LABEL" Value="&#34;Add/Rmv2&#34;" />
+    </FB>
+    <FB Name="Add3" Type="IN_BOOL" x="3533.3333" y="1927.7777" >
+      <Parameter Name="QI" Value="1" />
+      <Parameter Name="LABEL" Value="&#34;Add/Rmv3&#34;" />
+    </FB>
+    <EventConnections>
+      <Connection Source="Add1.INITO" Destination="Add2.INIT" dx1="88.888885" />
+      <Connection Source="Add2.INITO" Destination="Add3.INIT" dx1="166.66666" />
+      <Connection Source="Add3.INITO" Destination="INITO" dx1="4011.1108" />
+      <Connection Source="Add1.IND" Destination="REQ" dx1="1627.7777" />
+      <Connection Source="Add2.IND" Destination="REQ" dx1="2738.8887" />
+      <Connection Source="Add3.IND" Destination="REQ" dx1="3988.8887" />
+      <Connection Source="INIT" Destination="Add1.INIT" dx1="1066.6666" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="Add1.OUT" Destination="add1" dx1="1638.8888" />
+      <Connection Source="Add2.OUT" Destination="add2" dx1="2750.0" />
+      <Connection Source="Add3.OUT" Destination="add3" dx1="3999.9998" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

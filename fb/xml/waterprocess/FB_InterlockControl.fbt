@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd" >
+<FBType Name="FB_InterlockControl" Comment="Basic Function Block Type" >
+  
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="wildai" Date="2014-5-4" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="T100_Overflow" />
+        <With Var="T100_Underflow" />
+        <With Var="T100_Overheat" />
+        <With Var="T200_Overflow" />
+        <With Var="T200_Underflow" />
+        <With Var="T300_Overflow" />
+        <With Var="T300_Underflow" />
+        <With Var="T300_Overheat" />
+        <With Var="T300_OverPressure" />
+        <With Var="T400_Overflow" />
+        <With Var="T400_Underflow" />
+        <With Var="Y102_Closed" />
+        <With Var="Y201_Closed" />
+        <With Var="Y203_Closed" />
+        <With Var="Y301_Closed" />
+        <With Var="Y303_Closed" />
+        <With Var="Y403_Closed" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="T100_Overflow" />
+        <With Var="T100_Underflow" />
+        <With Var="T100_Overheat" />
+        <With Var="T200_Overflow" />
+        <With Var="T200_Underflow" />
+        <With Var="T300_Overflow" />
+        <With Var="T300_Underflow" />
+        <With Var="T300_Overheat" />
+        <With Var="T300_OverPressure" />
+        <With Var="T400_Overflow" />
+        <With Var="T400_Underflow" />
+        <With Var="Y102_Closed" />
+        <With Var="Y201_Closed" />
+        <With Var="Y203_Closed" />
+        <With Var="Y301_Closed" />
+        <With Var="Y303_Closed" />
+        <With Var="Y403_Closed" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="Y101_Open" />
+        <With Var="Y102_Open" />
+        <With Var="Y103_Open" />
+        <With Var="Y105_Open" />
+        <With Var="Y201_Open" />
+        <With Var="Y202_Open" />
+        <With Var="Y203_Open" />
+        <With Var="Y204_Open" />
+        <With Var="Y301_Open" />
+        <With Var="Y302_Open" />
+        <With Var="Y303_Open" />
+        <With Var="Y305_Open" />
+        <With Var="Y401_Open" />
+        <With Var="Y402_Open" />
+        <With Var="Y403_Open" />
+        <With Var="Y404_Open" />
+        <With Var="Y501_Open" />
+        <With Var="E100_On" />
+        <With Var="M100_On" />
+        <With Var="M200_On" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="Y101_Open" />
+        <With Var="Y102_Open" />
+        <With Var="Y103_Open" />
+        <With Var="Y105_Open" />
+        <With Var="Y201_Open" />
+        <With Var="Y202_Open" />
+        <With Var="Y203_Open" />
+        <With Var="Y204_Open" />
+        <With Var="Y301_Open" />
+        <With Var="Y302_Open" />
+        <With Var="Y303_Open" />
+        <With Var="Y305_Open" />
+        <With Var="Y401_Open" />
+        <With Var="Y402_Open" />
+        <With Var="Y403_Open" />
+        <With Var="Y404_Open" />
+        <With Var="Y501_Open" />
+        <With Var="E100_On" />
+        <With Var="M100_On" />
+        <With Var="M200_On" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="T100_Overflow" Type="BOOL" />
+      <VarDeclaration Name="T100_Underflow" Type="BOOL" />
+      <VarDeclaration Name="T100_Overheat" Type="BOOL" />
+      <VarDeclaration Name="T200_Overflow" Type="BOOL" />
+      <VarDeclaration Name="T200_Underflow" Type="BOOL" />
+      <VarDeclaration Name="T300_Overflow" Type="BOOL" />
+      <VarDeclaration Name="T300_Underflow" Type="BOOL" />
+      <VarDeclaration Name="T300_Overheat" Type="BOOL" />
+      <VarDeclaration Name="T300_OverPressure" Type="BOOL" />
+      <VarDeclaration Name="T400_Overflow" Type="BOOL" />
+      <VarDeclaration Name="T400_Underflow" Type="BOOL" />
+      <VarDeclaration Name="Y102_Closed" Type="BOOL" />
+      <VarDeclaration Name="Y201_Closed" Type="BOOL" />
+      <VarDeclaration Name="Y203_Closed" Type="BOOL" />
+      <VarDeclaration Name="Y301_Closed" Type="BOOL" />
+      <VarDeclaration Name="Y303_Closed" Type="BOOL" />
+      <VarDeclaration Name="Y403_Closed" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Y101_Open" Type="BOOL" />
+      <VarDeclaration Name="Y102_Open" Type="BOOL" />
+      <VarDeclaration Name="Y103_Open" Type="BOOL" />
+      <VarDeclaration Name="Y105_Open" Type="BOOL" />
+      <VarDeclaration Name="Y201_Open" Type="BOOL" />
+      <VarDeclaration Name="Y202_Open" Type="BOOL" />
+      <VarDeclaration Name="Y203_Open" Type="BOOL" />
+      <VarDeclaration Name="Y204_Open" Type="BOOL" />
+      <VarDeclaration Name="Y301_Open" Type="BOOL" />
+      <VarDeclaration Name="Y302_Open" Type="BOOL" />
+      <VarDeclaration Name="Y303_Open" Type="BOOL" />
+      <VarDeclaration Name="Y305_Open" Type="BOOL" />
+      <VarDeclaration Name="Y401_Open" Type="BOOL" />
+      <VarDeclaration Name="Y402_Open" Type="BOOL" />
+      <VarDeclaration Name="Y403_Open" Type="BOOL" />
+      <VarDeclaration Name="Y404_Open" Type="BOOL" />
+      <VarDeclaration Name="Y501_Open" Type="BOOL" />
+      <VarDeclaration Name="E100_On" Type="BOOL" />
+      <VarDeclaration Name="M100_On" Type="BOOL" />
+      <VarDeclaration Name="M200_On" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="552.9412" y="429.4117" />
+      <ECState Name="INIT" Comment="Initialization" x="923.5294" y="141.1765">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="REQ" Comment="Normal execution" x="217.647" y="752.9412">
+        <ECAction Algorithm="REQ" Output="CNF" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="731.1476" y="204.8375" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="797.5924" y="348.3232" />
+      <ECTransition Source="START" Destination="REQ" Condition="REQ" x="447.8488" y="648.3352" />
+      <ECTransition Source="REQ" Destination="START" Condition="1" x="372.8767" y="512.7991" />
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";&#xD;&#xA;&#xD;&#xA;Y101_Open := TRUE;&#xD;&#xA;Y102_Open := TRUE;&#xD;&#xA;Y103_Open := TRUE;&#xD;&#xA;Y105_Open := TRUE;&#xD;&#xA;Y201_Open := TRUE;&#xD;&#xA;Y202_Open := TRUE;&#xD;&#xA;Y203_Open := TRUE;&#xD;&#xA;Y204_Open := TRUE;&#xD;&#xA;Y301_Open := TRUE;&#xD;&#xA;Y302_Open := TRUE;&#xD;&#xA;Y303_Open := TRUE;&#xD;&#xA;Y305_Open := TRUE;&#xD;&#xA;Y401_Open := TRUE;&#xD;&#xA;Y402_Open := TRUE;&#xD;&#xA;Y403_Open := FALSE;&#xD;&#xA;Y404_Open := TRUE;&#xD;&#xA;Y501_Open := TRUE;&#xD;&#xA;E100_On := TRUE;&#xD;&#xA;M100_On := TRUE;&#xD;&#xA;M200_On := TRUE;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="REQ" Comment="Normally executed algorithm">
+      <ST Text=";&#xD;&#xA;&#xD;&#xA;/* Interlocks for Valve, Heater and Pump */&#xD;&#xA;Y101_Open := TRUE;&#xD;&#xA;Y102_Open := TRUE;&#xD;&#xA;Y103_Open := TRUE;&#xD;&#xA;Y105_Open := TRUE;&#xD;&#xA;Y201_Open := TRUE;&#xD;&#xA;Y202_Open := TRUE;&#xD;&#xA;Y203_Open := TRUE;&#xD;&#xA;Y204_Open := TRUE;&#xD;&#xA;Y301_Open := TRUE;&#xD;&#xA;Y302_Open := TRUE;&#xD;&#xA;Y303_Open := TRUE;&#xD;&#xA;Y305_Open := TRUE;&#xD;&#xA;Y401_Open := TRUE;&#xD;&#xA;Y402_Open := TRUE;&#xD;&#xA;Y403_Open := FALSE;&#xD;&#xA;Y404_Open := TRUE;&#xD;&#xA;Y501_Open := TRUE;&#xD;&#xA;E100_On := TRUE;&#xD;&#xA;M100_On := TRUE;&#xD;&#xA;M200_On := TRUE;&#xD;&#xA;	&#xD;&#xA;IF T100_Overflow OR T400_Underflow THEN&#xD;&#xA;	Y101_Open := FALSE;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;IF T100_Underflow THEN&#xD;&#xA;	Y102_Open := FALSE;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;IF T100_Underflow OR T300_Overflow THEN&#xD;&#xA;	Y103_Open := FALSE;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;IF T100_Underflow THEN&#xD;&#xA;	Y105_Open := FALSE;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;IF T200_Underflow THEN&#xD;&#xA;	Y201_Open := FALSE;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;IF T200_Underflow THEN&#xD;&#xA;	Y202_Open := FALSE;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;IF T200_Overflow THEN&#xD;&#xA;	Y203_Open := FALSE;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;IF T200_Overflow OR T300_Underflow THEN&#xD;&#xA;	Y204_Open := FALSE;&#xD;&#xA;END_IF;&#xD;&#xA;IF T300_OverPressure THEN&#xD;&#xA;	Y204_Open := TRUE;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;IF T300_Overflow THEN&#xD;&#xA;	Y301_Open := FALSE;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;IF T300_Overflow THEN&#xD;&#xA;	Y302_Open := FALSE;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;IF T300_Underflow THEN&#xD;&#xA;	Y305_Open := FALSE;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;IF T300_Underflow THEN&#xD;&#xA;	Y401_Open := FALSE;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;IF T200_Underflow OR T400_Overflow THEN&#xD;&#xA;	Y402_Open := FALSE;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;IF T400_Underflow THEN&#xD;&#xA;	Y404_Open := FALSE;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;IF T100_Overflow THEN&#xD;&#xA;	Y501_Open := FALSE;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;IF T100_Overheat OR T100_Underflow THEN&#xD;&#xA;	E100_On := FALSE;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;IF Y102_Closed OR (Y203_Closed AND Y403_Closed) THEN&#xD;&#xA;	M100_On := FALSE;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;IF Y301_Closed OR Y303_Closed OR Y201_Closed THEN&#xD;&#xA;	M200_On := FALSE;&#xD;&#xA;END_IF;&#xD;&#xA;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

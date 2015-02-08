@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="CentralizedControl" Comment="Basic Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="msor021" Date="2011-08-30" Remarks="Template" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="c1Home" />
+        <With Var="c1End" />
+        <With Var="c2Home" />
+        <With Var="c2End" />
+        <With Var="vcHome" />
+        <With Var="vcEnd" />
+        <With Var="pp1" />
+        <With Var="pp2" />
+        <With Var="pp3" />
+        <With Var="vac" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="c1Extend" />
+        <With Var="vacuum_on" />
+        <With Var="vcExtend" />
+        <With Var="c2Retract" />
+        <With Var="c2Extend" />
+        <With Var="c1Retract" />
+        <With Var="vacuum_off" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="vacuum_on" />
+        <With Var="vcExtend" />
+        <With Var="c2Retract" />
+        <With Var="c2Extend" />
+        <With Var="c1Retract" />
+        <With Var="c1Extend" />
+        <With Var="vacuum_off" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="c1Home" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="c1End" Type="BOOL" />
+      <VarDeclaration Name="c2Home" Type="BOOL" />
+      <VarDeclaration Name="c2End" Type="BOOL" />
+      <VarDeclaration Name="vcHome" Type="BOOL" />
+      <VarDeclaration Name="vcEnd" Type="BOOL" />
+      <VarDeclaration Name="pp1" Type="BOOL" />
+      <VarDeclaration Name="pp2" Type="BOOL" />
+      <VarDeclaration Name="pp3" Type="BOOL" />
+      <VarDeclaration Name="vac" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="c1Extend" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="c1Retract" Type="BOOL" />
+      <VarDeclaration Name="c2Extend" Type="BOOL" />
+      <VarDeclaration Name="c2Retract" Type="BOOL" />
+      <VarDeclaration Name="vcExtend" Type="BOOL" />
+      <VarDeclaration Name="vacuum_on" Type="BOOL" />
+      <VarDeclaration Name="vacuum_off" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="866.6666" y="605.55554" >
+      </ECState>
+      <ECState Name="INIT" Comment="Initialization" x="1405.5555" y="588.88885" >
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="GoDown" Comment="Normal execution" x="3477.7776" y="2400.0" >
+        <ECAction Algorithm="extendvc" Output="CNF" />
+      </ECState>
+      <ECState Name="Wait" x="1355.5555" y="983.3333" >
+        <ECAction Algorithm="Wait" />
+      </ECState>
+      <ECState Name="Piece1" x="3866.6665" y="711.1111" >
+        <ECAction Algorithm="extend1" Output="CNF" />
+      </ECState>
+      <ECState Name="Piece2" x="3050.0" y="1150.0" >
+        <ECAction Algorithm="extend2" Output="CNF" />
+      </ECState>
+      <ECState Name="Piece3" x="1466.6666" y="1466.6666" >
+        <ECAction Algorithm="extend1and2" Output="CNF" />
+      </ECState>
+      <ECState Name="Vacuum_On" x="1627.7777" y="2705.5554" >
+        <ECAction Algorithm="TurnOnVac" Output="CNF" />
+      </ECState>
+      <ECState Name="GoUp" x="1400.0" y="3261.111" >
+        <ECAction Algorithm="Retractvc" Output="CNF" />
+      </ECState>
+      <ECState Name="VacuumOff" x="3188.8887" y="3483.3333" >
+        <ECAction Algorithm="TurnOffvac" Output="CNF" />
+      </ECState>
+      <ECState Name="Retract" x="988.88885" y="2383.3333" >
+        <ECAction Algorithm="RetracAll" Output="CNF" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1155.5555" y="511.11108" />
+      <ECTransition Source="INIT" Destination="Wait" Condition="1" x="1383.3333" y="766.6666" />
+      <ECTransition Source="GoUp" Destination="Wait" Condition="REQ&#38;vcHome AND c1Home AND c2Home" x="538.88885" y="2616.6665" />
+      <ECTransition Source="Retract" Destination="GoDown" Condition="REQ&#38;vac AND c1Home AND c2Home" x="2433.3333" y="2561.111" />
+      <ECTransition Source="Wait" Destination="Piece1" Condition="REQ&#38;pp1 AND vcHome" x="3599.9998" y="594.4444" />
+      <ECTransition Source="Wait" Destination="Piece2" Condition="REQ&#38;NOT pp1 AND pp2 AND vcHome" x="3005.5554" y="944.4444" />
+      <ECTransition Source="Wait" Destination="Piece3" Condition="REQ&#38;NOT pp1 AND NOT pp2 AND  pp3 AND vcHome" x="1977.7777" y="1255.5555" />
+      <ECTransition Source="Piece1" Destination="GoDown" Condition="REQ&#38;c1End" x="3866.6665" y="1550.0" />
+      <ECTransition Source="Piece2" Destination="GoDown" Condition="REQ&#38;c2End" x="3194.4443" y="1716.6666" />
+      <ECTransition Source="Piece3" Destination="GoDown" Condition="REQ&#38;c1End AND c2End" x="1727.7777" y="2155.5554" />
+      <ECTransition Source="GoDown" Destination="Vacuum_On" Condition="REQ&#38;vcEnd AND NOT (c1Home AND c2Home)" x="3244.4443" y="3161.111" />
+      <ECTransition Source="Vacuum_On" Destination="GoUp" Condition="REQ&#38;vac" x="1550.0" y="2961.111" />
+      <ECTransition Source="VacuumOff" Destination="GoUp" Condition="REQ&#38;NOT vac" x="3616.6665" y="4300.0" />
+      <ECTransition Source="GoDown" Destination="VacuumOff" Condition="REQ&#38;vcEnd AND c1Home AND c2Home" x="4783.333" y="3044.4443" />
+      <ECTransition Source="GoUp" Destination="Retract" Condition="REQ&#38;vcHome AND (NOT c1Home OR NOT c2Home)" x="1138.8888" y="3677.7776" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+    <ST Text="c1Extend:=FALSE;&#10;c2Extend:=FALSE;&#10;vcExtend:=FALSE;&#10;c1Retract:=FALSE;&#10;c2Retract:=FALSE;&#10;vacuum_on:=FALSE;&#10;vacuum_off:=FALSE;&#10;" />
+  </Algorithm>
+  <Algorithm Name="REQ" Comment="Normally executed algorithm" >
+    <ST Text=";&#10;" />
+  </Algorithm>
+  <Algorithm Name="extend1" >
+    <ST Text="c1Extend:=TRUE;&#10;System.out.println(&#34;WorkPiece 1 Detected&#34;);&#10;System.out.println(&#34;Extending HOR CYL 1&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="extend2" >
+    <ST Text="c2Extend:=TRUE;&#10;System.out.println(&#34;WorkPiece 2 Detected&#34;);&#10;System.out.println(&#34;Extending HOR CYL 2&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="extend1and2" >
+    <ST Text="c1Extend:=TRUE;&#10;c2Extend:=TRUE;&#10;System.out.println(&#34;WorkPiece 3 Detected&#34;);&#10;System.out.println(&#34;Extending HOR CYL 1 and HOR CYL 2&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="extendvc" >
+    <ST Text="vcExtend:=TRUE;&#10;System.out.println(&#34;Extending VER CYL&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="TurnOnVac" >
+    <ST Text="vacuum_on:=TRUE;&#10;vacuum_off:=FALSE;&#10;System.out.println(&#34;Turning ON VACCUM&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="Retractvc" >
+    <ST Text="vcExtend:=FALSE;&#10;System.out.println(&#34;Retracting VER CYL&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="TurnOffvac" >
+    <ST Text="vacuum_on:=FALSE;&#10;vacuum_off:=TRUE;&#10;System.out.println(&#34;Turning OFF Vaccum&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="RetracAll" >
+    <ST Text="c1Extend:=FALSE;&#10;c2Extend:=FALSE;&#10;c1Retract:=TRUE;&#10;c2Retract:=TRUE;&#10;System.out.println(&#34;Retracting HOR CYL&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="Wait" >
+    <ST Text="c1Extend:=FALSE;&#10;c2Extend:=FALSE;&#10;vcExtend:=FALSE;&#10;c1Retract:=FALSE;&#10;c2Retract:=FALSE;&#10;vacuum_on:=FALSE;&#10;vacuum_off:=FALSE;&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

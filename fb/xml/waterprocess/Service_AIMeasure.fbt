@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd" >
+<FBType Name="Service_AIMeasure" Comment="Basic Function Block Type" >
+  
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="wildai" Date="2014-5-4" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="AI" />
+        <With Var="PRESET_HH" />
+        <With Var="PRESET_H" />
+        <With Var="PRESET_L" />
+        <With Var="PRESET_LL" />
+        <With Var="PRESET_MINAI" />
+        <With Var="PRESET_MAXAI" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="AI" />
+        <With Var="PRESET_HH" />
+        <With Var="PRESET_H" />
+        <With Var="PRESET_L" />
+        <With Var="PRESET_LL" />
+        <With Var="PRESET_MINAI" />
+        <With Var="PRESET_MAXAI" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="AlarmHH" />
+        <With Var="AlarmH" />
+        <With Var="AlarmL" />
+        <With Var="AlarmLL" />
+        <With Var="SensorFault" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="AlarmHH" />
+        <With Var="AlarmH" />
+        <With Var="AlarmL" />
+        <With Var="AlarmLL" />
+        <With Var="SensorFault" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="AI" Type="REAL" />
+      <VarDeclaration Name="PRESET_HH" Type="REAL" />
+      <VarDeclaration Name="PRESET_H" Type="REAL" />
+      <VarDeclaration Name="PRESET_L" Type="REAL" />
+      <VarDeclaration Name="PRESET_LL" Type="REAL" />
+      <VarDeclaration Name="PRESET_MINAI" Type="REAL" />
+      <VarDeclaration Name="PRESET_MAXAI" Type="REAL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="AlarmHH" Type="BOOL" />
+      <VarDeclaration Name="AlarmH" Type="BOOL" />
+      <VarDeclaration Name="AlarmL" Type="BOOL" />
+      <VarDeclaration Name="AlarmLL" Type="BOOL" />
+      <VarDeclaration Name="SensorFault" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="552.9412" y="429.4117" />
+      <ECState Name="INIT" Comment="Initialization" x="923.5294" y="141.1765">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="REQ" Comment="Normal execution" x="217.647" y="752.9412">
+        <ECAction Algorithm="REQ" Output="CNF" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="731.1476" y="204.8375" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="797.5924" y="348.3232" />
+      <ECTransition Source="START" Destination="REQ" Condition="REQ" x="447.8488" y="648.3352" />
+      <ECTransition Source="REQ" Destination="START" Condition="1" x="372.8767" y="512.7991" />
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";&#xD;&#xA;&#xD;&#xA;SensorFault := FALSE;&#xD;&#xA;AlarmHH := FALSE;&#xD;&#xA;AlarmH := FALSE;&#xD;&#xA;AlarmL := FALSE;&#xD;&#xA;AlarmLL := FALSE;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="REQ" Comment="Normally executed algorithm">
+      <ST Text=";&#xD;&#xA;IF AI &lt; PRESET_MINAI OR AI &gt; PRESET_MAXAI THEN&#xD;&#xA;	SensorFault := TRUE;&#xD;&#xA;	AlarmHH := FALSE;&#xD;&#xA;	AlarmH := FALSE;&#xD;&#xA;	AlarmL := FALSE;&#xD;&#xA;	AlarmLL := FALSE;&#xD;&#xA;ELSE&#xD;&#xA;	SensorFault := FALSE;&#xD;&#xA;	IF AI &gt;= PRESET_HH THEN&#xD;&#xA;		AlarmHH := TRUE;&#xD;&#xA;		AlarmH := FALSE;&#xD;&#xA;		AlarmL := FALSE;&#xD;&#xA;		AlarmLL := FALSE;&#xD;&#xA;	ELSIF AI &lt; PRESET_H AND AI &gt;= PRESET_H THEN&#xD;&#xA;		AlarmHH := FALSE;&#xD;&#xA;		AlarmH := TRUE;&#xD;&#xA;		AlarmL := FALSE;&#xD;&#xA;		AlarmLL := FALSE;&#xD;&#xA;	ELSIF AI &lt;= PRESET_L AND AI &gt; PRESET_LL THEN&#xD;&#xA;		AlarmHH := FALSE;&#xD;&#xA;		AlarmH := FALSE;&#xD;&#xA;		AlarmL := TRUE;&#xD;&#xA;		AlarmLL := FALSE;&#xD;&#xA;	ELSIF AI &lt;= PRESET_LL THEN&#xD;&#xA;		AlarmHH := FALSE;&#xD;&#xA;		AlarmH := FALSE;&#xD;&#xA;		AlarmL := FALSE;&#xD;&#xA;		AlarmLL := TRUE;&#xD;&#xA;	ELSE&#xD;&#xA;		AlarmHH := FALSE;&#xD;&#xA;		AlarmH := FALSE;&#xD;&#xA;		AlarmL := FALSE;&#xD;&#xA;		AlarmLL := FALSE;&#xD;&#xA;	END_IF;&#xD;&#xA;END_IF;&#xD;&#xA;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

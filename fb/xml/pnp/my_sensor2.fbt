@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="my_sensor2" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="In1" />
+        <With Var="zone1" />
+        <With Var="In2" />
+        <With Var="zone2" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="In1" />
+        <With Var="zone1" />
+        <With Var="In2" />
+        <With Var="zone2" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="QO" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="QO" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="In1" Type="UINT" />
+      <VarDeclaration Name="zone1" Type="UINT" ArraySize="2" />
+      <VarDeclaration Name="In2" Type="UINT" />
+      <VarDeclaration Name="zone2" Type="UINT" ArraySize="2" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="S1" Type="my_sensor" x="1005.55554" y="27.777777" />
+    <FB Name="S2" Type="my_sensor" x="1444.4443" y="655.55554" />
+    <FB Name="and" Type="AND" x="2161.111" y="283.3333" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="S1.INIT" dx1="899.99994" />
+      <Connection Source="S1.INITO" Destination="S2.INIT" dx1="72.22222" />
+      <Connection Source="REQ" Destination="S1.REQ" dx1="894.4444" />
+      <Connection Source="S2.INITO" Destination="and.INIT" dx1="83.33333" />
+      <Connection Source="S1.CNF" Destination="and.REQ" dx1="344.44443" />
+      <Connection Source="S2.CNF" Destination="and.REQ" dx1="155.55554" />
+      <Connection Source="and.INITO" Destination="INITO" dx1="2600.0" />
+      <Connection Source="and.CNF" Destination="CNF" dx1="2577.7776" />
+      <Connection Source="REQ" Destination="S2.REQ" dx1="1333.3333" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="In1" Destination="S1.POS" dx1="916.6666" />
+      <Connection Source="zone1" Destination="S1.ZONE" dx1="877.7778" />
+      <Connection Source="In2" Destination="S2.POS" dx1="1355.5555" />
+      <Connection Source="zone2" Destination="S2.ZONE" dx1="1316.6666" />
+      <Connection Source="S1.VALUE" Destination="and.Q1" dx1="600.0" />
+      <Connection Source="S2.VALUE" Destination="and.Q2" dx1="227.77777" />
+      <Connection Source="and.Q0" Destination="QO" dx1="2566.6665" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

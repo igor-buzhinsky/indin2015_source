@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="PnPSensor" Comment="Proximity sensor detect the presence of object at a specific position" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="The University of Auckland" Version="1.0" Author="Cheng Pang" Date="2008-11-09" Remarks="Stable build." />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="Position" />
+        <With Var="Zone" />
+      </Event>
+      <Event Name="CLK" Comment="Clock signal" >
+        <With Var="Position" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="Detected" />
+      </Event>
+      <Event Name="CHG" Comment="Value of DETECTED changed" >
+        <With Var="Detected" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="Position" Type="UINT" Comment="The object's position" />
+      <VarDeclaration Name="Zone" Type="UINT" ArraySize="2" Comment="Detection range of the sensor" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Detected" Type="BOOL" Comment="Whether an object is detected" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Name="emitCHG" Type="BOOL" />
+    </InternalVars>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="555.55554" y="427.77777" >
+      </ECState>
+      <ECState Name="INIT" Comment="Initialization" x="1294.4443" y="427.77777" >
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="DETECT" Comment="Detect" x="1294.4443" y="933.3333" >
+        <ECAction Algorithm="DETECT" />
+      </ECState>
+      <ECState Name="EMITCHG" x="1300.0" y="1516.6666" >
+        <ECAction Algorithm="EMITCHG" Output="CHG" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="922.22217" y="427.77777" />
+      <ECTransition Source="INIT" Destination="DETECT" Condition="CLK" x="1294.4443" y="688.88885" />
+      <ECTransition Source="DETECT" Destination="DETECT" Condition="CLK" x="866.6666" y="933.3333" />
+      <ECTransition Source="DETECT" Destination="EMITCHG" Condition="emitCHG" x="1300.0" y="1194.4445" />
+      <ECTransition Source="EMITCHG" Destination="DETECT" Condition="CLK" x="727.7778" y="1188.8888" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+    <Other Language="Java" Text="if((Position.value>=((UINT)Zone.value[0]).value)&#38;&#38;(Position.value&#60;=((UINT)Zone.value[1]).value)){&#10;  Detected.value = true;&#10;}&#10;else{&#10;  Detected.value = false;&#10;}&#10;emitCHG.value = false;&#10;" />
+  </Algorithm>
+  <Algorithm Name="DETECT" Comment="Normally executed algorithm" >
+    <Other Language="Java" Text="if((Position.value>=((UINT)Zone.value[0]).value)&#38;&#38;(Position.value&#60;=((UINT)Zone.value[1]).value)){&#10;  if(Detected.value==false){&#10;    Detected.value = true;&#10;    emitCHG.value = true;&#10;  }&#10;}&#10;else{&#10;  if(Detected.value==true){&#10;    Detected.value = false;&#10;    emitCHG.value = true;&#10;  }&#10;}&#10;" />
+  </Algorithm>
+  <Algorithm Name="EMITCHG" >
+    <ST Text="emitCHG := FALSE;&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

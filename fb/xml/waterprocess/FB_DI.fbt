@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd" >
+<FBType Name="FB_DI" Comment="Service Interface Function Block Type" >
+  
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH " Version="0.0" Author="wildai" Date="2014-5-4" Remarks="template" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" Vendor="nxtControl" Product="builtin " Version="1.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Service Initialization">
+        <With Var="QI" />
+      </Event>
+      <Event Name="REQ" Comment="Service Request">
+        <With Var="QI" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+      </Event>
+      <Event Name="CNF" Comment="Confirmation of Requested Service">
+        <With Var="QO" />
+        <With Var="ID_L100" />
+        <With Var="ID_L102" />
+        <With Var="ID_L200" />
+        <With Var="ID_L202" />
+        <With Var="ID_L300" />
+        <With Var="ID_L302" />
+        <With Var="ID_L400" />
+        <With Var="ID_L402" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Event Input Qualifier" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Event Output Qualifier" />
+      <VarDeclaration Name="ID_L100" Type="BOOL" Comment="Input data from resource" />
+      <VarDeclaration Name="ID_L102" Type="BOOL" />
+      <VarDeclaration Name="ID_L200" Type="BOOL" />
+      <VarDeclaration Name="ID_L202" Type="BOOL" />
+      <VarDeclaration Name="ID_L300" Type="BOOL" />
+      <VarDeclaration Name="ID_L302" Type="BOOL" />
+      <VarDeclaration Name="ID_L400" Type="BOOL" />
+      <VarDeclaration Name="ID_L402" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="FB_DI">
+    <ServiceSequence Name="normal_establishment">
+      <ServiceTransaction>
+        <InputPrimitive Interface="FB_DI" Event="INIT+" Parameters="PARAMS" />
+        <OutputPrimitive Interface="RESOURCE" Event="initialize" Parameters="PARAMS" />
+        <OutputPrimitive Interface="FB_DI" Event="INITO+" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="unsuccessful_establishment">
+      <ServiceTransaction>
+        <InputPrimitive Interface="FB_DI" Event="INIT+" Parameters="PARAMS" />
+        <OutputPrimitive Interface="RESOURCE" Event="initialize" Parameters="PARAMS" />
+        <OutputPrimitive Interface="FB_DI" Event="INITO-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="request_confirm">
+      <ServiceTransaction>
+        <InputPrimitive Interface="FB_DI" Event="REQ+" Parameters="SD" />
+        <OutputPrimitive Interface="RESOURCE" Event="request" Parameters="SD" />
+        <OutputPrimitive Interface="FB_DI" Event="CNF+" Parameters="RD" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="request_inhibited">
+      <ServiceTransaction>
+        <InputPrimitive Interface="FB_DI" Event="REQ-" Parameters="SD" />
+        <OutputPrimitive Interface="FB_DI" Event="CNF-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="request_error">
+      <ServiceTransaction>
+        <InputPrimitive Interface="FB_DI" Event="REQ+" Parameters="SD" />
+        <OutputPrimitive Interface="RESOURCE" Event="request" Parameters="SD" />
+        <OutputPrimitive Interface="FB_DI" Event="CNF-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="indication_response">
+      <ServiceTransaction>
+        <InputPrimitive Interface="FB_DI" Event="RSP" Parameters="QI,SD" />
+        <OutputPrimitive Interface="RESOURCE" Event="response" Parameters="QI,SD" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <InputPrimitive Interface="RESOURCE" Event="indicate" Parameters="RD" />
+        <OutputPrimitive Interface="FB_DI" Event="IND+" Parameters="RD" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="indication_inhibited">
+      <ServiceTransaction>
+        <InputPrimitive Interface="RESOURCE" Event="indicate" Parameters="RD,QI=FALSE" />
+        <OutputPrimitive Interface="RESOURCE" Event="inhibited" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="error_indication">
+      <ServiceTransaction>
+        <InputPrimitive Interface="RESOURCE" Event="error" Parameters="STATUS" />
+        <OutputPrimitive Interface="FB_DI" Event="IND-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="application_initiated_termination">
+      <ServiceTransaction>
+        <InputPrimitive Interface="FB_DI" Event="INIT-" />
+        <OutputPrimitive Interface="RESOURCE" Event="terminate" />
+        <OutputPrimitive Interface="FB_DI" Event="INITO-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="resource_initiated_termination">
+      <ServiceTransaction>
+        <OutputPrimitive Interface="FB_DI" Event="INITO-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+  </Service>
+</FBType>

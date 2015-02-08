@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="PNP_PLANT_MS_CONTROL_FOR_SMV" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialisation" >
+        <With Var="BASEX" />
+        <With Var="BASEY" />
+      </Event>
+      <Event Name="CLK" >
+        <With Var="CYL1_SPEED" />
+        <With Var="CYL2_SPEED" />
+        <With Var="VCYL_SPEED" />
+      </Event>
+      <Event Name="ADD_WP" >
+        <With Var="AddedWP_X" />
+        <With Var="AddedWP_Y" />
+      </Event>
+      <Event Name="ADD_WP00" >
+      </Event>
+      <Event Name="REMOVE_WP" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+      <Event Name="WP_ADDED" >
+      </Event>
+      <Event Name="WP_REMOVED" >
+        <With Var="RemovedWP_X" />
+        <With Var="RemovedWP_Y" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="BASEX" Type="UINT" />
+      <VarDeclaration Name="BASEY" Type="UINT" />
+      <VarDeclaration Name="CYL1_SPEED" Type="UINT" />
+      <VarDeclaration Name="CYL2_SPEED" Type="UINT" />
+      <VarDeclaration Name="VCYL_SPEED" Type="UINT" />
+      <VarDeclaration Name="AddedWP_X" Type="UINT" />
+      <VarDeclaration Name="AddedWP_Y" Type="UINT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="RemovedWP_X" Type="UINT" />
+      <VarDeclaration Name="RemovedWP_Y" Type="UINT" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="MODEL" Type="Plant_SMV" x="1822.2222" y="277.77777" />
+    <FB Name="CONTROL" Type="MasterSlave" x="5272.222" y="522.2222" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="MODEL.INIT" dx1="1716.6666" />
+      <Connection Source="CLK" Destination="MODEL.CLK" dx1="1716.6666" />
+      <Connection Source="MODEL.INITO" Destination="CONTROL.INIT" dx1="2388.889" />
+      <Connection Source="MODEL.CHG" Destination="CONTROL.REQ" dx1="2150.0" />
+      <Connection Source="CONTROL.INITO" Destination="INITO" dx1="5983.333" />
+      <Connection Source="CONTROL.CNF" Destination="MODEL.CYL_IND" dx1="100.0" dx2="477.77777" dy="-1450.0" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="CYL1_SPEED" Destination="MODEL.CYL1_SPEED" dx1="1583.3333" />
+      <Connection Source="CYL2_SPEED" Destination="MODEL.CYL2_SPEED" dx1="1583.3333" />
+      <Connection Source="VCYL_SPEED" Destination="MODEL.VCYL_SPEED" dx1="1583.3333" />
+      <Connection Source="MODEL.c1home" Destination="CONTROL.c1home" dx1="2016.6666" />
+      <Connection Source="MODEL.c1end" Destination="CONTROL.c1end" dx1="2083.3333" />
+      <Connection Source="MODEL.c2home" Destination="CONTROL.c2home" dx1="2155.5554" />
+      <Connection Source="MODEL.c2end" Destination="CONTROL.c2end" dx1="2227.7776" />
+      <Connection Source="MODEL.vchome" Destination="CONTROL.vc_up" dx1="2300.0" />
+      <Connection Source="MODEL.vcend" Destination="CONTROL.vc_down" dx1="2366.6665" />
+      <Connection Source="MODEL.VACUUM_ON" Destination="CONTROL.vacuum" dx1="1944.4443" />
+      <Connection Source="CONTROL.vcMoveOut" Destination="MODEL.vcyl_down" dx1="172.22221" dx2="283.3333" dy="1583.3333" />
+      <Connection Source="CONTROL.venturi_on" Destination="MODEL.vacuum_on" dx1="77.77777" dx2="66.666664" dy="1316.6666" />
+      <Connection Source="CONTROL.venturi_off" Destination="MODEL.vacuum_off" dx1="227.77777" dx2="205.55554" dy="1416.6666" />
+      <Connection Source="CONTROL.c1MoveOut" Destination="MODEL.cyl1_fwd" dx1="288.8889" dx2="355.55554" dy="1355.5555" />
+      <Connection Source="CONTROL.c1MoveIn" Destination="MODEL.cyl1_back" dx1="150.0" dx2="172.22221" dy="1277.7777" />
+      <Connection Source="CONTROL.c2MoveOut" Destination="MODEL.cyl2_fwd" dx1="116.666664" dx2="416.66666" dy="1200.0" />
+      <Connection Source="CONTROL.c2MoveIn" Destination="MODEL.cyl2_back" dx1="377.77777" dx2="122.22221" dy="822.22217" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

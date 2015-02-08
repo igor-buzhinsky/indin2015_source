@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="PICKER_RHMI_PROXY_NEW_BA" Comment="Communication Unit for Mirrored Picker HMI using a Socket" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <CompilerInfo header="package fb.rt.pnp;import fb.rt.net.*;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="ID_IN" Type="WSTRING" />
+      <VarDeclaration Name="ID_OUT" Type="WSTRING" />
+    </InputVars>
+    <Sockets>
+      <AdapterDeclaration Name="SOCKET" Type="PICKER_IN_BA" x="1250.0" y="244.44443" />
+    </Sockets>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="PUBLICATION" Type="PUBL_4" x="2655.5554" y="16.666666" />
+    <EventConnections>
+      <Connection Source="SOCKET.REQ" Destination="PUBLICATION.REQ" dx1="83.33333" />
+      <Connection Source="PUBLICATION.INITO" Destination="INITO" dx1="3094.4443" />
+      <Connection Source="INIT" Destination="PUBLICATION.INIT" dx1="2550.0" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="SOCKET.add1" Destination="PUBLICATION.SD_1" dx1="211.1111" />
+      <Connection Source="SOCKET.add2" Destination="PUBLICATION.SD_2" dx1="188.88889" />
+      <Connection Source="SOCKET.add3" Destination="PUBLICATION.SD_3" dx1="166.66666" />
+      <Connection Source="ID_OUT" Destination="PUBLICATION.ID" dx1="2500.0" />
+      <Connection Source="SOCKET.add4" Destination="PUBLICATION.SD_4" dx1="116.666664" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

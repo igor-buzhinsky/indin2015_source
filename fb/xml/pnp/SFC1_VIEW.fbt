@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="SFC1_VIEW" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <CompilerInfo header="package fb.rt.pnp;import fb.rt.vhmi.*;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="x4" />
+        <With Var="x1" />
+        <With Var="x2" />
+        <With Var="x3" />
+        <With Var="PP1" />
+        <With Var="PP2" />
+        <With Var="PP3" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="x4" />
+        <With Var="x1" />
+        <With Var="x2" />
+        <With Var="x3" />
+        <With Var="PP1" />
+        <With Var="PP2" />
+        <With Var="PP3" />
+      </Event>
+      <Event Name="NAME_CHG" >
+        <With Var="x4" />
+        <With Var="x1" />
+        <With Var="x2" />
+        <With Var="x3" />
+        <With Var="PP1" />
+        <With Var="PP2" />
+        <With Var="PP3" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="x4" Type="WSTRING" Comment="Input event qualifier" />
+      <VarDeclaration Name="x1" Type="WSTRING" />
+      <VarDeclaration Name="x2" Type="WSTRING" />
+      <VarDeclaration Name="x3" Type="WSTRING" />
+      <VarDeclaration Name="PP1" Type="BOOL" />
+      <VarDeclaration Name="PP2" Type="BOOL" />
+      <VarDeclaration Name="PP3" Type="BOOL" />
+    </InputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="SFC1" Type="Render" x="788.88885" y="155.55554" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/SFC1.png&#34;" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="Layer" Value="1" />
+      <Parameter Name="PosX" Value="300" />
+      <Parameter Name="PosY" Value="350" />
+    </FB>
+    <FB Name="X4" Type="Render" x="1699.9999" y="155.55554" >
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="390" />
+      <Parameter Name="PosX" Value="428" />
+    </FB>
+    <FB Name="X1" Type="Render" x="2655.5554" y="155.55554" >
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="480" />
+      <Parameter Name="PosX" Value="356" />
+    </FB>
+    <FB Name="X2" Type="Render" x="3499.9998" y="155.55554" >
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="480" />
+      <Parameter Name="PosX" Value="428" />
+    </FB>
+    <FB Name="X3" Type="Render" x="4316.6665" y="155.55554" >
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="480" />
+      <Parameter Name="PosX" Value="508" />
+    </FB>
+    <FB Name="pp1" Type="Render" x="316.66666" y="1833.3333" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosX" Value="398" />
+      <Parameter Name="PosY" Value="469" />
+    </FB>
+    <FB Name="pp2" Type="Render" x="1300.0" y="1833.3333" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosX" Value="470" />
+      <Parameter Name="PosY" Value="469" />
+    </FB>
+    <FB Name="pp3" Type="Render" x="2083.3333" y="1833.3333" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="469" />
+      <Parameter Name="PosX" Value="550" />
+    </FB>
+    <FB Name="Npp1" Type="Render" x="3277.7776" y="1838.8888" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="469" />
+      <Parameter Name="PosX" Value="495" />
+    </FB>
+    <FB Name="Npp2" Type="Render" x="4094.4443" y="1833.3333" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="469" />
+      <Parameter Name="PosX" Value="576" />
+    </FB>
+    <FB Name="Npp1_1" Type="Render" x="4877.778" y="1833.3333" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="469" />
+      <Parameter Name="PosX" Value="600" />
+    </FB>
+    <FB Name="Npp1_2" Type="Render" x="416.66666" y="3794.4443" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="556" />
+      <Parameter Name="PosX" Value="398" />
+    </FB>
+    <FB Name="Npp1_3" Type="Render" x="1477.7777" y="3872.2222" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="556" />
+      <Parameter Name="PosX" Value="496" />
+    </FB>
+    <FB Name="Npp1_4" Type="Render" x="2616.6665" y="3794.4443" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="556" />
+      <Parameter Name="PosX" Value="600" />
+    </FB>
+    <FB Name="Npp2_1" Type="Render" x="3466.6665" y="3794.4443" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="556" />
+      <Parameter Name="PosX" Value="470" />
+    </FB>
+    <FB Name="Npp2_2" Type="Render" x="4350.0" y="3755.5554" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="556" />
+      <Parameter Name="PosX" Value="576" />
+    </FB>
+    <FB Name="Npp3" Type="Render" x="5144.4443" y="3833.3333" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="556" />
+      <Parameter Name="PosX" Value="550" />
+    </FB>
+    <FB Name="NotPP1" Type="NotGate" x="2738.8887" y="2855.5554" />
+    <FB Name="NotPP2" Type="NotGate" x="3711.111" y="2900.0" />
+    <FB Name="NotPP3" Type="NotGate" x="933.3333" y="4566.6665" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="SFC1.INIT" dx1="683.3333" />
+      <Connection Source="SFC1.INITO" Destination="X4.INIT" dx1="50.0" />
+      <Connection Source="X4.INITO" Destination="X1.INIT" dx1="466.66666" />
+      <Connection Source="X1.INITO" Destination="X2.INIT" dx1="383.3333" />
+      <Connection Source="X2.INITO" Destination="X3.INIT" dx1="411.11108" />
+      <Connection Source="X3.INITO" Destination="pp1.INIT" dx1="27.777777" dx2="5.5555553" dy="1344.4443" />
+      <Connection Source="pp1.INITO" Destination="pp2.INIT" dx1="238.88889" />
+      <Connection Source="pp2.INITO" Destination="pp3.INIT" dx1="222.22221" />
+      <Connection Source="Npp2.INITO" Destination="Npp1_1.INIT" dx1="150.0" />
+      <Connection Source="Npp1_1.INITO" Destination="Npp1_2.INIT" dx1="27.777777" dx2="16.666666" dy="1699.9999" />
+      <Connection Source="Npp1_3.INITO" Destination="Npp1_4.INIT" dx1="494.44443" />
+      <Connection Source="Npp1_4.INITO" Destination="Npp2_1.INIT" dx1="283.3333" />
+      <Connection Source="Npp2_1.INITO" Destination="Npp2_2.INIT" dx1="311.11108" />
+      <Connection Source="Npp2_2.INITO" Destination="Npp3.INIT" dx1="111.11111" />
+      <Connection Source="Npp3.INITO" Destination="INITO" dx1="5711.111" />
+      <Connection Source="X4.CNF" Destination="X1.ChangePic" dx1="455.55554" />
+      <Connection Source="X1.CNF" Destination="X2.ChangePic" dx1="355.55554" />
+      <Connection Source="X2.CNF" Destination="X3.ChangePic" dx1="333.3333" />
+      <Connection Source="X3.CNF" Destination="CNF" dx1="4861.111" />
+      <Connection Source="REQ" Destination="pp1.ChangeValidity" dx1="205.55554" />
+      <Connection Source="pp1.CNF" Destination="pp2.ChangeValidity" dx1="327.77777" />
+      <Connection Source="pp2.CNF" Destination="pp3.ChangeValidity" dx1="300.0" />
+      <Connection Source="Npp2.CNF" Destination="Npp1_1.ChangeValidity" dx1="211.1111" />
+      <Connection Source="Npp1_1.CNF" Destination="Npp1_2.ChangeValidity" dx1="105.55555" dx2="105.55555" dy="1477.7777" />
+      <Connection Source="Npp1_3.CNF" Destination="Npp1_4.ChangeValidity" dx1="200.0" />
+      <Connection Source="Npp1_4.CNF" Destination="Npp2_1.ChangeValidity" dx1="116.666664" />
+      <Connection Source="Npp2_1.CNF" Destination="Npp2_2.ChangeValidity" dx1="127.77777" />
+      <Connection Source="Npp2_2.CNF" Destination="Npp3.ChangeValidity" dx1="105.55555" />
+      <Connection Source="Npp3.CNF" Destination="CNF" dx1="5688.8887" />
+      <Connection Source="pp3.INITO" Destination="NotPP1.INIT" dx1="94.44444" />
+      <Connection Source="NotPP1.INITO" Destination="Npp1.INIT" dx1="94.44444" />
+      <Connection Source="NotPP1.CNF" Destination="Npp1.ChangeValidity" dx1="100.0" />
+      <Connection Source="pp3.CNF" Destination="NotPP1.REQ" dx1="94.44444" />
+      <Connection Source="Npp1.INITO" Destination="NotPP2.INIT" dx1="38.888885" />
+      <Connection Source="NotPP2.INITO" Destination="Npp2.INIT" dx1="38.888885" />
+      <Connection Source="NotPP2.CNF" Destination="Npp2.ChangeValidity" dx1="38.888885" />
+      <Connection Source="Npp1.CNF" Destination="NotPP2.REQ" dx1="38.888885" />
+      <Connection Source="Npp1_2.INITO" Destination="NotPP3.INIT" dx1="27.777777" />
+      <Connection Source="NotPP3.INITO" Destination="Npp1_3.INIT" dx1="188.88889" />
+      <Connection Source="NotPP3.CNF" Destination="Npp1_3.ChangeValidity" dx1="194.44444" />
+      <Connection Source="Npp1_2.CNF" Destination="NotPP3.REQ" dx1="27.777777" />
+      <Connection Source="NAME_CHG" Destination="X4.ChangePic" dx1="1488.8888" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="PP1" Destination="pp1.Display" dx1="211.1111" />
+      <Connection Source="PP2" Destination="pp2.Display" dx1="1194.4445" />
+      <Connection Source="PP3" Destination="pp3.Display" dx1="1977.7777" />
+      <Connection Source="x4" Destination="X4.name" dx1="1616.6666" />
+      <Connection Source="x1" Destination="X1.name" dx1="2572.2222" />
+      <Connection Source="x2" Destination="X2.name" dx1="3416.6665" />
+      <Connection Source="x3" Destination="X3.name" dx1="4233.333" />
+      <Connection Source="NotPP1.QO" Destination="Npp1.Display" dx1="105.55555" />
+      <Connection Source="PP1" Destination="NotPP1.QI" dx1="2633.3333" />
+      <Connection Source="PP2" Destination="NotPP2.QI" dx1="3605.5554" />
+      <Connection Source="NotPP2.QO" Destination="Npp2.Display" dx1="44.444443" />
+      <Connection Source="NotPP1.QO" Destination="Npp1_1.Display" dx1="1133.3333" />
+      <Connection Source="PP3" Destination="NotPP3.QI" dx1="827.7778" />
+      <Connection Source="NotPP1.QO" Destination="Npp1_4.Display" dx1="105.55555" dx2="105.55555" dy="1805.5555" />
+      <Connection Source="NotPP2.QO" Destination="Npp2_1.Display" dx1="105.55555" dx2="105.55555" dy="1761.1111" />
+      <Connection Source="NotPP3.QO" Destination="Npp3.Display" dx1="3461.111" />
+      <Connection Source="NotPP1.QO" Destination="Npp1_2.Display" dx1="105.55555" dx2="105.55555" dy="1805.5555" />
+      <Connection Source="NotPP1.QO" Destination="Npp1_3.Display" dx1="105.55555" dx2="105.55555" dy="1805.5555" />
+      <Connection Source="NotPP2.QO" Destination="Npp2_2.Display" dx1="127.77777" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

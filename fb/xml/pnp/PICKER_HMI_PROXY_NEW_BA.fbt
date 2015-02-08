@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="PICKER_HMI_PROXY_NEW_BA" Comment="Communication Unit for HMI using a plug" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <CompilerInfo header="package fb.rt.pnp;import fb.rt.net.*;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="ID_IN" Type="WSTRING" />
+      <VarDeclaration Name="ID_OUT" Type="WSTRING" />
+    </InputVars>
+    <Plugs>
+      <AdapterDeclaration Name="PLUG" Type="PICKER_IN_BA" x="1416.6666" y="266.66666" />
+    </Plugs>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="SUBSCRIBE" Type="SUBL_4" x="638.88885" y="155.55554" />
+    <EventConnections>
+      <Connection Source="SUBSCRIBE.IND" Destination="PLUG.REQ" dx1="100.0" />
+      <Connection Source="INIT" Destination="SUBSCRIBE.INIT" dx1="533.3333" />
+      <Connection Source="SUBSCRIBE.INITO" Destination="INITO" dx1="1077.7777" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="ID_IN" Destination="SUBSCRIBE.ID" dx1="516.6666" />
+      <Connection Source="SUBSCRIBE.RD_3" Destination="PLUG.add3" dx1="283.3333" />
+      <Connection Source="SUBSCRIBE.RD_2" Destination="PLUG.add2" dx1="261.1111" />
+      <Connection Source="SUBSCRIBE.RD_1" Destination="PLUG.add1" dx1="238.88889" />
+      <Connection Source="SUBSCRIBE.RD_4" Destination="PLUG.add4" dx1="366.66666" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

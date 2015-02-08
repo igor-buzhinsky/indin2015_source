@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="PnpXYCalculatorBA" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="BASEX" />
+        <With Var="BASEY" />
+      </Event>
+      <Event Name="CLK" Comment="Clock" >
+        <With Var="vacuumon" />
+        <With Var="CYL1Pos" />
+        <With Var="CYL2Pos" />
+        <With Var="CYL3Pos" />
+        <With Var="VCYL1Pos" />
+        <With Var="VCYL2Pos" />
+        <With Var="VCYL3Pos" />
+      </Event>
+      <Event Name="REQ" >
+        <With Var="vacuum_on" />
+        <With Var="vacuum_off" />
+        <With Var="Add1" />
+        <With Var="Add2" />
+        <With Var="Add3" />
+        <With Var="Add4" />
+      </Event>
+      <Event Name="ADD_WP" >
+        <With Var="AddedWP_X" />
+        <With Var="AddedWP_Y" />
+      </Event>
+      <Event Name="ADD_WP00" >
+      </Event>
+      <Event Name="REMOVE_WP" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="CYL1_X" />
+        <With Var="CYL1_Y" />
+        <With Var="BASE_Y" />
+        <With Var="BASE_X" />
+        <With Var="CYL2_X" />
+        <With Var="CYL2_Y" />
+        <With Var="VCYL1_X" />
+        <With Var="VCYL1_Y" />
+        <With Var="WP1_X" />
+        <With Var="WP1_Y" />
+        <With Var="WP2_X" />
+        <With Var="WP2_Y" />
+        <With Var="WP3_X" />
+        <With Var="WP3_Y" />
+        <With Var="CYL3_X" />
+        <With Var="CYL3_Y" />
+        <With Var="VCYL2_X" />
+        <With Var="VCYL2_Y" />
+        <With Var="VCYL3_X" />
+        <With Var="VCYL3_Y" />
+      </Event>
+      <Event Name="CNF" >
+        <With Var="CYL1_X" />
+        <With Var="CYL1_Y" />
+        <With Var="BASE_Y" />
+        <With Var="BASE_X" />
+        <With Var="CYL2_X" />
+        <With Var="CYL2_Y" />
+        <With Var="VCYL1_X" />
+        <With Var="VCYL1_Y" />
+        <With Var="WP1_X" />
+        <With Var="WP1_Y" />
+        <With Var="WP2_X" />
+        <With Var="WP2_Y" />
+        <With Var="WP3_X" />
+        <With Var="WP3_Y" />
+        <With Var="CYL3_X" />
+        <With Var="CYL3_Y" />
+        <With Var="VCYL2_X" />
+        <With Var="VCYL2_Y" />
+        <With Var="VCYL3_X" />
+        <With Var="VCYL3_Y" />
+      </Event>
+      <Event Name="WP_ADDED" >
+      </Event>
+      <Event Name="WP_REMOVED" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="BASEX" Type="UINT" />
+      <VarDeclaration Name="BASEY" Type="UINT" />
+      <VarDeclaration Name="vacuum_on" Type="BOOL" />
+      <VarDeclaration Name="vacuum_off" Type="BOOL" />
+      <VarDeclaration Name="Add1" Type="BOOL" />
+      <VarDeclaration Name="Add2" Type="BOOL" />
+      <VarDeclaration Name="Add3" Type="BOOL" />
+      <VarDeclaration Name="Add4" Type="BOOL" />
+      <VarDeclaration Name="AddedWP_X" Type="UINT" />
+      <VarDeclaration Name="AddedWP_Y" Type="UINT" />
+      <VarDeclaration Name="vacuumon" Type="BOOL" />
+      <VarDeclaration Name="CYL1Pos" Type="UINT" />
+      <VarDeclaration Name="CYL2Pos" Type="UINT" />
+      <VarDeclaration Name="CYL3Pos" Type="UINT" />
+      <VarDeclaration Name="VCYL1Pos" Type="UINT" />
+      <VarDeclaration Name="VCYL2Pos" Type="UINT" />
+      <VarDeclaration Name="VCYL3Pos" Type="UINT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="BASE_X" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="BASE_Y" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="CYL1_X" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="CYL1_Y" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="CYL2_X" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="CYL2_Y" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="CYL3_X" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="CYL3_Y" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="VCYL1_X" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="VCYL1_Y" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="VCYL2_X" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="VCYL2_Y" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="VCYL3_X" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="VCYL3_Y" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="WP1_X" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="WP1_Y" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="WP2_X" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="WP2_Y" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="WP3_X" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="WP3_Y" Type="UINT" Comment="Response Data from Socket" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Name="cyl1x" Type="UINT" />
+      <VarDeclaration Name="cyl2x" Type="UINT" />
+      <VarDeclaration Name="cyl3x" Type="UINT" />
+      <VarDeclaration Name="vcyl1y" Type="UINT" />
+      <VarDeclaration Name="vcyl2y" Type="UINT" />
+      <VarDeclaration Name="vcyl3y" Type="UINT" />
+      <VarDeclaration Name="wp1x" Type="UINT" />
+      <VarDeclaration Name="wp1y" Type="UINT" />
+      <VarDeclaration Name="wp2x" Type="UINT" />
+      <VarDeclaration Name="wp2y" Type="UINT" />
+      <VarDeclaration Name="wp3x" Type="UINT" />
+      <VarDeclaration Name="wp3y" Type="UINT" />
+      <VarDeclaration Name="wp4x" Type="UINT" />
+      <VarDeclaration Name="wp4y" Type="UINT" />
+      <VarDeclaration Name="slider1" Type="BOOL" />
+      <VarDeclaration Name="slider2" Type="BOOL" />
+      <VarDeclaration Name="slider3" Type="BOOL" />
+      <VarDeclaration Name="slider4" Type="BOOL" />
+      <VarDeclaration Name="wp1on" Type="BOOL" />
+      <VarDeclaration Name="wp2on" Type="BOOL" />
+      <VarDeclaration Name="wp3on" Type="BOOL" />
+      <VarDeclaration Name="wp4on" Type="BOOL" />
+    </InternalVars>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="556.25" y="425.0" >
+      </ECState>
+      <ECState Name="INIT" Comment="Initialization" x="1318.75" y="106.25" >
+        <ECAction Algorithm="INIT" />
+        <ECAction Algorithm="UPDATE_VIEW" Output="INITO" />
+      </ECState>
+      <ECState Name="REQ" Comment="Normal execution" x="100.0" y="1100.0" >
+        <ECAction Algorithm="REQ" Output="CNF" />
+      </ECState>
+      <ECState Name="CLK" x="2056.25" y="843.75" >
+        <ECAction Algorithm="CLK" />
+        <ECAction Algorithm="UPDATE_VIEW" Output="CNF" />
+      </ECState>
+      <ECState Name="ADD_WP" x="1362.5" y="1775.0" >
+        <ECAction Algorithm="ADD_WP" Output="WP_ADDED" />
+        <ECAction Algorithm="UPDATE_VIEW" Output="CNF" />
+      </ECState>
+      <ECState Name="REMOVE_WP" x="2168.75" y="1406.25" >
+        <ECAction Algorithm="REMOVE_WP" Output="WP_REMOVED" />
+        <ECAction Algorithm="UPDATE_VIEW" Output="CNF" />
+      </ECState>
+      <ECState Name="Add00" x="512.5" y="2006.25" >
+        <ECAction Algorithm="Add_WP00" Output="WP_ADDED" />
+        <ECAction Algorithm="UPDATE_VIEW" Output="CNF" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1156.25" y="406.25" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="731.25" y="106.25" />
+      <ECTransition Source="START" Destination="REQ" Condition="REQ" x="325.0" y="831.25" />
+      <ECTransition Source="REQ" Destination="START" Condition="1" x="100.0" y="775.0" />
+      <ECTransition Source="START" Destination="CLK" Condition="CLK" x="1681.25" y="512.5" />
+      <ECTransition Source="CLK" Destination="START" Condition="1" x="1468.75" y="756.25" />
+      <ECTransition Source="START" Destination="ADD_WP" Condition="ADD_WP" x="1206.25" y="1343.75" />
+      <ECTransition Source="ADD_WP" Destination="START" Condition="1" x="937.5" y="1325.0" />
+      <ECTransition Source="START" Destination="REMOVE_WP" Condition="REMOVE_WP" x="1212.5" y="975.0" />
+      <ECTransition Source="REMOVE_WP" Destination="START" Condition="1" x="1512.5" y="875.0" />
+      <ECTransition Source="START" Destination="Add00" Condition="ADD_WP00" x="700.0" y="1525.0" />
+      <ECTransition Source="Add00" Destination="START" Condition="1" x="412.5" y="1412.5" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+    <Other Language="Java" Text="wp1x.value = 6000;&#10;wp1y.value = 6000;&#10;wp2x.value = 6000;&#10;wp2y.value = 6000;&#10;wp3x.value = 6000;&#10;wp3y.value = 6000;&#10;wp1on.value = false;&#10;wp2on.value = false;&#10;wp3on.value = false;&#10;&#10;BASE_X.value = BASEX.value;&#10;BASE_Y.value = BASEY.value;&#10;CYL1_Y.value = BASEY.value;&#10;CYL2_Y.value = BASEY.value;&#10;CYL3_Y.value = BASEY.value;&#10;" />
+  </Algorithm>
+  <Algorithm Name="REQ" Comment="Normally executed algorithm" >
+    <Other Language="Java" Text="" />
+  </Algorithm>
+  <Algorithm Name="CLK" >
+    <Other Language="Java" Text="int cyl1_length = 75;&#10;int cyl2_length = 75;&#10;int cyl3_length = 150;&#10;int vcyl1_length = 75;&#10;int vcyl2_length = 75;&#10;int vcyl3_length = 75;&#10;&#10;cyl1x.value = CYL1Pos.value;&#10;cyl2x.value = CYL2Pos.value;&#10;cyl3x.value = CYL3Pos.value;&#10;vcyl1y.value = VCYL1Pos.value;&#10;vcyl2y.value = VCYL2Pos.value;&#10;vcyl3y.value = VCYL3Pos.value;&#10;&#10;if(WP1_X.value&#60;=465 &#38;&#38; WP1_Y.value>=370){&#10;slider1.value=true;&#10;} else {slider1.value=false;}&#10;if(WP2_X.value&#60;=465 &#38;&#38; WP2_Y.value>=370){&#10;slider2.value=true;&#10;} else {slider2.value=false;}&#10;if(WP3_X.value&#60;=465 &#38;&#38; WP3_Y.value>=370){&#10;slider3.value=true;&#10;} else {slider3.value=false;}&#10;&#10;&#10;if (vacuumon.value) {&#10;int vacuumx = VCYL3_X.value;&#10;int vacuumy = VCYL3_Y.value+100;&#10;int dx1 = Math.abs(wp1x.value - vacuumx);&#10;int dy1 = Math.abs(wp1y.value - vacuumy);&#10;int dx2 = Math.abs(wp2x.value - vacuumx);&#10;int dy2 = Math.abs(wp2y.value - vacuumy);&#10;int dx3 = Math.abs(wp3x.value - vacuumx);&#10;int dy3 = Math.abs(wp3y.value - vacuumy);&#10;&#10;if (dx1 &#60; 17 &#38;&#38; dy1 &#60; 7 &#38;&#38; wp2on.value==false &#38;&#38; wp3on.value==false){&#10;wp1on.value = true;&#10;}&#10;if (dx2 &#60; 17 &#38;&#38; dy2 &#60; 7 &#38;&#38; wp1on.value==false &#38;&#38; wp3on.value==false){&#10;wp2on.value = true;&#10;}&#10;if (dx3 &#60; 17 &#38;&#38; dy3 &#60; 7 &#38;&#38; wp2on.value==false &#38;&#38; wp1on.value==false){&#10;wp3on.value = true;&#10;}&#10;//System.out.println(&#34;Clocking&#34;+dx1+&#34;-&#34;+dy1);&#10;&#10;} else {&#10;wp1on.value = false;&#10;wp2on.value = false;&#10;wp3on.value = false;&#10;}&#10;&#10;//System.out.println(&#34;Clocking&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="UPDATE_VIEW" >
+    <Other Language="Java" Text="int bx = BASEX.value;&#10;int by = BASEY.value;&#10;CYL1_X.value = bx+22+cyl1x.value;&#10;CYL2_X.value = CYL1_X.value+90+cyl2x.value;&#10;CYL3_X.value = CYL2_X.value+90+cyl3x.value;&#10;&#10;VCYL1_X.value = CYL3_X.value+180;&#10;VCYL2_X.value = CYL3_X.value+180;&#10;VCYL3_X.value = CYL3_X.value+180;&#10;//VCYL1_Y.value = by+vcyl1y.value+15;&#10;VCYL1_Y.value = by+vcyl1y.value;&#10;VCYL2_Y.value = VCYL1_Y.value+90+vcyl2y.value;&#10;VCYL3_Y.value = VCYL2_Y.value+90+vcyl3y.value;&#10;&#10;if (wp1on.value){&#10;wp1x.value = VCYL3_X.value;&#10;wp1y.value = VCYL3_Y.value+100;&#10;} else if (slider1.value){&#10;&#10;&#10;/*if(wp1y.value &#60;= 490) {&#10;wp1y.value = wp1y.value+1;&#10;if (slider2.value &#38;&#38; wp2y.value >= 476 &#38;&#38; wp1y.value >= 476) {&#10;wp1y.value = wp1y.value-1;&#10;} else if (slider3.value &#38;&#38; wp3y.value >= 476 &#38;&#38; wp1y.value >= 476) {&#10;wp1y.value = wp1y.value-1;&#10;} else if (slider3.value &#38;&#38; slider2.value &#38;&#38; wp2y.value >= 462 &#38;&#38; wp3y.value >= 462 &#38;&#38; wp1y.value >= 460) {&#10;wp1y.value = wp1y.value-1;&#10;}&#10;}*/&#10;wp1y.value = wp1y.value+1;&#10;&#10;} else {&#10;//wp1y.value = 385;&#10;}&#10;&#10;if (wp2on.value){&#10;wp2x.value = VCYL3_X.value;&#10;wp2y.value = VCYL3_Y.value+100;&#10;} else if (slider2.value){&#10;&#10;&#10;&#10;/*if(wp2y.value &#60;= 490) {&#10;&#10;wp2y.value = wp2y.value+1;&#10;if (slider1.value &#38;&#38; wp1y.value >= 476 &#38;&#38; wp2y.value >= 476) {&#10;wp2y.value = wp2y.value-1;&#10;} else if (slider3.value &#38;&#38; wp3y.value >= 476 &#38;&#38; wp2y.value >= 476) {&#10;wp2y.value = wp2y.value-1;&#10;} else if (slider3.value &#38;&#38; slider1.value &#38;&#38; wp1y.value >= 462 &#38;&#38; wp3y.value >= 462 &#38;&#38; wp2y.value >= 460) {&#10;wp2y.value = wp2y.value-1;&#10;}&#10;&#10;}*/&#10;wp2y.value = wp2y.value+1;&#10;&#10;} else {&#10;//wp2y.value = 535;&#10;}&#10;&#10;if (wp3on.value){&#10;wp3x.value = VCYL3_X.value;&#10;wp3y.value = VCYL3_Y.value+100;&#10;} else if (slider3.value){&#10;&#10;/*if(wp3y.value &#60;= 490) {&#10;&#10;wp3y.value = wp3y.value+1;&#10;if (slider1.value &#38;&#38; wp1y.value >= 476 &#38;&#38; wp3y.value >= 476) {&#10;wp3y.value = wp3y.value-1;&#10;} else if (slider2.value &#38;&#38; wp2y.value >= 476 &#38;&#38; wp3y.value >= 476) {&#10;wp3y.value = wp3y.value-1;&#10;} else if (slider2.value &#38;&#38; slider1.value &#38;&#38; wp1y.value >= 462 &#38;&#38; wp2y.value >= 462 &#38;&#38; wp3y.value >= 460) {&#10;wp3y.value = wp3y.value-1;&#10;}&#10;&#10;}*/&#10;wp3y.value = wp3y.value+1;&#10;&#10;&#10;} else {&#10;//wp3y.value = 460;&#10;}&#10;&#10;&#10;&#10;WP1_X.value = wp1x.value;&#10;WP1_Y.value = wp1y.value;&#10;WP2_X.value = wp2x.value;&#10;WP2_Y.value = wp2y.value;&#10;WP3_X.value = wp3x.value;&#10;WP3_Y.value = wp3y.value;&#10;&#10;//WP1_X.value = bx+300+wp1x.value;&#10;WP1_Y.value = wp1y.value;&#10;//WP2_X.value = bx+300+wp2x.value;&#10;WP2_Y.value = wp2y.value;&#10;//WP3_X.value = bx+300+wp3x.value;&#10;WP3_Y.value = wp3y.value;&#10;&#10;&#10;/*if (WP1_X.value == 462 &#38;&#38; WP1_Y.value >= 535)&#10;{&#10;    WP1_X.value = 6000;&#10;    WP1_Y.value = 6000;&#10;}&#10;if (WP2_X.value == 462 &#38;&#38; WP2_Y.value >= 535)&#10;{&#10;    WP2_X.value = 6000;&#10;    WP2_Y.value = 6000;&#10;}&#10;if (WP3_X.value == 462 &#38;&#38; WP3_Y.value >= 535)&#10;{&#10;    WP3_X.value = 6000;&#10;    WP3_Y.value = 6000;&#10;}*/&#10;&#10;&#10;//System.out.println(&#34;C1X = &#34; + CYL1_X + &#34; C2X = &#34; + CYL2_X + &#34; VCX = &#34; + VCYL_X + &#34; VCY = &#34; + VCYL_Y);&#10;" />
+  </Algorithm>
+  <Algorithm Name="ADD_WP" >
+    <Other Language="Java" Text="if (Add1.value==true) {&#10;wp1x.value = 537;&#10;wp1y.value = 385;&#10;wp1on.value = false;&#10;}&#10;if (Add2.value==true) {&#10;wp2x.value = 612;&#10;wp2y.value = 535;&#10;wp2on.value = false;&#10;}&#10;if (Add3.value==true) {&#10;wp3x.value = 687;&#10;wp3y.value = 460;&#10;wp3on.value = false;&#10;}&#10;" />
+  </Algorithm>
+  <Algorithm Name="REMOVE_WP" >
+    <Other Language="Java" Text="if (Add1.value==true) {&#10;wp1on.value = false;&#10;wp1x.value = 6000;&#10;wp1y.value = 6000;&#10;}&#10;if (Add2.value==true) {&#10;wp2on.value = false;&#10;wp2x.value = 6000;&#10;wp2y.value = 6000;&#10;}&#10;if (Add3.value==true) {&#10;wp3on.value = false;&#10;wp3x.value = 6000;&#10;wp3y.value = 6000;&#10;}&#10;" />
+  </Algorithm>
+  <Algorithm Name="Add_WP00" >
+    <Other Language="Java" Text="if (Add1.value==true) {&#10;wp1x.value = 0;&#10;wp1y.value = 215;&#10;wp1on.value = false;&#10;}&#10;if (Add2.value==true) {&#10;wp2x.value = 0;&#10;wp2y.value = 215;&#10;wp2on.value = false;&#10;}&#10;if (Add3.value==true) {&#10;wp3x.value = 0;&#10;wp3y.value = 215;&#10;wp3on.value = false;&#10;}&#10;if (Add4.value==true) {&#10;wp4x.value = 0;&#10;wp4y.value = 215;&#10;wp4on.value = false;&#10;}&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="OR" Comment="Basic Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-04" Remarks="Renamed for better indexing." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-11-05" Remarks="Corrected missing ST element in Algorithm REQ." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-30" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="i1" />
+        <With Var="i3" />
+        <With Var="i2" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="i1" />
+        <With Var="i2" />
+        <With Var="i3" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="o" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="o" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="i1" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="i2" Type="BOOL" />
+      <VarDeclaration Name="i3" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="o" Type="BOOL" Comment="Output event qualifier" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="552.9412" y="429.4117" >
+      </ECState>
+      <ECState Name="INIT" Comment="Initialization" x="923.5294" y="141.1765" >
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="REQ" Comment="Normal execution" x="217.647" y="752.9412" >
+        <ECAction Algorithm="REQ" Output="CNF" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="923.5294" y="429.4117" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="552.9412" y="141.1765" />
+      <ECTransition Source="START" Destination="REQ" Condition="REQ" x="552.9412" y="600.0" />
+      <ECTransition Source="REQ" Destination="START" Condition="1" x="217.647" y="429.4117" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+    <Other Language="Java" Text="o.value=i1.value|i2.value|i3.value;&#10;" />
+  </Algorithm>
+  <Algorithm Name="REQ" Comment="Normally executed algorithm" >
+    <Other Language="Java" Text="o.value=i1.value|i2.value|i3.value;&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="MasterSlave" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Majid Sorouri" Date="2011-03-19" Remarks="template" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="c1home" />
+        <With Var="c1end" />
+        <With Var="c2home" />
+        <With Var="c2end" />
+        <With Var="vc_up" />
+        <With Var="vc_down" />
+        <With Var="vacuum" />
+        <With Var="pp0" />
+        <With Var="pp1" />
+        <With Var="pp2" />
+        <With Var="pp3" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="c1home" />
+        <With Var="c1end" />
+        <With Var="c2home" />
+        <With Var="c2end" />
+        <With Var="vc_up" />
+        <With Var="vc_down" />
+        <With Var="vacuum" />
+        <With Var="pp0" />
+        <With Var="pp1" />
+        <With Var="pp2" />
+        <With Var="pp3" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="venturi_off" />
+        <With Var="vcMoveOut" />
+        <With Var="venturi_on" />
+        <With Var="c1MoveOut" />
+        <With Var="c1MoveIn" />
+        <With Var="c2MoveOut" />
+        <With Var="c2MoveIn" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="vcMoveOut" />
+        <With Var="venturi_on" />
+        <With Var="venturi_off" />
+        <With Var="c1MoveOut" />
+        <With Var="c1MoveIn" />
+        <With Var="c2MoveOut" />
+        <With Var="c2MoveIn" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="c1home" Type="BOOL" />
+      <VarDeclaration Name="c1end" Type="BOOL" />
+      <VarDeclaration Name="c2home" Type="BOOL" />
+      <VarDeclaration Name="c2end" Type="BOOL" />
+      <VarDeclaration Name="vc_up" Type="BOOL" />
+      <VarDeclaration Name="vc_down" Type="BOOL" />
+      <VarDeclaration Name="vacuum" Type="BOOL" />
+      <VarDeclaration Name="pp0" Type="BOOL" />
+      <VarDeclaration Name="pp1" Type="BOOL" />
+      <VarDeclaration Name="pp2" Type="BOOL" />
+      <VarDeclaration Name="pp3" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="vcMoveOut" Type="BOOL" />
+      <VarDeclaration Name="venturi_on" Type="BOOL" />
+      <VarDeclaration Name="venturi_off" Type="BOOL" />
+      <VarDeclaration Name="c1MoveOut" Type="BOOL" />
+      <VarDeclaration Name="c1MoveIn" Type="BOOL" />
+      <VarDeclaration Name="c2MoveOut" Type="BOOL" />
+      <VarDeclaration Name="c2MoveIn" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="Vaccum" Type="VaccumSlave" x="5572.222" y="1138.8888" />
+    <FB Name="FB5" Type="E_Split5" x="155.55554" y="83.33333" />
+    <FB Name="LC" Type="SlaveCylinder" x="1883.3333" y="638.88885" />
+    <FB Name="RC" Type="SlaveCylinder" x="2811.111" y="1716.6666" />
+    <FB Name="VC" Type="CylinderMaterSlave" x="3966.6665" y="849.99994" />
+    <FB Name="Master" Type="WPMaster" x="677.7778" y="1094.4445" />
+    <FB Name="SpringCyl" Type="SpringCyl" x="5027.7773" y="2361.111" />
+    <EventConnections>
+      <Connection Source="REQ" Destination="FB5.E" dx1="44.444443" />
+      <Connection Source="INIT" Destination="Master.INIT" dx1="572.2222" />
+      <Connection Source="FB5.E1" Destination="RC.REQ" dx1="1283.3333" />
+      <Connection Source="Master.LC_Op1" Destination="LC.Extend" dx1="150.0" />
+      <Connection Source="Master.LC_Op2" Destination="LC.Retract" dx1="255.55554" />
+      <Connection Source="Master.RC_Op1" Destination="RC.Extend" dx1="788.88885" />
+      <Connection Source="Master.RC_Op2" Destination="RC.Retract" dx1="761.1111" />
+      <Connection Source="Master.VC_Op1" Destination="VC.Extend" dx1="1272.2222" />
+      <Connection Source="LC.Completed" Destination="Master.LC_CONF" dx1="83.33333" dx2="83.33333" dy="-650.0" />
+      <Connection Source="RC.Completed" Destination="Master.RC_CONF" dx1="177.77777" dx2="177.77777" dy="-1783.3333" />
+      <Connection Source="VC.Completed" Destination="Master.VC_CONF" dx1="100.0" dx2="100.0" dy="-866.6666" />
+      <Connection Source="LC.CNF" Destination="CNF" dx1="2505.5554" />
+      <Connection Source="RC.CNF" Destination="CNF" dx1="3433.3333" />
+      <Connection Source="VC.SL_OP1" Destination="Vaccum.OP1" dx1="661.1111" />
+      <Connection Source="FB5.E2" Destination="Master.REQ" dx1="311.11108" />
+      <Connection Source="FB5.E3" Destination="LC.REQ" dx1="1294.4443" />
+      <Connection Source="FB5.E4" Destination="VC.REQ" dx1="2905.5554" />
+      <Connection Source="FB5.E5" Destination="Vaccum.REQ" dx1="4644.4443" />
+      <Connection Source="Vaccum.Completed" Destination="VC.SL_CNF" dx1="27.777777" dx2="127.77777" dy="-1183.3333" />
+      <Connection Source="Vaccum.CNF" Destination="CNF" dx1="6161.111" />
+      <Connection Source="Master.INITO" Destination="Vaccum.INIT" dx1="2650.0" />
+      <Connection Source="Vaccum.INTO" Destination="INITO" dx1="6177.7773" />
+      <Connection Source="SpringCyl.CNF" Destination="CNF" dx1="5444.4443" />
+      <Connection Source="VC.CNF" Destination="SpringCyl.REQ" dx1="338.8889" />
+      <Connection Source="Master.VC_Op2" Destination="VC.Retract" dx1="1644.4443" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="c1home" Destination="LC.HOME" dx1="1722.2222" />
+      <Connection Source="c1end" Destination="LC.END" dx1="1749.9999" />
+      <Connection Source="c2home" Destination="RC.HOME" dx1="2650.0" />
+      <Connection Source="c2end" Destination="RC.END" dx1="2677.7776" />
+      <Connection Source="RC.GoOut" Destination="c2MoveOut" dx1="3527.7776" />
+      <Connection Source="RC.GoIn" Destination="c2MoveIn" dx1="3505.5554" />
+      <Connection Source="LC.GoOut" Destination="c1MoveOut" dx1="2600.0" />
+      <Connection Source="LC.GoIn" Destination="c1MoveIn" dx1="2577.7776" />
+      <Connection Source="LC.READY" Destination="Master.LC_READY" dx1="200.0" dx2="200.0" dy="2083.3333" />
+      <Connection Source="RC.READY" Destination="Master.RC_READY" dx1="105.55555" dx2="105.55555" dy="866.6666" />
+      <Connection Source="VC.READY" Destination="Master.VC_READY" dx1="177.77777" dx2="177.77777" dy="1811.1111" />
+      <Connection Source="pp0" Destination="Master.pp0" dx1="577.7778" />
+      <Connection Source="pp1" Destination="Master.pp1" dx1="577.7778" />
+      <Connection Source="pp2" Destination="Master.pp2" dx1="577.7778" />
+      <Connection Source="pp3" Destination="Master.pp3" dx1="577.7778" />
+      <Connection Source="vc_up" Destination="VC.HOME" dx1="3833.3333" />
+      <Connection Source="vc_down" Destination="VC.END" dx1="3799.9998" />
+      <Connection Source="Vaccum.VaccumOn" Destination="venturi_on" dx1="6244.4443" />
+      <Connection Source="Vaccum.VaccumOff" Destination="venturi_off" dx1="6244.4443" />
+      <Connection Source="Vaccum.READY" Destination="VC.SL_READY" dx1="388.8889" dx2="33.333332" dy="1277.7777" />
+      <Connection Source="VC.GoOut" Destination="SpringCyl.In1" dx1="100.0" />
+      <Connection Source="VC.GoIn" Destination="SpringCyl.In2" dx1="233.33333" />
+      <Connection Source="SpringCyl.Out1" Destination="vcMoveOut" dx1="5533.333" />
+      <Connection Source="vacuum" Destination="Vaccum.VACCUM" dx1="5416.6665" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

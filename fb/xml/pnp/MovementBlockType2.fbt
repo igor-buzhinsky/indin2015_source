@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="MovementBlockType2" Comment="Protection layer" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="The University of Auckland" Version="1.0" Author="Sandeep Patil" Date="2011-04-20" Remarks="First build." />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="Extend" />
+      </Event>
+      <Event Name="CLK" Comment="Clock signal" >
+        <With Var="Extend" />
+      </Event>
+      <Event Name="FAULT" >
+      </Event>
+      <Event Name="RESUME" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="C_FWD" />
+        <With Var="C_BWD" />
+      </Event>
+      <Event Name="CHG" Comment="Data outputs changed" >
+        <With Var="C_FWD" />
+        <With Var="C_BWD" />
+      </Event>
+      <Event Name="OFAULT" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="Extend" Type="BOOL" Comment="Move forwards" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="C_FWD" Type="BOOL" Comment="Confirmed move forwards" />
+      <VarDeclaration Name="C_BWD" Type="BOOL" Comment="Confirmed move backwards" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="1161.1111" y="166.66666" >
+      </ECState>
+      <ECState Name="INIT" Comment="Initialization" x="3222.2222" y="166.66666" >
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="MOVE_FWD" x="961.1111" y="1077.7777" >
+        <ECAction Algorithm="FWD" Output="CHG" />
+      </ECState>
+      <ECState Name="MOVE_BWD" x="5322.222" y="1250.0" >
+        <ECAction Algorithm="BWD" Output="CHG" />
+      </ECState>
+      <ECState Name="STOP" x="3222.2222" y="1050.0" >
+        <ECAction Algorithm="STOP" Output="CHG" />
+      </ECState>
+      <ECState Name="FAILURE" x="3222.2222" y="1711.1111" >
+        <ECAction Algorithm="STOP" Output="OFAULT" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1744.4443" y="166.66666" />
+      <ECTransition Source="INIT" Destination="MOVE_FWD" Condition="CLK&#38;Extend" x="1122.2222" y="633.3333" />
+      <ECTransition Source="INIT" Destination="MOVE_BWD" Condition="CLK&#38;NOT Extend" x="4288.8887" y="677.7778" />
+      <ECTransition Source="MOVE_FWD" Destination="FAILURE" Condition="FAULT" x="2450.0" y="1711.1111" />
+      <ECTransition Source="STOP" Destination="FAILURE" Condition="FAULT" x="3222.2222" y="1377.7777" />
+      <ECTransition Source="MOVE_BWD" Destination="FAILURE" Condition="FAULT" x="3744.4443" y="2133.3333" />
+      <ECTransition Source="STOP" Destination="MOVE_FWD" Condition="CLK&#38;Extend" x="1966.6666" y="1238.8888" />
+      <ECTransition Source="STOP" Destination="MOVE_BWD" Condition="CLK&#38;NOT Extend" x="3972.2222" y="1405.5555" />
+      <ECTransition Source="FAILURE" Destination="STOP" Condition="RESUME" x="2800.0" y="1361.1111" />
+      <ECTransition Source="MOVE_FWD" Destination="MOVE_BWD" Condition="CLK&#38;NOT Extend" x="2455.5554" y="2405.5554" />
+      <ECTransition Source="MOVE_BWD" Destination="MOVE_FWD" Condition="CLK&#38;Extend" x="3672.2222" y="2650.0" />
+      <ECTransition Source="MOVE_FWD" Destination="MOVE_FWD" Condition="CLK&#38;Extend" x="961.1111" y="1894.4443" />
+      <ECTransition Source="MOVE_BWD" Destination="MOVE_BWD" Condition="CLK&#38;NOT Extend" x="5322.222" y="438.8889" />
+      <ECTransition Source="INIT" Destination="FAILURE" Condition="FAULT" x="2472.2222" y="738.88885" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+    <Other Language="Java" Text="C_FWD.value = false;&#10;C_BWD.value = false;&#10;" />
+  </Algorithm>
+  <Algorithm Name="FWD" Comment="Normally executed algorithm" >
+    <Other Language="Java" Text="C_FWD.value = true;&#10;C_BWD.value = false;&#10;" />
+  </Algorithm>
+  <Algorithm Name="BWD" >
+    <Other Language="Java" Text="C_FWD.value = false;&#10;C_BWD.value = true;&#10;" />
+  </Algorithm>
+  <Algorithm Name="STOP" >
+    <Other Language="Java" Text="C_FWD.value = false;&#10;C_BWD.value = false;&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

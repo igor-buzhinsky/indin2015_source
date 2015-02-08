@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="SFC2" Comment="Basic Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-04" Remarks="Renamed for better indexing." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-11-05" Remarks="Corrected missing ST element in Algorithm REQ." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-30" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="s12" />
+        <With Var="s3" />
+        <With Var="X12" />
+        <With Var="X3" />
+        <With Var="X30" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="s12" />
+        <With Var="X12" />
+        <With Var="X3" />
+        <With Var="X30" />
+        <With Var="s3" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="CGO" />
+        <With Var="X10" />
+        <With Var="X11" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="CGO" />
+        <With Var="X11" />
+        <With Var="X10" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="s12" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="s3" Type="BOOL" />
+      <VarDeclaration Name="X12" Type="BOOL" />
+      <VarDeclaration Name="X3" Type="BOOL" />
+      <VarDeclaration Name="X30" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="CGO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="X10" Type="BOOL" />
+      <VarDeclaration Name="X11" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="X10" Comment="Initial State" x="550.0" y="422.2222" >
+        <ECAction Algorithm="X10" Output="CNF" />
+      </ECState>
+      <ECState Name="INIT" Comment="Initialization" x="922.22217" y="138.88889" >
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="X11" Comment="Normal execution" x="544.4444" y="1133.3333" >
+        <ECAction Algorithm="X11" Output="CNF" />
+      </ECState>
+      <ECTransition Source="X10" Destination="INIT" Condition="INIT" x="916.6666" y="422.2222" />
+      <ECTransition Source="INIT" Destination="X10" Condition="1" x="550.0" y="133.33333" />
+      <ECTransition Source="X10" Destination="X11" Condition="REQ&#38;(((NOT s12 &#38; X12) OR (NOT s3 &#38; X3)) &#38; X30)" x="1916.6666" y="855.55554" />
+      <ECTransition Source="X11" Destination="X10" Condition="REQ&#38;((X12 &#38; s12) OR (X3 &#38; s3))" x="461.11108" y="800.0" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+    <ST Text="CGO:=false;&#10;X10:=false;&#10;X11:=false;&#10;System.out.println(&#34;SFC2: INIT&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="REQ" Comment="Normally executed algorithm" >
+    <ST Text="" />
+  </Algorithm>
+  <Algorithm Name="X11" >
+    <ST Text="CGO:= true;&#10;X10:=false;&#10;X11:=true;&#10;System.out.println(&#34;SFC2: X11&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="IntStep" >
+    <ST Text="CGO:= false;&#10;X11:=false;&#10;System.out.println(&#34;SFC2: IntStep&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="X10" >
+    <ST Text="X10:=true;&#10;CGO:= false;&#10;X11:=false;&#10;System.out.println(&#34;SFC2: X10&#34;);&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

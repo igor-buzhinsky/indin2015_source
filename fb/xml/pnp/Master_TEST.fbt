@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="Master_TEST" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="pp0" />
+        <With Var="pp1" />
+        <With Var="pp2" />
+        <With Var="pp3" />
+        <With Var="pp4" />
+        <With Var="X_READY" />
+        <With Var="Y_READY" />
+        <With Var="X_POS" />
+        <With Var="Y_POS" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="pp0" />
+        <With Var="pp1" />
+        <With Var="pp2" />
+        <With Var="pp3" />
+        <With Var="pp4" />
+        <With Var="X_READY" />
+        <With Var="Y_READY" />
+        <With Var="X_POS" />
+        <With Var="Y_POS" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+      </Event>
+      <Event Name="Order" >
+        <With Var="X_ORDER" />
+        <With Var="Y_ORDER" />
+        <With Var="Vacuum_ORDER" />
+        <With Var="Vacuum_nORDER" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="pp0" Type="BOOL" />
+      <VarDeclaration Name="pp1" Type="BOOL" />
+      <VarDeclaration Name="pp2" Type="BOOL" />
+      <VarDeclaration Name="pp3" Type="BOOL" />
+      <VarDeclaration Name="pp4" Type="BOOL" />
+      <VarDeclaration Name="X_READY" Type="BOOL" />
+      <VarDeclaration Name="Y_READY" Type="BOOL" />
+      <VarDeclaration Name="X_POS" Type="REAL" />
+      <VarDeclaration Name="Y_POS" Type="REAL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="X_ORDER" Type="REAL" />
+      <VarDeclaration Name="Y_ORDER" Type="REAL" />
+      <VarDeclaration Name="Vacuum_ORDER" Type="BOOL" />
+      <VarDeclaration Name="Vacuum_nORDER" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="5437.5" y="937.5" >
+      </ECState>
+      <ECState Name="Pick3_3" x="7275.0" y="2837.5" >
+        <ECAction Algorithm="Go_4_0" />
+        <ECAction Algorithm="Vacuum_On" Output="Order" />
+      </ECState>
+      <ECState Name="Pick3_1" x="7275.0" y="1893.75" >
+        <ECAction Algorithm="Go_4_0" Output="Order" />
+      </ECState>
+      <ECState Name="Pick3_2" x="7275.0" y="2406.25" >
+        <ECAction Algorithm="Go_4_2" Output="Order" />
+      </ECState>
+      <ECState Name="Pick2_3" x="6231.25" y="2812.5" >
+        <ECAction Algorithm="Go_3_0" />
+        <ECAction Algorithm="Vacuum_On" Output="Order" />
+      </ECState>
+      <ECState Name="Pick2_1" x="6231.25" y="1900.0" >
+        <ECAction Algorithm="Go_3_0" Output="Order" />
+      </ECState>
+      <ECState Name="Pick2_2" x="6231.25" y="2387.5" >
+        <ECAction Algorithm="Go_3_3" Output="Order" />
+      </ECState>
+      <ECState Name="Pick1_3" x="3700.0" y="2856.25" >
+        <ECAction Algorithm="Go_2_0" />
+        <ECAction Algorithm="Vacuum_On" Output="Order" />
+      </ECState>
+      <ECState Name="Pick1_1" x="3700.0" y="1875.0" >
+        <ECAction Algorithm="Go_2_0" Output="Order" />
+      </ECState>
+      <ECState Name="Pick1_2" x="3700.0" y="2393.75" >
+        <ECAction Algorithm="Go_2_1" Output="Order" />
+      </ECState>
+      <ECState Name="Deposit_1" x="4825.0" y="2843.75" >
+        <ECAction Algorithm="Go_1_0" Output="Order" />
+      </ECState>
+      <ECState Name="Deposit_2" x="4825.0" y="2393.75" >
+        <ECAction Algorithm="Go_1_1" Output="Order" />
+      </ECState>
+      <ECState Name="Deposit_3" x="4825.0" y="1887.5" >
+        <ECAction Algorithm="Go_1_0" />
+        <ECAction Algorithm="Vacuum_Off" Output="Order" />
+      </ECState>
+      <ECState Name="Go_sleep" x="5493.75" y="493.75" >
+        <ECAction Algorithm="Go_0_0" Output="Order" />
+      </ECState>
+      <ECState Name="Init" x="7031.25" y="975.0" >
+        <ECAction Output="INITO" />
+      </ECState>
+      <ECTransition Source="START" Destination="Pick1_1" Condition="REQ&#38;pp1" x="4375.0" y="1262.5" />
+      <ECTransition Source="Pick1_1" Destination="Pick1_2" Condition="REQ&#38;X_READY&#38;Y_READY" x="3700.0" y="2200.0" />
+      <ECTransition Source="Pick1_2" Destination="Pick1_3" Condition="REQ&#38;X_READY&#38;Y_READY" x="3700.0" y="2600.0" />
+      <ECTransition Source="Pick1_3" Destination="Deposit_1" Condition="REQ&#38;X_READY&#38;Y_READY" x="4187.5" y="3356.25" />
+      <ECTransition Source="Deposit_1" Destination="Deposit_2" Condition="REQ&#38;X_READY&#38;Y_READY" x="4825.0" y="2587.5" />
+      <ECTransition Source="Deposit_2" Destination="Deposit_3" Condition="REQ&#38;X_READY&#38;Y_READY" x="4825.0" y="2131.25" />
+      <ECTransition Source="Deposit_3" Destination="START" Condition="REQ&#38;X_READY&#38;Y_READY" x="5043.75" y="1450.0" />
+      <ECTransition Source="START" Destination="Pick2_1" Condition="REQ&#38;pp2&#38;!pp1" x="5862.5" y="1437.5" />
+      <ECTransition Source="START" Destination="Pick3_1" Condition="REQ&#38;pp3&#38;!pp2&#38;!pp1" x="6581.25" y="1312.5" />
+      <ECTransition Source="Pick2_1" Destination="Pick2_2" Condition="REQ&#38;X_READY&#38;Y_READY" x="6231.25" y="2143.75" />
+      <ECTransition Source="Pick2_2" Destination="Pick2_3" Condition="REQ&#38;X_READY&#38;Y_READY" x="6231.25" y="2562.5" />
+      <ECTransition Source="Pick3_1" Destination="Pick3_2" Condition="REQ&#38;X_READY&#38;Y_READY" x="7275.0" y="2131.25" />
+      <ECTransition Source="Pick3_2" Destination="Pick3_3" Condition="REQ&#38;X_READY&#38;Y_READY" x="7275.0" y="2600.0" />
+      <ECTransition Source="Pick3_3" Destination="Deposit_1" Condition="REQ&#38;X_READY&#38;Y_READY" x="6118.75" y="3506.25" />
+      <ECTransition Source="Pick2_3" Destination="Deposit_1" Condition="REQ&#38;X_READY&#38;Y_READY" x="6062.5" y="3025.0" />
+      <ECTransition Source="Go_sleep" Destination="START" Condition="REQ&#38;X_READY&#38;Y_READY" x="4568.75" y="750.0" />
+      <ECTransition Source="START" Destination="Go_sleep" Condition="REQ&#38;!pp1&#38;!pp2&#38;!pp3" x="6062.5" y="750.0" />
+      <ECTransition Source="START" Destination="Init" Condition="INIT" x="6368.75" y="1087.5" />
+      <ECTransition Source="Init" Destination="START" Condition="1" x="6181.25" y="912.5" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+    <Other Language="Java" Text="System.out.println(&#34;init!!!&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="Vacuum_On" Comment="Normally executed algorithm" >
+    <Other Language="Java" Text="Vacuum_ORDER.value=true;&#10;Vacuum_nORDER.value=false;&#10;" />
+  </Algorithm>
+  <Algorithm Name="Vacuum_Off" Comment="Normally executed algorithm" >
+    <Other Language="Java" Text="Vacuum_ORDER.value=false;&#10;Vacuum_nORDER.value=true;&#10;" />
+  </Algorithm>
+  <Algorithm Name="Go_0_0" Comment="Normally executed algorithm" >
+    <Other Language="Java" Text="X_ORDER.value=0;&#10;Y_ORDER.value=0;&#10;" />
+  </Algorithm>
+  <Algorithm Name="Go_1_0" Comment="Normally executed algorithm" >
+    <Other Language="Java" Text="X_ORDER.value=1;&#10;Y_ORDER.value=0;&#10;" />
+  </Algorithm>
+  <Algorithm Name="Go_2_0" Comment="Normally executed algorithm" >
+    <Other Language="Java" Text="X_ORDER.value=2;&#10;Y_ORDER.value=0;&#10;" />
+  </Algorithm>
+  <Algorithm Name="Go_3_0" Comment="Normally executed algorithm" >
+    <Other Language="Java" Text="X_ORDER.value=3;&#10;Y_ORDER.value=0;&#10;" />
+  </Algorithm>
+  <Algorithm Name="Go_4_0" Comment="Normally executed algorithm" >
+    <Other Language="Java" Text="X_ORDER.value=4;&#10;Y_ORDER.value=0;&#10;" />
+  </Algorithm>
+  <Algorithm Name="Go_1_1" Comment="Normally executed algorithm" >
+    <Other Language="Java" Text="X_ORDER.value=1;&#10;Y_ORDER.value=1;&#10;" />
+  </Algorithm>
+  <Algorithm Name="Go_2_1" Comment="Normally executed algorithm" >
+    <Other Language="Java" Text="X_ORDER.value=2;&#10;Y_ORDER.value=1;&#10;" />
+  </Algorithm>
+  <Algorithm Name="Go_3_3" Comment="Normally executed algorithm" >
+    <Other Language="Java" Text="X_ORDER.value=3;&#10;Y_ORDER.value=3;&#10;" />
+  </Algorithm>
+  <Algorithm Name="Go_4_2" Comment="Normally executed algorithm" >
+    <Other Language="Java" Text="X_ORDER.value=4;&#10;Y_ORDER.value=2;&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

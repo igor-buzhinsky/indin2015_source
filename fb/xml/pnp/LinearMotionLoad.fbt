@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="LinearMotionLoad" Comment="Model of linear motion with load" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="The University of Auckland" Version="1.0" Author="Sandeep Patil" Date="2011-04-20" Remarks="First build." />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="ForwardSpeed" />
+        <With Var="BackwardSpeed" />
+        <With Var="MoveForwards" />
+        <With Var="MoveBackwards" />
+        <With Var="InitialPosition" />
+        <With Var="LoadType" />
+        <With Var="Loaded" />
+        <With Var="MovingDistance" />
+      </Event>
+      <Event Name="CLK" Comment="Clock signal" >
+        <With Var="MoveForwards" />
+        <With Var="MoveBackwards" />
+        <With Var="LoadType" />
+        <With Var="Loaded" />
+        <With Var="MovingDistance" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="RelativePos" />
+        <With Var="AbsolutePos" />
+      </Event>
+      <Event Name="CHG" Comment="Indicates changes on the data output" >
+        <With Var="RelativePos" />
+        <With Var="AbsolutePos" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="ForwardSpeed" Type="UINT" Comment="Forward speed" />
+      <VarDeclaration Name="BackwardSpeed" Type="UINT" Comment="Backward speed" />
+      <VarDeclaration Name="InitialPosition" Type="REAL" Comment="Absolute initial position" />
+      <VarDeclaration Name="MovingDistance" Type="UINT" />
+      <VarDeclaration Name="MoveForwards" Type="BOOL" Comment="Move forwards" />
+      <VarDeclaration Name="MoveBackwards" Type="BOOL" Comment="Move backwards" />
+      <VarDeclaration Name="Loaded" Type="BOOL" />
+      <VarDeclaration Name="LoadType" Type="UINT" Comment="With different types of load, the actual moving speed varies" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="AbsolutePos" Type="UINT" />
+      <VarDeclaration Name="RelativePos" Type="UINT" Comment="Position in percentation" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Name="percentagePos" Type="REAL" />
+    </InternalVars>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="994.4444" y="177.77777" >
+      </ECState>
+      <ECState Name="INIT" Comment="Initialization" x="2461.111" y="177.77777" >
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="MOVE_FWD" x="1133.3333" y="1483.3333" >
+        <ECAction Algorithm="INCR" Output="CHG" />
+      </ECState>
+      <ECState Name="MOVE_BWD" x="4400.0" y="1538.8888" >
+        <ECAction Algorithm="DECR" Output="CHG" />
+      </ECState>
+      <ECState Name="STOP" x="2583.3333" y="1894.4443" >
+        <ECAction Output="CHG" />
+      </ECState>
+      <ECState Name="HOME" Comment="At home position" x="2461.111" y="655.55554" >
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1677.7777" y="177.77777" />
+      <ECTransition Source="INIT" Destination="HOME" Condition="1" x="2461.111" y="388.8889" />
+      <ECTransition Source="HOME" Destination="MOVE_FWD" Condition="CLK&#38;MoveForwards" x="1677.7777" y="1127.7777" />
+      <ECTransition Source="MOVE_FWD" Destination="STOP" Condition="CLK&#38;(not MoveForwards)&#38;(not MoveBackwards)" x="2155.5554" y="1655.5555" />
+      <ECTransition Source="MOVE_BWD" Destination="STOP" Condition="CLK&#38;(not MoveForwards)&#38;(not MoveBackwards)" x="3355.5554" y="1538.8888" />
+      <ECTransition Source="STOP" Destination="MOVE_FWD" Condition="CLK&#38;MoveForwards" x="1938.8888" y="1894.4443" />
+      <ECTransition Source="STOP" Destination="MOVE_BWD" Condition="CLK&#38;MoveBackwards" x="3044.4443" y="2083.3333" />
+      <ECTransition Source="MOVE_BWD" Destination="HOME" Condition="CLK&#38;RelativePos=0" Comment="Back to the home position" x="4400.0" y="655.55554" />
+      <ECTransition Source="MOVE_FWD" Destination="MOVE_BWD" Condition="CLK&#38;MoveBackwards" x="2477.7776" y="2594.4443" />
+      <ECTransition Source="MOVE_BWD" Destination="MOVE_FWD" Condition="CLK&#38;MoveForwards" x="2516.6665" y="1083.3333" />
+      <ECTransition Source="MOVE_FWD" Destination="MOVE_FWD" Condition="CLK&#38;MoveForwards&#38;(RelativePos&#60;100)" x="1133.3333" y="2183.3333" />
+      <ECTransition Source="MOVE_BWD" Destination="MOVE_BWD" Condition="CLK&#38;MoveBackwards&#38;(RelativePos>0)" x="4400.0" y="2055.5554" />
+      <ECTransition Source="HOME" Destination="MOVE_BWD" Condition="CLK&#38;MoveBackwards" x="3066.6665" y="966.6666" />
+      <ECTransition Source="MOVE_FWD" Destination="HOME" Condition="CLK&#38;RelativePos=100" x="1133.3333" y="655.55554" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+    <Other Language="Java" Text="System.out.println(&#34;\n  LinearMotion_C.INIT&#34;);&#10;&#10;float position = (float)InitialPosition.value;&#10;&#10;//AbsolutePos.value=(int)Math.ceil(position);&#10;AbsolutePos.value=(int)Math.floor(position);&#10;" />
+  </Algorithm>
+  <Algorithm Name="INCR" Comment="Increment the position" >
+    <Other Language="Java" Text="// With different types of load, the actual moving speed changes&#10;&#10;float position = 0;&#10;&#10;// ---------- Check whether the motor is loaded ----------&#10;if(Loaded.value &#38;&#38; LoadType.value>0)&#10;{&#10;    position=(float)(AbsolutePos.value+ForwardSpeed.value*(1-LoadType.value/10.0));&#10;    position = (position>MovingDistance.value) ? MovingDistance.value : position;&#10;    percentagePos.value=(int)Math.floor((position/MovingDistance.value)*100);&#10;}&#10;else&#10;{&#10;    position=(float)(AbsolutePos.value+ForwardSpeed.value);&#10;    position = (position>MovingDistance.value) ? MovingDistance.value : position;&#10;    percentagePos.value=(int)Math.floor((position/MovingDistance.value)*100);    &#10;}&#10;&#10;AbsolutePos.value=(int)Math.floor(position);&#10;RelativePos.value=(int)percentagePos.value;&#10;&#10;//System.out.println(&#34;PercentagePos = &#34; + RelativePos.value + &#34; &#34; + AbsolutePos.value + &#34; &#34; + position);&#10;" />
+  </Algorithm>
+  <Algorithm Name="DECR" Comment="Decrement the position" >
+    <Other Language="Java" Text="// ---------- Check whether the motor is loaded ----------&#10;&#10;float position = 0;&#10;&#10;// ---------- Check whether the motor is loaded ----------&#10;if(Loaded.value &#38;&#38; LoadType.value>0)&#10;{&#10;    position=(float)(AbsolutePos.value-BackwardSpeed.value*(1-LoadType.value/10.0));&#10;    position = (position&#60;0) ? 0 : position;&#10;    percentagePos.value=(int)Math.floor((position/MovingDistance.value)*100);&#10;}&#10;else&#10;{&#10;    position=(float)(AbsolutePos.value-BackwardSpeed.value);&#10;    position = (position&#60;0) ? 0 : position;&#10;    percentagePos.value=(int)Math.floor((position/MovingDistance.value)*100);   &#10;}&#10;&#10;AbsolutePos.value=(int)Math.floor(position);&#10;RelativePos.value=(int)percentagePos.value;&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

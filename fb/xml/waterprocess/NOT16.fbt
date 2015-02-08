@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType Name="NOT16" Comment="Basic Function Block Type" Namespace="Main">
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Администратор" Date="9/18/2014" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="IN1" />
+        <With Var="IN2" />
+        <With Var="IN3" />
+        <With Var="IN4" />
+        <With Var="IN5" />
+        <With Var="IN6" />
+        <With Var="IN7" />
+        <With Var="IN8" />
+        <With Var="IN9" />
+        <With Var="IN10" />
+        <With Var="IN11" />
+        <With Var="IN12" />
+        <With Var="IN13" />
+        <With Var="IN14" />
+        <With Var="IN15" />
+        <With Var="IN16" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="OUT1" />
+        <With Var="OUT2" />
+        <With Var="OUT3" />
+        <With Var="OUT4" />
+        <With Var="OUT5" />
+        <With Var="OUT6" />
+        <With Var="OUT7" />
+        <With Var="OUT8" />
+        <With Var="OUT9" />
+        <With Var="OUT10" />
+        <With Var="OUT11" />
+        <With Var="OUT12" />
+        <With Var="OUT13" />
+        <With Var="OUT14" />
+        <With Var="OUT15" />
+        <With Var="OUT16" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="IN1" Type="BOOL" Comment="OUT1 := NOT IN1;" />
+      <VarDeclaration Name="IN2" Type="BOOL" />
+      <VarDeclaration Name="IN3" Type="BOOL" />
+      <VarDeclaration Name="IN4" Type="BOOL" />
+      <VarDeclaration Name="IN5" Type="BOOL" />
+      <VarDeclaration Name="IN6" Type="BOOL" />
+      <VarDeclaration Name="IN7" Type="BOOL" />
+      <VarDeclaration Name="IN8" Type="BOOL" />
+      <VarDeclaration Name="IN9" Type="BOOL" />
+      <VarDeclaration Name="IN10" Type="BOOL" />
+      <VarDeclaration Name="IN11" Type="BOOL" />
+      <VarDeclaration Name="IN12" Type="BOOL" />
+      <VarDeclaration Name="IN13" Type="BOOL" />
+      <VarDeclaration Name="IN14" Type="BOOL" />
+      <VarDeclaration Name="IN15" Type="BOOL" />
+      <VarDeclaration Name="IN16" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT1" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="OUT2" Type="BOOL" />
+      <VarDeclaration Name="OUT3" Type="BOOL" />
+      <VarDeclaration Name="OUT4" Type="BOOL" />
+      <VarDeclaration Name="OUT5" Type="BOOL" />
+      <VarDeclaration Name="OUT6" Type="BOOL" />
+      <VarDeclaration Name="OUT7" Type="BOOL" />
+      <VarDeclaration Name="OUT8" Type="BOOL" />
+      <VarDeclaration Name="OUT9" Type="BOOL" />
+      <VarDeclaration Name="OUT10" Type="BOOL" />
+      <VarDeclaration Name="OUT11" Type="BOOL" />
+      <VarDeclaration Name="OUT12" Type="BOOL" />
+      <VarDeclaration Name="OUT13" Type="BOOL" />
+      <VarDeclaration Name="OUT14" Type="BOOL" />
+      <VarDeclaration Name="OUT15" Type="BOOL" />
+      <VarDeclaration Name="OUT16" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="552.9412" y="429.4117" />
+      <ECState Name="REQ" Comment="Normal execution" x="217.647" y="752.9412">
+        <ECAction Algorithm="REQ" Output="CNF" />
+      </ECState>
+      <ECTransition Source="START" Destination="REQ" Condition="REQ" x="447.8488" y="648.3352" />
+      <ECTransition Source="REQ" Destination="START" Condition="1" x="372.8767" y="512.7991" />
+    </ECC>
+    <Algorithm Name="REQ">
+      <ST Text="OUT1 := NOT IN1;&#xD;&#xA;OUT2 := NOT IN2;&#xD;&#xA;OUT3 := NOT IN3;&#xD;&#xA;OUT4 := NOT IN4;&#xD;&#xA;OUT5 := NOT IN5;&#xD;&#xA;OUT6 := NOT IN6;&#xD;&#xA;OUT7 := NOT IN7;&#xD;&#xA;OUT8 := NOT IN8;&#xD;&#xA;OUT9 := NOT IN9;&#xD;&#xA;OUT10 := NOT IN10;&#xD;&#xA;OUT11 := NOT IN11;&#xD;&#xA;OUT12 := NOT IN12;&#xD;&#xA;OUT13 := NOT IN13;&#xD;&#xA;OUT14 := NOT IN14;&#xD;&#xA;OUT15 := NOT IN15;&#xD;&#xA;OUT16 := NOT IN16;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

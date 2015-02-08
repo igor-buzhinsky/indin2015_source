@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="SFC4_VIEW" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <CompilerInfo header="package fb.rt.pnp;import fb.rt.vhmi.*;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="s1" />
+        <With Var="x1" />
+        <With Var="s2" />
+        <With Var="x2" />
+        <With Var="s3" />
+        <With Var="x3" />
+        <With Var="vcd30" />
+        <With Var="vacuum" />
+        <With Var="vcu31" />
+        <With Var="vcu37" />
+        <With Var="x11" />
+        <With Var="x21" />
+        <With Var="s0" />
+        <With Var="pp0" />
+        <With Var="X31_NAME" />
+        <With Var="X32_NAME" />
+        <With Var="X33_NAME" />
+        <With Var="X34_NAME" />
+        <With Var="X35_NAME" />
+        <With Var="X36_NAME" />
+        <With Var="X37_NAME" />
+        <With Var="X38_NAME" />
+        <With Var="VENTURI_NAME" />
+        <With Var="L1CGI_NAME" />
+        <With Var="L2CGI_NAME" />
+        <With Var="X30_NAME" />
+        <With Var="VCGD30_NAME" />
+        <With Var="VCGD31_NAME" />
+        <With Var="VCGD35_NAME" />
+        <With Var="VCGD37_NAME" />
+        <With Var="vcd35" />
+      </Event>
+      <Event Name="NAME_CHG" >
+        <With Var="s1" />
+        <With Var="x1" />
+        <With Var="s2" />
+        <With Var="x2" />
+        <With Var="s3" />
+        <With Var="x3" />
+        <With Var="vcd30" />
+        <With Var="vacuum" />
+        <With Var="vcu31" />
+        <With Var="vcu37" />
+        <With Var="x11" />
+        <With Var="x21" />
+        <With Var="s0" />
+        <With Var="pp0" />
+        <With Var="X31_NAME" />
+        <With Var="X32_NAME" />
+        <With Var="X33_NAME" />
+        <With Var="X34_NAME" />
+        <With Var="X35_NAME" />
+        <With Var="X36_NAME" />
+        <With Var="X37_NAME" />
+        <With Var="X38_NAME" />
+        <With Var="VENTURI_NAME" />
+        <With Var="L1CGI_NAME" />
+        <With Var="L2CGI_NAME" />
+        <With Var="X30_NAME" />
+        <With Var="VCGD30_NAME" />
+        <With Var="VCGD31_NAME" />
+        <With Var="VCGD35_NAME" />
+        <With Var="VCGD37_NAME" />
+        <With Var="vcd35" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="s1" />
+        <With Var="x1" />
+        <With Var="s2" />
+        <With Var="x2" />
+        <With Var="s3" />
+        <With Var="x3" />
+        <With Var="vcd30" />
+        <With Var="vacuum" />
+        <With Var="vcu31" />
+        <With Var="vcu37" />
+        <With Var="x11" />
+        <With Var="x21" />
+        <With Var="s0" />
+        <With Var="pp0" />
+        <With Var="vcd35" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="X30_NAME" Type="WSTRING" />
+      <VarDeclaration Name="X31_NAME" Type="WSTRING" />
+      <VarDeclaration Name="X32_NAME" Type="WSTRING" />
+      <VarDeclaration Name="X33_NAME" Type="WSTRING" />
+      <VarDeclaration Name="X34_NAME" Type="WSTRING" />
+      <VarDeclaration Name="X35_NAME" Type="WSTRING" />
+      <VarDeclaration Name="X36_NAME" Type="WSTRING" />
+      <VarDeclaration Name="X37_NAME" Type="WSTRING" />
+      <VarDeclaration Name="X38_NAME" Type="WSTRING" />
+      <VarDeclaration Name="VENTURI_NAME" Type="WSTRING" />
+      <VarDeclaration Name="L1CGI_NAME" Type="WSTRING" />
+      <VarDeclaration Name="L2CGI_NAME" Type="WSTRING" />
+      <VarDeclaration Name="VCGD30_NAME" Type="WSTRING" />
+      <VarDeclaration Name="VCGD31_NAME" Type="WSTRING" />
+      <VarDeclaration Name="VCGD35_NAME" Type="WSTRING" />
+      <VarDeclaration Name="VCGD37_NAME" Type="WSTRING" />
+      <VarDeclaration Name="s0" Type="BOOL" />
+      <VarDeclaration Name="s1" Type="BOOL" />
+      <VarDeclaration Name="s2" Type="BOOL" />
+      <VarDeclaration Name="s3" Type="BOOL" />
+      <VarDeclaration Name="x1" Type="BOOL" />
+      <VarDeclaration Name="x2" Type="BOOL" />
+      <VarDeclaration Name="x3" Type="BOOL" />
+      <VarDeclaration Name="vcd30" Type="BOOL" />
+      <VarDeclaration Name="vcd35" Type="BOOL" />
+      <VarDeclaration Name="vacuum" Type="BOOL" />
+      <VarDeclaration Name="vcu31" Type="BOOL" />
+      <VarDeclaration Name="vcu37" Type="BOOL" />
+      <VarDeclaration Name="x11" Type="BOOL" />
+      <VarDeclaration Name="x21" Type="BOOL" />
+      <VarDeclaration Name="pp0" Type="BOOL" />
+    </InputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="SFC4" Type="Render" x="350.0" y="16.666666" >
+      <Parameter Name="name" Value="&#34;&#34;/fb/rt/pnp/pics/SFC4.png&#34;&#34;" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="Layer" Value="1" />
+      <Parameter Name="PosX" Value="665" />
+      <Parameter Name="PosY" Value="50" />
+    </FB>
+    <FB Name="X30" Type="Render" x="1011.1111" y="16.666666" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="PosX" Value="914" />
+      <Parameter Name="PosY" Value="85" />
+    </FB>
+    <FB Name="VCGD" Type="Render" x="1749.9999" y="16.666666" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="PosX" Value="1018" />
+      <Parameter Name="PosY" Value="85" />
+    </FB>
+    <FB Name="X31" Type="Render" x="2500.0" y="16.666666" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="PosX" Value="762" />
+      <Parameter Name="PosY" Value="163" />
+    </FB>
+    <FB Name="VCGD1" Type="Render" x="3205.5554" y="16.666666" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="PosX" Value="866" />
+      <Parameter Name="PosY" Value="163" />
+    </FB>
+    <FB Name="X36" Type="Render" x="3922.2222" y="16.666666" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="PosX" Value="1074" />
+      <Parameter Name="PosY" Value="171" />
+    </FB>
+    <FB Name="VENTURI" Type="Render" x="4650.0" y="16.666666" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="PosX" Value="1170" />
+      <Parameter Name="PosY" Value="171" />
+    </FB>
+    <FB Name="X32" Type="Render" x="338.8889" y="1505.5555" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="PosX" Value="762" />
+      <Parameter Name="PosY" Value="243" />
+    </FB>
+    <FB Name="X33" Type="Render" x="1027.7777" y="1505.5555" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="PosX" Value="690" />
+      <Parameter Name="PosY" Value="331" />
+    </FB>
+    <FB Name="L1CGI" Type="Render" x="1716.6666" y="1505.5555" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="PosX" Value="770" />
+      <Parameter Name="PosY" Value="331" />
+    </FB>
+    <FB Name="X34" Type="Render" x="2500.0" y="1505.5555" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="PosX" Value="914" />
+      <Parameter Name="PosY" Value="331" />
+    </FB>
+    <FB Name="L2CGI" Type="Render" x="3200.0" y="1505.5555" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="PosX" Value="994" />
+      <Parameter Name="PosY" Value="331" />
+    </FB>
+    <FB Name="X35" Type="Render" x="3916.6665" y="1505.5555" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="PosX" Value="794" />
+      <Parameter Name="PosY" Value="427" />
+    </FB>
+    <FB Name="VCGD2" Type="Render" x="4627.778" y="1505.5555" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="PosX" Value="890" />
+      <Parameter Name="PosY" Value="427" />
+    </FB>
+    <FB Name="X37" Type="Render" x="327.77777" y="2972.2222" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="PosX" Value="914" />
+      <Parameter Name="PosY" Value="531" />
+    </FB>
+    <FB Name="VCGD3" Type="Render" x="1005.55554" y="2972.2222" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="PosX" Value="1010" />
+      <Parameter Name="PosY" Value="531" />
+    </FB>
+    <FB Name="X38" Type="Render" x="1733.3333" y="2972.2222" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="PosX" Value="914" />
+      <Parameter Name="PosY" Value="603" />
+    </FB>
+    <FB Name="s1b" Type="Render" x="2472.2222" y="2972.2222" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/dash.png&#34;" />
+      <Parameter Name="PosX" Value="1037" />
+      <Parameter Name="PosY" Value="68" />
+    </FB>
+    <FB Name="x1b" Type="Render" x="3205.5554" y="2972.2222" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/dash.png&#34;" />
+      <Parameter Name="PosX" Value="1057" />
+      <Parameter Name="PosY" Value="68" />
+    </FB>
+    <FB Name="s2b" Type="Render" x="3911.1108" y="2972.2222" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/dash.png&#34;" />
+      <Parameter Name="PosX" Value="1084" />
+      <Parameter Name="PosY" Value="68" />
+    </FB>
+    <FB Name="x2b" Type="Render" x="4633.333" y="2972.2222" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/dash.png&#34;" />
+      <Parameter Name="PosX" Value="1104" />
+      <Parameter Name="PosY" Value="68" />
+    </FB>
+    <FB Name="s3b" Type="Render" x="327.77777" y="4411.111" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/dash.png&#34;" />
+      <Parameter Name="PosX" Value="1134" />
+      <Parameter Name="PosY" Value="68" />
+    </FB>
+    <FB Name="x3b" Type="Render" x="1005.55554" y="4411.111" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/dash.png&#34;" />
+      <Parameter Name="PosX" Value="1154" />
+      <Parameter Name="PosY" Value="68" />
+    </FB>
+    <FB Name="vcdb" Type="Render" x="1733.3333" y="4411.111" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/dash.png&#34;" />
+      <Parameter Name="PosX" Value="957" />
+      <Parameter Name="PosY" Value="124" />
+    </FB>
+    <FB Name="vacuumb" Type="Render" x="2472.2222" y="4411.111" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/dash.png&#34;" />
+      <Parameter Name="PosX" Value="825" />
+      <Parameter Name="PosY" Value="225" />
+    </FB>
+    <FB Name="vcub" Type="Render" x="3205.5554" y="4411.111" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/dash.png&#34;" />
+      <Parameter Name="PosX" Value="813" />
+      <Parameter Name="PosY" Value="282" />
+    </FB>
+    <FB Name="x11b" Type="Render" x="3911.1108" y="4411.111" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/dash.png&#34;" />
+      <Parameter Name="PosX" Value="805" />
+      <Parameter Name="PosY" Value="324" />
+    </FB>
+    <FB Name="x21b" Type="Render" x="4638.8887" y="4411.111" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/dash.png&#34;" />
+      <Parameter Name="PosX" Value="1028" />
+      <Parameter Name="PosY" Value="316" />
+    </FB>
+    <FB Name="s0b" Type="Render" x="322.2222" y="5855.555" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/dash.png&#34;" />
+      <Parameter Name="PosX" Value="835" />
+      <Parameter Name="PosY" Value="416" />
+    </FB>
+    <FB Name="pp0b" Type="Render" x="1005.55554" y="5855.555" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/dash.png&#34;" />
+      <Parameter Name="PosX" Value="917" />
+      <Parameter Name="PosY" Value="421" />
+    </FB>
+    <FB Name="vcdb2" Type="Render" x="1733.3333" y="5855.555" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/dash.png&#34;" />
+      <Parameter Name="PosX" Value="965" />
+      <Parameter Name="PosY" Value="521" />
+    </FB>
+    <FB Name="Notvacuum" Type="NotGate" x="2533.3333" y="6250.0" />
+    <FB Name="vacuumb2" Type="Render" x="3222.2222" y="5855.555" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosX" Value="975" />
+      <Parameter Name="PosY" Value="620" />
+    </FB>
+    <FB Name="vcub2" Type="Render" x="3916.6665" y="5855.555" >
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/dash.png&#34;" />
+      <Parameter Name="PosX" Value="965" />
+      <Parameter Name="PosY" Value="650" />
+    </FB>
+    <EventConnections>
+      <Connection Source="SFC4.INITO" Destination="X30.INIT" dx1="27.777777" />
+      <Connection Source="X30.INITO" Destination="VCGD.INIT" dx1="277.77777" />
+      <Connection Source="VCGD.INITO" Destination="X31.INIT" dx1="27.777777" />
+      <Connection Source="X31.INITO" Destination="VCGD1.INIT" dx1="238.88889" />
+      <Connection Source="VCGD1.INITO" Destination="X36.INIT" dx1="249.99998" />
+      <Connection Source="X36.INITO" Destination="VENTURI.INIT" dx1="227.77777" />
+      <Connection Source="VENTURI.INITO" Destination="X32.INIT" dx1="94.44444" dx2="5.5555553" dy="1244.4443" />
+      <Connection Source="X32.INITO" Destination="X33.INIT" dx1="55.555553" />
+      <Connection Source="X33.INITO" Destination="L1CGI.INIT" dx1="211.1111" />
+      <Connection Source="L1CGI.INITO" Destination="X34.INIT" dx1="88.888885" />
+      <Connection Source="X34.INITO" Destination="L2CGI.INIT" dx1="66.666664" />
+      <Connection Source="L2CGI.INITO" Destination="X35.INIT" dx1="72.22222" />
+      <Connection Source="X35.INITO" Destination="VCGD2.INIT" dx1="72.22222" />
+      <Connection Source="VCGD2.INITO" Destination="X37.INIT" dx1="27.777777" dx2="16.666666" dy="1277.7777" />
+      <Connection Source="X37.INITO" Destination="VCGD3.INIT" dx1="138.88889" />
+      <Connection Source="VCGD3.INITO" Destination="X38.INIT" dx1="122.22221" />
+      <Connection Source="X38.INITO" Destination="s1b.INIT" dx1="127.77777" />
+      <Connection Source="s1b.INITO" Destination="x1b.INIT" dx1="122.22221" />
+      <Connection Source="x1b.INITO" Destination="s2b.INIT" dx1="111.11111" />
+      <Connection Source="s2b.INITO" Destination="x2b.INIT" dx1="122.22221" />
+      <Connection Source="x2b.INITO" Destination="s3b.INIT" dx1="33.333332" dx2="33.333332" dy="1288.8888" />
+      <Connection Source="s3b.INITO" Destination="x3b.INIT" dx1="138.88889" />
+      <Connection Source="x3b.INITO" Destination="vcdb.INIT" dx1="172.22221" />
+      <Connection Source="vcdb.INITO" Destination="vacuumb.INIT" dx1="177.77777" />
+      <Connection Source="vacuumb.INITO" Destination="vcub.INIT" dx1="172.22221" />
+      <Connection Source="vcub.INITO" Destination="x11b.INIT" dx1="155.55554" />
+      <Connection Source="x11b.INITO" Destination="x21b.INIT" dx1="172.22221" />
+      <Connection Source="x21b.INITO" Destination="s0b.INIT" dx1="61.111107" dx2="61.111107" dy="1255.5555" />
+      <Connection Source="s0b.INITO" Destination="pp0b.INIT" dx1="183.33333" />
+      <Connection Source="pp0b.INITO" Destination="vcdb2.INIT" dx1="216.66666" />
+      <Connection Source="vcdb2.INITO" Destination="Notvacuum.INIT" dx1="183.33333" />
+      <Connection Source="Notvacuum.INITO" Destination="vacuumb2.INIT" dx1="161.1111" />
+      <Connection Source="vacuumb2.INITO" Destination="vcub2.INIT" dx1="194.44444" />
+      <Connection Source="X30.CNF" Destination="VCGD.ChangePic" dx1="266.66666" />
+      <Connection Source="VCGD.CNF" Destination="X31.ChangePic" dx1="277.77777" />
+      <Connection Source="X31.CNF" Destination="VCGD1.ChangePic" dx1="238.88889" />
+      <Connection Source="VCGD1.CNF" Destination="X36.ChangePic" dx1="249.99998" />
+      <Connection Source="X36.CNF" Destination="VENTURI.ChangePic" dx1="255.55554" />
+      <Connection Source="VENTURI.CNF" Destination="X32.ChangePic" dx1="27.777777" dx2="105.55555" dy="1183.3333" />
+      <Connection Source="X32.CNF" Destination="X33.ChangePic" dx1="155.55554" />
+      <Connection Source="X33.CNF" Destination="L1CGI.ChangePic" dx1="205.55554" />
+      <Connection Source="L1CGI.CNF" Destination="X34.ChangePic" dx1="249.99998" />
+      <Connection Source="X34.CNF" Destination="L2CGI.ChangePic" dx1="188.88889" />
+      <Connection Source="L2CGI.CNF" Destination="X35.ChangePic" dx1="200.0" />
+      <Connection Source="X35.CNF" Destination="VCGD2.ChangePic" dx1="194.44444" />
+      <Connection Source="VCGD2.CNF" Destination="X37.ChangePic" dx1="72.22222" dx2="44.444443" dy="1111.1111" />
+      <Connection Source="X37.CNF" Destination="VCGD3.ChangePic" dx1="133.33333" />
+      <Connection Source="VCGD3.CNF" Destination="X38.ChangePic" dx1="161.1111" />
+      <Connection Source="s1b.CNF" Destination="x1b.ChangeValidity" dx1="166.66666" />
+      <Connection Source="x1b.CNF" Destination="s2b.ChangeValidity" dx1="150.0" />
+      <Connection Source="s2b.CNF" Destination="x2b.ChangeValidity" dx1="161.1111" />
+      <Connection Source="x2b.CNF" Destination="s3b.ChangeValidity" dx1="72.22222" dx2="72.22222" dy="1105.5555" />
+      <Connection Source="s3b.CNF" Destination="x3b.ChangeValidity" dx1="94.44444" />
+      <Connection Source="x3b.CNF" Destination="vcdb.ChangeValidity" dx1="116.666664" />
+      <Connection Source="vcdb.CNF" Destination="vacuumb.ChangeValidity" dx1="116.666664" />
+      <Connection Source="vacuumb.CNF" Destination="vcub.ChangeValidity" dx1="116.666664" />
+      <Connection Source="vcub.CNF" Destination="x11b.ChangeValidity" dx1="105.55555" />
+      <Connection Source="x11b.CNF" Destination="x21b.ChangeValidity" dx1="116.666664" />
+      <Connection Source="x21b.CNF" Destination="s0b.ChangeValidity" dx1="105.55555" dx2="100.0" dy="1105.5555" />
+      <Connection Source="s0b.CNF" Destination="pp0b.ChangeValidity" dx1="55.555553" />
+      <Connection Source="pp0b.CNF" Destination="vcdb2.ChangeValidity" dx1="66.666664" />
+      <Connection Source="vcdb2.CNF" Destination="Notvacuum.REQ" dx1="83.33333" />
+      <Connection Source="Notvacuum.CNF" Destination="vacuumb2.ChangeValidity" dx1="305.55554" />
+      <Connection Source="vacuumb2.CNF" Destination="vcub2.ChangeValidity" dx1="61.111107" />
+      <Connection Source="INIT" Destination="SFC4.INIT" dx1="244.44443" />
+      <Connection Source="NAME_CHG" Destination="X30.ChangePic" dx1="800.0" />
+      <Connection Source="REQ" Destination="s1b.ChangeValidity" dx1="2361.111" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="X30_NAME" Destination="X30.name" dx1="805.55554" />
+      <Connection Source="VCGD30_NAME" Destination="VCGD.name" dx1="1483.3333" />
+      <Connection Source="X31_NAME" Destination="X31.name" dx1="2294.4443" />
+      <Connection Source="VCGD31_NAME" Destination="VCGD1.name" dx1="2938.8887" />
+      <Connection Source="X36_NAME" Destination="X36.name" dx1="3716.6665" />
+      <Connection Source="VENTURI_NAME" Destination="VENTURI.name" dx1="4372.222" />
+      <Connection Source="X32_NAME" Destination="X32.name" dx1="133.33333" />
+      <Connection Source="L1CGI_NAME" Destination="L1CGI.name" dx1="1483.3333" />
+      <Connection Source="X34_NAME" Destination="X34.name" dx1="2294.4443" />
+      <Connection Source="L2CGI_NAME" Destination="L2CGI.name" dx1="2966.6665" />
+      <Connection Source="X35_NAME" Destination="X35.name" dx1="3711.111" />
+      <Connection Source="VCGD35_NAME" Destination="VCGD2.name" dx1="4361.111" />
+      <Connection Source="X37_NAME" Destination="X37.name" dx1="122.22221" />
+      <Connection Source="VCGD37_NAME" Destination="VCGD3.name" dx1="738.88885" />
+      <Connection Source="X38_NAME" Destination="X38.name" dx1="1527.7777" />
+      <Connection Source="s1" Destination="s1b.Display" dx1="2394.4443" />
+      <Connection Source="x1" Destination="x1b.Display" dx1="3127.7776" />
+      <Connection Source="s2" Destination="s2b.Display" dx1="3833.3333" />
+      <Connection Source="x2" Destination="x2b.Display" dx1="4555.555" />
+      <Connection Source="s3" Destination="s3b.Display" dx1="249.99998" />
+      <Connection Source="x3" Destination="x3b.Display" dx1="927.7778" />
+      <Connection Source="vcd30" Destination="vcdb.Display" dx1="1605.5555" />
+      <Connection Source="vacuum" Destination="vacuumb.Display" dx1="2316.6665" />
+      <Connection Source="vcu31" Destination="vcub.Display" dx1="3077.7776" />
+      <Connection Source="x11" Destination="x11b.Display" dx1="3816.6665" />
+      <Connection Source="x21" Destination="x21b.Display" dx1="4544.4443" />
+      <Connection Source="s0" Destination="s0b.Display" dx1="244.44443" />
+      <Connection Source="pp0" Destination="pp0b.Display" dx1="905.55554" />
+      <Connection Source="vacuum" Destination="Notvacuum.QI" dx1="2377.7776" />
+      <Connection Source="X33_NAME" Destination="X33.name" dx1="822.22217" />
+      <Connection Source="Notvacuum.QO" Destination="vacuumb2.Display" dx1="55.555553" />
+      <Connection Source="vcd35" Destination="vcdb2.Display" dx1="1605.5555" />
+      <Connection Source="vcu37" Destination="vcub2.Display" dx1="3788.8887" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="SFC2_SFC3_VIEW" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <CompilerInfo header="package fb.rt.pnp;import fb.rt.vhmi.*;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="X10_NAME" />
+        <With Var="X11_NAME" />
+        <With Var="L1CGO_NAME" />
+        <With Var="X20_NAME" />
+        <With Var="X21_NAME" />
+        <With Var="L2CGO_NAME" />
+        <With Var="x30" />
+        <With Var="x1" />
+        <With Var="S1" />
+        <With Var="x3" />
+        <With Var="S3" />
+        <With Var="x2" />
+        <With Var="S2" />
+      </Event>
+      <Event Name="NAME_CHG" Comment="Normal Execution Request" >
+        <With Var="X10_NAME" />
+        <With Var="X11_NAME" />
+        <With Var="L1CGO_NAME" />
+        <With Var="X20_NAME" />
+        <With Var="X21_NAME" />
+        <With Var="L2CGO_NAME" />
+        <With Var="x30" />
+        <With Var="x1" />
+        <With Var="S1" />
+        <With Var="x3" />
+        <With Var="S3" />
+        <With Var="x2" />
+        <With Var="S2" />
+      </Event>
+      <Event Name="REQ" >
+        <With Var="x30" />
+        <With Var="x1" />
+        <With Var="S1" />
+        <With Var="x3" />
+        <With Var="S3" />
+        <With Var="x2" />
+        <With Var="S2" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="X10_NAME" Type="WSTRING" Comment="Input event qualifier" />
+      <VarDeclaration Name="X11_NAME" Type="WSTRING" />
+      <VarDeclaration Name="L1CGO_NAME" Type="WSTRING" />
+      <VarDeclaration Name="X20_NAME" Type="WSTRING" />
+      <VarDeclaration Name="X21_NAME" Type="WSTRING" />
+      <VarDeclaration Name="L2CGO_NAME" Type="WSTRING" />
+      <VarDeclaration Name="x30" Type="BOOL" />
+      <VarDeclaration Name="x1" Type="BOOL" />
+      <VarDeclaration Name="x2" Type="BOOL" />
+      <VarDeclaration Name="x3" Type="BOOL" />
+      <VarDeclaration Name="S1" Type="BOOL" />
+      <VarDeclaration Name="S2" Type="BOOL" />
+      <VarDeclaration Name="S3" Type="BOOL" />
+    </InputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="X10" Type="Render" x="1911.1111" y="11.111111" >
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosX" Value="105" />
+      <Parameter Name="PosY" Value="305" />
+    </FB>
+    <FB Name="X11" Type="Render" x="2733.3333" y="11.111111" >
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosX" Value="105" />
+      <Parameter Name="PosY" Value="374" />
+    </FB>
+    <FB Name="L1CGO" Type="Render" x="3338.8887" y="11.111111" >
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosX" Value="179" />
+      <Parameter Name="PosY" Value="375" />
+    </FB>
+    <FB Name="SFC3" Type="Render" x="4038.8887" y="11.111111" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/SFC3.png&#34;" />
+      <Parameter Name="PosX" Value="25" />
+      <Parameter Name="PosY" Value="453" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="Layer" Value="1" />
+    </FB>
+    <FB Name="X20" Type="Render" x="4766.6665" y="11.111111" >
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosX" Value="105" />
+      <Parameter Name="PosY" Value="508" />
+    </FB>
+    <FB Name="X21" Type="Render" x="5405.555" y="11.111111" >
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosX" Value="105" />
+      <Parameter Name="PosY" Value="577" />
+    </FB>
+    <FB Name="L2CGO" Type="Render" x="6188.8887" y="11.111111" >
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosX" Value="179" />
+      <Parameter Name="PosY" Value="578" />
+    </FB>
+    <FB Name="SFC2" Type="Render" x="1155.5555" y="11.111111" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/SFC2.png&#34;" />
+      <Parameter Name="PosX" Value="25" />
+      <Parameter Name="PosY" Value="250" />
+      <Parameter Name="Display" Value="1" />
+      <Parameter Name="Layer" Value="1" />
+    </FB>
+    <FB Name="X30" Type="Render" x="861.1111" y="1788.8888" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosX" Value="163" />
+      <Parameter Name="PosY" Value="366" />
+    </FB>
+    <FB Name="X1" Type="Render" x="1500.0" y="1788.8888" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="366" />
+      <Parameter Name="PosX" Value="193" />
+    </FB>
+    <FB Name="Ns1" Type="Render" x="2483.3333" y="1711.1111" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosX" Value="213" />
+      <Parameter Name="PosY" Value="366" />
+    </FB>
+    <FB Name="X3" Type="Render" x="3155.5554" y="1705.5555" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosX" Value="240" />
+      <Parameter Name="PosY" Value="366" />
+    </FB>
+    <FB Name="Ns3" Type="Render" x="4155.555" y="1733.3333" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosX" Value="259" />
+      <Parameter Name="PosY" Value="366" />
+    </FB>
+    <FB Name="X1_1" Type="Render" x="4800.0" y="1733.3333" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="445" />
+      <Parameter Name="PosX" Value="157" />
+    </FB>
+    <FB Name="s1" Type="Render" x="5483.333" y="1733.3333" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="445" />
+      <Parameter Name="PosX" Value="177" />
+    </FB>
+    <FB Name="X3_1" Type="Render" x="6100.0" y="1733.3333" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="445" />
+      <Parameter Name="PosX" Value="203" />
+    </FB>
+    <FB Name="s3" Type="Render" x="6783.333" y="1733.3333" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="445" />
+      <Parameter Name="PosX" Value="223" />
+    </FB>
+    <FB Name="NotS1" Type="NotGate" x="2050.0" y="2988.8887" />
+    <FB Name="NotS3" Type="NotGate" x="3699.9998" y="2994.4443" />
+    <FB Name="X30_1" Type="Render" x="616.6666" y="4061.1108" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosX" Value="162" />
+      <Parameter Name="PosY" Value="570" />
+    </FB>
+    <FB Name="X2" Type="Render" x="1283.3333" y="4061.1108" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="570" />
+      <Parameter Name="PosX" Value="194" />
+    </FB>
+    <FB Name="Ns2" Type="Render" x="2300.0" y="4061.1108" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="570" />
+      <Parameter Name="PosX" Value="213" />
+    </FB>
+    <FB Name="X3_2" Type="Render" x="3200.0" y="4061.1108" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="570" />
+      <Parameter Name="PosX" Value="239" />
+    </FB>
+    <FB Name="Ns3_1" Type="Render" x="4083.3333" y="4061.1108" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="570" />
+      <Parameter Name="PosX" Value="259" />
+    </FB>
+    <FB Name="X2_1" Type="Render" x="4811.111" y="4061.1108" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="648" />
+      <Parameter Name="PosX" Value="157" />
+    </FB>
+    <FB Name="s2_1" Type="Render" x="5555.555" y="4061.1108" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="648" />
+      <Parameter Name="PosX" Value="177" />
+    </FB>
+    <FB Name="X3_3" Type="Render" x="6344.4443" y="4061.1108" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="648" />
+      <Parameter Name="PosX" Value="203" />
+    </FB>
+    <FB Name="s3_1" Type="Render" x="7127.7773" y="4061.1108" >
+      <Parameter Name="name" Value="&#34;/fb/rt/pnp/pics/DASH.png&#34;" />
+      <Parameter Name="Layer" Value="2" />
+      <Parameter Name="PosY" Value="648" />
+      <Parameter Name="PosX" Value="223" />
+    </FB>
+    <FB Name="NS2Gate" Type="NotGate" x="1861.1111" y="5361.111" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="SFC2.INIT" dx1="1050.0" />
+      <Connection Source="SFC2.INITO" Destination="X10.INIT" dx1="38.888885" />
+      <Connection Source="X10.INITO" Destination="X11.INIT" dx1="44.444443" />
+      <Connection Source="X11.INITO" Destination="L1CGO.INIT" dx1="44.444443" />
+      <Connection Source="X20.INITO" Destination="X21.INIT" dx1="261.1111" />
+      <Connection Source="X21.INITO" Destination="L2CGO.INIT" dx1="44.444443" />
+      <Connection Source="X10.CNF" Destination="X11.ChangePic" dx1="305.55554" />
+      <Connection Source="X11.CNF" Destination="L1CGO.ChangePic" dx1="83.33333" />
+      <Connection Source="X20.CNF" Destination="X21.ChangePic" dx1="238.88889" />
+      <Connection Source="X21.CNF" Destination="L2CGO.ChangePic" dx1="283.3333" />
+      <Connection Source="L2CGO.INITO" Destination="X30.INIT" dx1="350.0" dx2="5.5555553" dy="1544.4443" />
+      <Connection Source="X30.INITO" Destination="X1.INIT" dx1="161.1111" />
+      <Connection Source="Ns1.INITO" Destination="X3.INIT" dx1="155.55554" />
+      <Connection Source="Ns3.INITO" Destination="X1_1.INIT" dx1="144.44444" />
+      <Connection Source="X1_1.INITO" Destination="s1.INIT" dx1="133.33333" />
+      <Connection Source="s1.INITO" Destination="X3_1.INIT" dx1="100.0" />
+      <Connection Source="X3_1.INITO" Destination="s3.INIT" dx1="133.33333" />
+      <Connection Source="X30.CNF" Destination="X1.ChangeValidity" dx1="111.11111" />
+      <Connection Source="Ns1.CNF" Destination="X3.ChangeValidity" dx1="144.44444" />
+      <Connection Source="Ns3.CNF" Destination="X1_1.ChangeValidity" dx1="133.33333" />
+      <Connection Source="X1_1.CNF" Destination="s1.ChangeValidity" dx1="94.44444" />
+      <Connection Source="s1.CNF" Destination="X3_1.ChangeValidity" dx1="83.33333" />
+      <Connection Source="X3_1.CNF" Destination="s3.ChangeValidity" dx1="94.44444" />
+      <Connection Source="X1.INITO" Destination="NotS1.INIT" dx1="38.888885" />
+      <Connection Source="NotS1.INITO" Destination="Ns1.INIT" dx1="38.888885" />
+      <Connection Source="X1.CNF" Destination="NotS1.REQ" dx1="66.666664" />
+      <Connection Source="NotS1.CNF" Destination="Ns1.ChangeValidity" dx1="50.0" />
+      <Connection Source="X3.INITO" Destination="NotS3.INIT" dx1="44.444443" />
+      <Connection Source="NotS3.INITO" Destination="Ns3.INIT" dx1="38.888885" />
+      <Connection Source="NotS3.CNF" Destination="Ns3.ChangeValidity" dx1="133.33333" />
+      <Connection Source="X3.CNF" Destination="NotS3.REQ" dx1="50.0" />
+      <Connection Source="NAME_CHG" Destination="X10.ChangePic" dx1="1699.9999" />
+      <Connection Source="REQ" Destination="X30.ChangeValidity" dx1="750.0" />
+      <Connection Source="L1CGO.INITO" Destination="SFC3.INIT" dx1="238.88889" />
+      <Connection Source="SFC3.INITO" Destination="X20.INIT" dx1="38.888885" />
+      <Connection Source="L1CGO.CNF" Destination="X20.ChangePic" dx1="849.99994" />
+      <Connection Source="s3.INITO" Destination="X30_1.INIT" dx1="38.888885" dx2="11.111111" dy="2083.3333" />
+      <Connection Source="s3.CNF" Destination="X30_1.ChangeValidity" dx1="38.888885" dx2="38.888885" dy="1844.4443" />
+      <Connection Source="X30_1.CNF" Destination="X2.ChangeValidity" dx1="161.1111" />
+      <Connection Source="X30_1.INITO" Destination="X2.INIT" dx1="194.44444" />
+      <Connection Source="Ns2.INITO" Destination="X3_2.INIT" dx1="249.99998" />
+      <Connection Source="X3_2.INITO" Destination="Ns3_1.INIT" dx1="244.44443" />
+      <Connection Source="Ns3_1.INITO" Destination="X2_1.INIT" dx1="205.55554" />
+      <Connection Source="X2_1.INITO" Destination="s2_1.INIT" dx1="94.44444" />
+      <Connection Source="s2_1.INITO" Destination="X3_3.INIT" dx1="105.55555" />
+      <Connection Source="X3_3.INITO" Destination="s3_1.INIT" dx1="105.55555" />
+      <Connection Source="Ns2.CNF" Destination="X3_2.ChangeValidity" dx1="133.33333" />
+      <Connection Source="X3_2.CNF" Destination="Ns3_1.ChangeValidity" dx1="116.666664" />
+      <Connection Source="Ns3_1.CNF" Destination="X2_1.ChangeValidity" dx1="88.888885" />
+      <Connection Source="X2_1.CNF" Destination="s2_1.ChangeValidity" dx1="88.888885" />
+      <Connection Source="s2_1.CNF" Destination="X3_3.ChangeValidity" dx1="100.0" />
+      <Connection Source="X3_3.CNF" Destination="s3_1.ChangeValidity" dx1="100.0" />
+      <Connection Source="s3_1.INITO" Destination="INITO" dx1="7694.4443" />
+      <Connection Source="s3_1.CNF" Destination="CNF" dx1="7672.222" />
+      <Connection Source="X2.INITO" Destination="NS2Gate.INIT" dx1="61.111107" />
+      <Connection Source="NS2Gate.INITO" Destination="Ns2.INIT" dx1="100.0" />
+      <Connection Source="X2.CNF" Destination="NS2Gate.REQ" dx1="38.888885" />
+      <Connection Source="NS2Gate.CNF" Destination="Ns2.ChangeValidity" dx1="100.0" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="X10_NAME" Destination="X10.name" dx1="1705.5555" />
+      <Connection Source="X11_NAME" Destination="X11.name" dx1="2527.7776" />
+      <Connection Source="L1CGO_NAME" Destination="L1CGO.name" dx1="3088.8887" />
+      <Connection Source="X20_NAME" Destination="X20.name" dx1="4561.111" />
+      <Connection Source="X21_NAME" Destination="X21.name" dx1="5200.0" />
+      <Connection Source="L2CGO_NAME" Destination="L2CGO.name" dx1="5938.8887" />
+      <Connection Source="x30" Destination="X30.Display" dx1="766.6666" />
+      <Connection Source="x1" Destination="X1.Display" dx1="1422.2222" />
+      <Connection Source="x3" Destination="X3.Display" dx1="3077.7776" />
+      <Connection Source="x1" Destination="X1_1.Display" dx1="4722.222" />
+      <Connection Source="S1" Destination="s1.Display" dx1="5400.0" />
+      <Connection Source="x3" Destination="X3_1.Display" dx1="6022.222" />
+      <Connection Source="S3" Destination="s3.Display" dx1="6699.9995" />
+      <Connection Source="NotS1.QO" Destination="Ns1.Display" dx1="55.555553" />
+      <Connection Source="S1" Destination="NotS1.QI" dx1="1961.1111" />
+      <Connection Source="NotS3.QO" Destination="Ns3.Display" dx1="133.33333" />
+      <Connection Source="S3" Destination="NotS3.QI" dx1="3611.111" />
+      <Connection Source="x30" Destination="X30_1.Display" dx1="522.2222" />
+      <Connection Source="x2" Destination="X2.Display" dx1="1205.5555" />
+      <Connection Source="NS2Gate.QO" Destination="Ns2.Display" dx1="105.55555" />
+      <Connection Source="S2" Destination="NS2Gate.QI" dx1="1772.2222" />
+      <Connection Source="x3" Destination="X3_2.Display" dx1="3122.2222" />
+      <Connection Source="NotS3.QO" Destination="Ns3_1.Display" dx1="33.333332" />
+      <Connection Source="x2" Destination="X2_1.Display" dx1="4733.333" />
+      <Connection Source="S2" Destination="s2_1.Display" dx1="5472.222" />
+      <Connection Source="x3" Destination="X3_3.Display" dx1="6266.6665" />
+      <Connection Source="S3" Destination="s3_1.Display" dx1="7044.4443" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

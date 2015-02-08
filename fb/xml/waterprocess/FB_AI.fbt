@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd" >
+<FBType Name="FB_AI" Comment="Service Interface Function Block Type" >
+  
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH " Version="0.0" Author="wildai" Date="2014-5-4" Remarks="template" />
+  <CompilerInfo>
+    <Compiler Language="Cpp" Vendor="nxtControl" Product="builtin " Version="1.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Service Initialization">
+        <With Var="QI" />
+      </Event>
+      <Event Name="REQ" Comment="Service Request" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="QO" />
+      </Event>
+      <Event Name="CNF" Comment="Confirmation of Requested Service">
+        <With Var="IA_L101" />
+        <With Var="IA_L201" />
+        <With Var="IA_L301" />
+        <With Var="IA_L401" />
+        <With Var="IA_T100" />
+        <With Var="IA_F100" />
+        <With Var="IA_F200" />
+        <With Var="IA_T300" />
+        <With Var="IA_P300" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Event Input Qualifier" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Event Output Qualifier" />
+      <VarDeclaration Name="IA_L101" Type="REAL" Comment="Input data from resource" />
+      <VarDeclaration Name="IA_L201" Type="REAL" />
+      <VarDeclaration Name="IA_L301" Type="REAL" />
+      <VarDeclaration Name="IA_L401" Type="REAL" />
+      <VarDeclaration Name="IA_T100" Type="REAL" />
+      <VarDeclaration Name="IA_F100" Type="REAL" />
+      <VarDeclaration Name="IA_F200" Type="REAL" />
+      <VarDeclaration Name="IA_T300" Type="REAL" />
+      <VarDeclaration Name="IA_P300" Type="REAL" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="FB_AI">
+    <ServiceSequence Name="normal_establishment">
+      <ServiceTransaction>
+        <InputPrimitive Interface="FB_AI" Event="INIT+" Parameters="PARAMS" />
+        <OutputPrimitive Interface="RESOURCE" Event="initialize" Parameters="PARAMS" />
+        <OutputPrimitive Interface="FB_AI" Event="INITO+" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="unsuccessful_establishment">
+      <ServiceTransaction>
+        <InputPrimitive Interface="FB_AI" Event="INIT+" Parameters="PARAMS" />
+        <OutputPrimitive Interface="RESOURCE" Event="initialize" Parameters="PARAMS" />
+        <OutputPrimitive Interface="FB_AI" Event="INITO-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="request_confirm">
+      <ServiceTransaction>
+        <InputPrimitive Interface="FB_AI" Event="REQ+" Parameters="SD" />
+        <OutputPrimitive Interface="RESOURCE" Event="request" Parameters="SD" />
+        <OutputPrimitive Interface="FB_AI" Event="CNF+" Parameters="RD" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="request_inhibited">
+      <ServiceTransaction>
+        <InputPrimitive Interface="FB_AI" Event="REQ-" Parameters="SD" />
+        <OutputPrimitive Interface="FB_AI" Event="CNF-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="request_error">
+      <ServiceTransaction>
+        <InputPrimitive Interface="FB_AI" Event="REQ+" Parameters="SD" />
+        <OutputPrimitive Interface="RESOURCE" Event="request" Parameters="SD" />
+        <OutputPrimitive Interface="FB_AI" Event="CNF-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="indication_response">
+      <ServiceTransaction>
+        <InputPrimitive Interface="FB_AI" Event="RSP" Parameters="QI,SD" />
+        <OutputPrimitive Interface="RESOURCE" Event="response" Parameters="QI,SD" />
+      </ServiceTransaction>
+      <ServiceTransaction>
+        <InputPrimitive Interface="RESOURCE" Event="indicate" Parameters="RD" />
+        <OutputPrimitive Interface="FB_AI" Event="IND+" Parameters="RD" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="indication_inhibited">
+      <ServiceTransaction>
+        <InputPrimitive Interface="RESOURCE" Event="indicate" Parameters="RD,QI=FALSE" />
+        <OutputPrimitive Interface="RESOURCE" Event="inhibited" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="error_indication">
+      <ServiceTransaction>
+        <InputPrimitive Interface="RESOURCE" Event="error" Parameters="STATUS" />
+        <OutputPrimitive Interface="FB_AI" Event="IND-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="application_initiated_termination">
+      <ServiceTransaction>
+        <InputPrimitive Interface="FB_AI" Event="INIT-" />
+        <OutputPrimitive Interface="RESOURCE" Event="terminate" />
+        <OutputPrimitive Interface="FB_AI" Event="INITO-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="resource_initiated_termination">
+      <ServiceTransaction>
+        <OutputPrimitive Interface="FB_AI" Event="INITO-" Parameters="STATUS" />
+      </ServiceTransaction>
+    </ServiceSequence>
+  </Service>
+</FBType>

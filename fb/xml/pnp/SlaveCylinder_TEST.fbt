@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="SlaveCylinder_TEST" Comment="Basic Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-04" Remarks="Renamed for better indexing." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-11-05" Remarks="Corrected missing ST element in Algorithm REQ." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-30" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" >
+        <With Var="Size" />
+      </Event>
+      <Event Name="Order" >
+        <With Var="Position" />
+      </Event>
+      <Event Name="REQ" >
+        <With Var="HOME" />
+        <With Var="MID" />
+        <With Var="END" />
+        <With Var="DONE" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="InitO" >
+      </Event>
+      <Event Name="OrderOutput" >
+        <With Var="PositionOutput" />
+      </Event>
+      <Event Name="Completed" Comment="Initialization Confirm" >
+        <With Var="READY" />
+      </Event>
+      <Event Name="CNF" >
+        <With Var="GoOut" />
+        <With Var="GoIn" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="HOME" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="MID" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="END" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="Position" Type="REAL" />
+      <VarDeclaration Name="Size" Type="REAL" />
+      <VarDeclaration Name="DONE" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="READY" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="GoOut" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="GoIn" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="PositionOutput" Type="REAL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Name="init" Type="BOOL" />
+      <VarDeclaration Name="extended" Type="BOOL" />
+      <VarDeclaration Name="GoCenter" Type="BOOL" />
+      <VarDeclaration Name="PositionO" Type="REAL" />
+    </InternalVars>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="1850.0" y="1100.0" >
+      </ECState>
+      <ECState Name="ORDER" Comment="Initialization" x="1112.5" y="312.5" >
+        <ECAction Algorithm="Order" Output="OrderOutput" />
+        <ECAction Output="CNF" />
+      </ECState>
+      <ECState Name="REQ" Comment="Normal execution" x="1712.5" y="1800.0" >
+        <ECAction Algorithm="Req" Output="CNF" />
+      </ECState>
+      <ECState Name="INIT" x="3381.25" y="650.0" >
+        <ECAction Algorithm="Init" Output="InitO" />
+      </ECState>
+      <ECTransition Source="START" Destination="ORDER" Condition="Order" x="731.25" y="706.25" />
+      <ECTransition Source="START" Destination="REQ" Condition="REQ" x="1231.25" y="1462.5" />
+      <ECTransition Source="ORDER" Destination="START" Condition="1" x="1675.0" y="637.5" />
+      <ECTransition Source="REQ" Destination="START" Condition="1" x="2275.0" y="1475.0" />
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="2481.25" y="668.75" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="2806.25" y="987.5" />
+    </ECC>
+  <Algorithm Name="Init" Comment="Initialization algorithm" >
+    <Other Language="Java" Text="if(!init.value) {&#10;init.value = true;&#10;GoOut.value=false;&#10;GoIn.value=false;&#10;GoCenter.value=false;&#10;READY.value=true;&#10;extended.value=false;&#10;}&#10;System.out.println(&#34;initcyl!!!&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="Order" Comment="Initialization algorithm" >
+    <Other Language="Java" Text="READY.value=false;&#10;GoOut.value=false;&#10;GoCenter.value=false;&#10;GoIn.value=false;&#10;&#10;if(Position.value >= Size.value) {&#10;GoOut.value=true;&#10;PositionO.value = Position.value - Size.value;&#10;} else {&#10;if(Position.value == 1 &#38;&#38; Size.value == 2) {&#10;GoCenter.value=true;&#10;GoIn.value=true;&#10;PositionO.value = Position.value - 1;&#10;} else {&#10;GoIn.value=true;&#10;PositionO.value = Position.value;&#10;}&#10;&#10;}&#10;&#10;&#10;&#10;&#10;&#10;PositionOutput.value = PositionO.value;&#10;" />
+  </Algorithm>
+  <Algorithm Name="Req" Comment="Initialization algorithm" >
+    <Other Language="Java" Text="if(HOME.value &#38;&#38; GoIn.value) {&#10;GoOut.value=false;&#10;GoIn.value=false;&#10;extended.value=false;&#10;}&#10;&#10;if(END.value &#38;&#38; GoOut.value) {&#10;GoOut.value=false;&#10;GoIn.value=false;&#10;extended.value=true;&#10;}&#10;&#10;if(END.value &#38;&#38; GoCenter.value) {&#10;GoOut.value=false;&#10;GoIn.value=true;&#10;extended.value=false;&#10;}&#10;if(HOME.value &#38;&#38; GoCenter.value) {&#10;GoOut.value=true;&#10;GoIn.value=false;&#10;extended.value=false;&#10;}&#10;if(MID.value &#38;&#38; GoCenter.value) {&#10;GoOut.value=false;&#10;GoIn.value=false;&#10;extended.value=false;&#10;}&#10;&#10;if(!GoOut.value &#38;&#38; !GoIn.value &#38;&#38; DONE.value) {&#10;READY.value=true;&#10;}&#10;if(Size.value == 2 &#38;&#38; MID.value) {&#10;System.out.println(&#34;Req:&#34;+MID.value);&#10;}&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

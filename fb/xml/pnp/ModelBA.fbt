@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="ModelBA" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="BASEX" />
+        <With Var="BASEY" />
+      </Event>
+      <Event Name="CLK" Comment="Clock" >
+        <With Var="CYL1_SPEED" />
+        <With Var="CYL2_SPEED" />
+        <With Var="VCYL1_SPEED" />
+        <With Var="CYL3_SPEED" />
+        <With Var="VCYL2_SPEED" />
+        <With Var="VCYL3_SPEED" />
+      </Event>
+      <Event Name="REQ" >
+        <With Var="Add1" />
+        <With Var="Add2" />
+        <With Var="Add3" />
+        <With Var="Add4" />
+      </Event>
+      <Event Name="ADD_WP" >
+        <With Var="AddedWP_X" />
+        <With Var="AddedWP_Y" />
+      </Event>
+      <Event Name="ADD_WP00" >
+      </Event>
+      <Event Name="REMOVE_WP" >
+      </Event>
+      <Event Name="CYL_IND" >
+        <With Var="cyl1_fwd" />
+        <With Var="cyl2_fwd" />
+        <With Var="vcyl1_down" />
+        <With Var="vacuum_on" />
+        <With Var="vacuum_off" />
+        <With Var="cyl3_fwd" />
+        <With Var="cyl3_back" />
+        <With Var="vcyl2_down" />
+        <With Var="vcyl3_down" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="BASE_X" />
+        <With Var="BASE_Y" />
+        <With Var="CYL1_Y" />
+        <With Var="CYL2_Y" />
+        <With Var="CYL1_X" />
+        <With Var="CYL2_X" />
+        <With Var="CYL3_Y" />
+        <With Var="CYL3_X" />
+        <With Var="VCYL1_X" />
+        <With Var="VCYL1_Y" />
+        <With Var="VCYL2_X" />
+        <With Var="VCYL2_Y" />
+        <With Var="VCYL3_X" />
+        <With Var="VCYL3_Y" />
+        <With Var="WP1_X" />
+        <With Var="WP1_Y" />
+        <With Var="WP2_X" />
+        <With Var="WP2_Y" />
+        <With Var="WP3_X" />
+        <With Var="WP3_Y" />
+        <With Var="WP4_X" />
+        <With Var="WP4_Y" />
+      </Event>
+      <Event Name="CHG" Comment="View State Changed" >
+        <With Var="pp0" />
+        <With Var="pp1" />
+        <With Var="pp2" />
+        <With Var="pp3" />
+        <With Var="pp4" />
+        <With Var="VACUUM_ON" />
+        <With Var="cyl1home" />
+        <With Var="cyl1end" />
+        <With Var="cyl2home" />
+        <With Var="cyl2end" />
+        <With Var="cyl3home" />
+        <With Var="cyl3end" />
+        <With Var="vcyl1home" />
+        <With Var="vcyl1end" />
+        <With Var="vcyl2home" />
+        <With Var="vcyl2end" />
+        <With Var="vcyl3home" />
+        <With Var="vcyl3end" />
+        <With Var="cyl3mid" />
+      </Event>
+      <Event Name="CNF" >
+        <With Var="VCYL1_Y" />
+        <With Var="WP1_X" />
+        <With Var="WP1_Y" />
+        <With Var="WP2_X" />
+        <With Var="WP2_Y" />
+        <With Var="WP3_X" />
+        <With Var="WP3_Y" />
+        <With Var="WP4_X" />
+        <With Var="WP4_Y" />
+        <With Var="CYL2_X" />
+        <With Var="VCYL1_X" />
+        <With Var="CYL2_Y" />
+        <With Var="CYL1_Y" />
+        <With Var="CYL1_X" />
+        <With Var="CYL3_Y" />
+        <With Var="CYL3_X" />
+        <With Var="VCYL2_X" />
+        <With Var="VCYL2_Y" />
+        <With Var="VCYL3_X" />
+        <With Var="VCYL3_Y" />
+      </Event>
+      <Event Name="WP_ADDED" >
+      </Event>
+      <Event Name="WP_REMOVED" >
+        <With Var="RemovedWP_X" />
+        <With Var="RemovedWP_Y" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="BASEX" Type="UINT" />
+      <VarDeclaration Name="BASEY" Type="UINT" />
+      <VarDeclaration Name="CYL1_SPEED" Type="UINT" />
+      <VarDeclaration Name="CYL2_SPEED" Type="UINT" />
+      <VarDeclaration Name="CYL3_SPEED" Type="UINT" />
+      <VarDeclaration Name="VCYL1_SPEED" Type="UINT" />
+      <VarDeclaration Name="VCYL2_SPEED" Type="UINT" />
+      <VarDeclaration Name="VCYL3_SPEED" Type="UINT" />
+      <VarDeclaration Name="cyl1_fwd" Type="BOOL" />
+      <VarDeclaration Name="cyl2_fwd" Type="BOOL" />
+      <VarDeclaration Name="cyl3_fwd" Type="BOOL" />
+      <VarDeclaration Name="cyl3_back" Type="BOOL" />
+      <VarDeclaration Name="vcyl1_down" Type="BOOL" />
+      <VarDeclaration Name="vcyl2_down" Type="BOOL" />
+      <VarDeclaration Name="vcyl3_down" Type="BOOL" />
+      <VarDeclaration Name="vacuum_on" Type="BOOL" />
+      <VarDeclaration Name="vacuum_off" Type="BOOL" />
+      <VarDeclaration Name="Add1" Type="BOOL" />
+      <VarDeclaration Name="Add2" Type="BOOL" />
+      <VarDeclaration Name="Add3" Type="BOOL" />
+      <VarDeclaration Name="Add4" Type="BOOL" />
+      <VarDeclaration Name="AddedWP_X" Type="UINT" />
+      <VarDeclaration Name="AddedWP_Y" Type="UINT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="BASE_X" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="BASE_Y" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="CYL1_X" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="CYL1_Y" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="CYL2_X" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="CYL2_Y" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="CYL3_X" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="CYL3_Y" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="VCYL1_X" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="VCYL1_Y" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="VCYL2_X" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="VCYL2_Y" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="VCYL3_X" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="VCYL3_Y" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="WP1_X" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="WP1_Y" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="WP2_X" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="WP2_Y" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="WP3_X" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="WP3_Y" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="WP4_X" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="WP4_Y" Type="UINT" Comment="Response Data from Socket" />
+      <VarDeclaration Name="VACUUM_ON" Type="BOOL" Comment="Response Data from Socket" />
+      <VarDeclaration Name="cyl1home" Type="BOOL" />
+      <VarDeclaration Name="cyl1end" Type="BOOL" />
+      <VarDeclaration Name="cyl2home" Type="BOOL" />
+      <VarDeclaration Name="cyl2end" Type="BOOL" />
+      <VarDeclaration Name="cyl3home" Type="BOOL" />
+      <VarDeclaration Name="cyl3mid" Type="BOOL" />
+      <VarDeclaration Name="cyl3end" Type="BOOL" />
+      <VarDeclaration Name="vcyl1home" Type="BOOL" />
+      <VarDeclaration Name="vcyl1end" Type="BOOL" />
+      <VarDeclaration Name="vcyl2home" Type="BOOL" />
+      <VarDeclaration Name="vcyl2end" Type="BOOL" />
+      <VarDeclaration Name="vcyl3home" Type="BOOL" />
+      <VarDeclaration Name="vcyl3end" Type="BOOL" />
+      <VarDeclaration Name="pp0" Type="BOOL" />
+      <VarDeclaration Name="pp1" Type="BOOL" />
+      <VarDeclaration Name="pp2" Type="BOOL" />
+      <VarDeclaration Name="pp3" Type="BOOL" />
+      <VarDeclaration Name="pp4" Type="BOOL" />
+      <VarDeclaration Name="RemovedWP_X" Type="UINT" />
+      <VarDeclaration Name="RemovedWP_Y" Type="UINT" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="Cylinder" Type="PnpCylindersBA" x="800.0" y="11.111111" >
+      <Parameter Name="InitialPosition" Value="0.0" />
+      <Parameter Name="HomeSensorRange" Value="[0,1]" />
+      <Parameter Name="MidSensorRange" Value="[49,51]" />
+      <Parameter Name="EndSensorRange" Value="[99,100]" />
+      <Parameter Name="Loaded" Value="0" />
+      <Parameter Name="LoadType" Value="0" />
+      <Parameter Name="CYL1MovingtDistance" Value="75" />
+      <Parameter Name="CYL2MovingtDistance" Value="75" />
+      <Parameter Name="CYL3MovingtDistance" Value="150" />
+      <Parameter Name="VCYL1MovingtDistance" Value="75" />
+      <Parameter Name="VCYL2MovingtDistance" Value="75" />
+      <Parameter Name="VCYL3MovingtDistance" Value="75" />
+    </FB>
+    <FB Name="ViewControl" Type="PnpXYCalculatorBA" x="6066.6665" y="1027.7777" />
+    <FB Name="SuctionUnit" Type="PnPVacuum" x="4383.333" y="11.111111" />
+    <FB Name="WPSensors" Type="WPsensorBA" x="8661.11" y="1016.6666" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="Cylinder.INIT" dx1="694.4444" />
+      <Connection Source="REQ" Destination="ViewControl.REQ" dx1="5955.555" />
+      <Connection Source="ADD_WP" Destination="ViewControl.ADD_WP" dx1="5894.4443" />
+      <Connection Source="ADD_WP00" Destination="ViewControl.ADD_WP00" dx1="5861.111" />
+      <Connection Source="REMOVE_WP" Destination="ViewControl.REMOVE_WP" dx1="5827.7773" />
+      <Connection Source="ViewControl.WP_ADDED" Destination="WP_ADDED" dx1="6966.6665" />
+      <Connection Source="ViewControl.WP_REMOVED" Destination="WP_REMOVED" dx1="7016.6665" />
+      <Connection Source="Cylinder.INITO" Destination="SuctionUnit.INIT" dx1="66.666664" />
+      <Connection Source="SuctionUnit.INITO" Destination="ViewControl.INIT" dx1="994.4444" />
+      <Connection Source="CLK" Destination="Cylinder.CLK" dx1="694.4444" />
+      <Connection Source="CYL_IND" Destination="Cylinder.CYL_IND" dx1="627.7778" />
+      <Connection Source="CYL_IND" Destination="SuctionUnit.CLK" dx1="4216.6665" />
+      <Connection Source="SuctionUnit.CHG" Destination="ViewControl.CLK" dx1="650.0" />
+      <Connection Source="ViewControl.INITO" Destination="WPSensors.INIT" dx1="1011.1111" />
+      <Connection Source="WPSensors.CNF" Destination="CHG" dx1="9150.0" />
+      <Connection Source="WPSensors.INITO" Destination="INITO" dx1="9166.666" />
+      <Connection Source="ViewControl.CNF" Destination="WPSensors.REQ" dx1="1111.1111" />
+      <Connection Source="Cylinder.CNF" Destination="ViewControl.CLK" dx1="3005.5554" />
+      <Connection Source="Cylinder.CHG" Destination="CHG" dx1="2083.3333" />
+      <Connection Source="SuctionUnit.CHG" Destination="CHG" dx1="5083.333" />
+      <Connection Source="ViewControl.CNF" Destination="CNF" dx1="6866.6665" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="ViewControl.BASE_X" Destination="BASE_X" dx1="6922.222" />
+      <Connection Source="ViewControl.BASE_Y" Destination="BASE_Y" dx1="6922.222" />
+      <Connection Source="ViewControl.CYL1_X" Destination="CYL1_X" dx1="6916.6665" />
+      <Connection Source="ViewControl.CYL1_Y" Destination="CYL1_Y" dx1="6916.6665" />
+      <Connection Source="ViewControl.CYL2_X" Destination="CYL2_X" dx1="6916.6665" />
+      <Connection Source="ViewControl.CYL2_Y" Destination="CYL2_Y" dx1="6916.6665" />
+      <Connection Source="ViewControl.VCYL1_X" Destination="VCYL1_X" dx1="6938.8887" />
+      <Connection Source="ViewControl.VCYL1_Y" Destination="VCYL1_Y" dx1="6938.8887" />
+      <Connection Source="ViewControl.WP1_X" Destination="WP1_X" dx1="6905.555" />
+      <Connection Source="ViewControl.WP1_Y" Destination="WP1_Y" dx1="6905.555" />
+      <Connection Source="ViewControl.WP2_X" Destination="WP2_X" dx1="6905.555" />
+      <Connection Source="ViewControl.WP2_Y" Destination="WP2_Y" dx1="6905.555" />
+      <Connection Source="ViewControl.WP3_X" Destination="WP3_X" dx1="6905.555" />
+      <Connection Source="ViewControl.WP3_Y" Destination="WP3_Y" dx1="6905.555" />
+      <Connection Source="BASEX" Destination="ViewControl.BASEX" dx1="5916.6665" />
+      <Connection Source="BASEY" Destination="ViewControl.BASEY" dx1="5916.6665" />
+      <Connection Source="vacuum_on" Destination="ViewControl.vacuum_on" dx1="5861.111" />
+      <Connection Source="vacuum_off" Destination="ViewControl.vacuum_off" dx1="5861.111" />
+      <Connection Source="Add1" Destination="ViewControl.Add1" dx1="5944.4443" />
+      <Connection Source="Add2" Destination="ViewControl.Add2" dx1="5944.4443" />
+      <Connection Source="Add3" Destination="ViewControl.Add3" dx1="5944.4443" />
+      <Connection Source="AddedWP_X" Destination="ViewControl.AddedWP_X" dx1="5850.0" />
+      <Connection Source="AddedWP_Y" Destination="ViewControl.AddedWP_Y" dx1="5850.0" />
+      <Connection Source="SuctionUnit.VacState" Destination="VACUUM_ON" dx1="5200.0" />
+      <Connection Source="vacuum_on" Destination="SuctionUnit.VacuumOn" dx1="4177.778" />
+      <Connection Source="vacuum_off" Destination="SuctionUnit.VacuumOff" dx1="4177.778" />
+      <Connection Source="SuctionUnit.VacState" Destination="ViewControl.vacuumon" dx1="77.77777" />
+      <Connection Source="ViewControl.WP1_X" Destination="WPSensors.WP1_X" dx1="627.7778" />
+      <Connection Source="ViewControl.WP1_Y" Destination="WPSensors.WP1_Y" dx1="727.7778" />
+      <Connection Source="ViewControl.WP2_X" Destination="WPSensors.WP2_X" dx1="811.1111" />
+      <Connection Source="ViewControl.WP2_Y" Destination="WPSensors.WP2_Y" dx1="877.7778" />
+      <Connection Source="ViewControl.WP3_X" Destination="WPSensors.WP3_X" dx1="927.7778" />
+      <Connection Source="ViewControl.WP3_Y" Destination="WPSensors.WP3_Y" dx1="988.88885" />
+      <Connection Source="WPSensors.wp11" Destination="pp0" dx1="9133.333" />
+      <Connection Source="WPSensors.wp14" Destination="pp3" dx1="9133.333" />
+      <Connection Source="WPSensors.wp13" Destination="pp2" dx1="9133.333" />
+      <Connection Source="WPSensors.wp12" Destination="pp1" dx1="9133.333" />
+      <Connection Source="cyl1_fwd" Destination="Cylinder.CYL1Extend" dx1="633.3333" />
+      <Connection Source="CYL1_SPEED" Destination="Cylinder.CYL1ForwardSpeed" dx1="566.6666" />
+      <Connection Source="CYL2_SPEED" Destination="Cylinder.CYL2BackwardSpeed" dx1="566.6666" />
+      <Connection Source="CYL2_SPEED" Destination="Cylinder.CYL2ForwardSpeed" dx1="566.6666" />
+      <Connection Source="CYL1_SPEED" Destination="Cylinder.CYL1BackwardSpeed" dx1="566.6666" />
+      <Connection Source="cyl2_fwd" Destination="Cylinder.CYL2Extend" dx1="633.3333" />
+      <Connection Source="cyl3_fwd" Destination="Cylinder.CYL3Extend" dx1="633.3333" />
+      <Connection Source="cyl3_back" Destination="Cylinder.CYL3Retract" dx1="616.6666" />
+      <Connection Source="CYL3_SPEED" Destination="Cylinder.CYL3ForwardSpeed" dx1="566.6666" />
+      <Connection Source="CYL3_SPEED" Destination="Cylinder.CYL3BackwardSpeed" dx1="566.6666" />
+      <Connection Source="vcyl1_down" Destination="Cylinder.VCYL1Extend" dx1="594.4444" />
+      <Connection Source="VCYL1_SPEED" Destination="Cylinder.VCYL1ForwardSpeed" dx1="544.4444" />
+      <Connection Source="VCYL1_SPEED" Destination="Cylinder.VCYL1BackwardSpeed" dx1="544.4444" />
+      <Connection Source="vcyl2_down" Destination="Cylinder.VCYL2Extend" dx1="594.4444" />
+      <Connection Source="VCYL2_SPEED" Destination="Cylinder.VCYL2ForwardSpeed" dx1="544.4444" />
+      <Connection Source="VCYL2_SPEED" Destination="Cylinder.VCYL2BackwardSpeed" dx1="544.4444" />
+      <Connection Source="vcyl3_down" Destination="Cylinder.VCYL3Extend" dx1="594.4444" />
+      <Connection Source="VCYL3_SPEED" Destination="Cylinder.VCYL3ForwardSpeed" dx1="544.4444" />
+      <Connection Source="VCYL3_SPEED" Destination="Cylinder.VCYL3BackwardSpeed" dx1="544.4444" />
+      <Connection Source="WPSensors.wp15" Destination="pp4" dx1="9133.333" />
+      <Connection Source="ViewControl.CYL3_X" Destination="CYL3_X" dx1="6916.6665" />
+      <Connection Source="ViewControl.CYL3_Y" Destination="CYL3_Y" dx1="6916.6665" />
+      <Connection Source="ViewControl.VCYL2_X" Destination="VCYL2_X" dx1="6938.8887" />
+      <Connection Source="ViewControl.VCYL2_Y" Destination="VCYL2_Y" dx1="6938.8887" />
+      <Connection Source="ViewControl.VCYL3_X" Destination="VCYL3_X" dx1="6938.8887" />
+      <Connection Source="ViewControl.VCYL3_Y" Destination="VCYL3_Y" dx1="6938.8887" />
+      <Connection Source="Cylinder.CYL1AbsolutePos" Destination="ViewControl.CYL1Pos" dx1="2111.111" />
+      <Connection Source="Cylinder.CYL2AbsolutePos" Destination="ViewControl.CYL2Pos" dx1="1877.7777" />
+      <Connection Source="Cylinder.CYL3AbsolutePos" Destination="ViewControl.CYL3Pos" dx1="1638.8888" />
+      <Connection Source="Cylinder.VCYL1AbsolutePos" Destination="ViewControl.VCYL1Pos" dx1="1400.0" />
+      <Connection Source="Cylinder.VCYL2AbsolutePos" Destination="ViewControl.VCYL2Pos" dx1="1155.5555" />
+      <Connection Source="Cylinder.VCYL3AbsolutePos" Destination="ViewControl.VCYL3Pos" dx1="916.6666" />
+      <Connection Source="Add4" Destination="ViewControl.Add4" dx1="5944.4443" />
+      <Connection Source="Cylinder.CYL1AtHome" Destination="cyl1home" dx1="2150.0" />
+      <Connection Source="Cylinder.CYL1AtEnd" Destination="cyl1end" dx1="2122.2222" />
+      <Connection Source="Cylinder.CYL2AtHome" Destination="cyl2home" dx1="2150.0" />
+      <Connection Source="Cylinder.CYL2AtEnd" Destination="cyl2end" dx1="2122.2222" />
+      <Connection Source="Cylinder.CYL3AtHome" Destination="cyl3home" dx1="2150.0" />
+      <Connection Source="Cylinder.CYL3AtEnd" Destination="cyl3end" dx1="2122.2222" />
+      <Connection Source="Cylinder.VCYL1AtHome" Destination="vcyl1home" dx1="2161.111" />
+      <Connection Source="Cylinder.VCYL1AtEnd" Destination="vcyl1end" dx1="2138.889" />
+      <Connection Source="Cylinder.VCYL2AtHome" Destination="vcyl2home" dx1="2161.111" />
+      <Connection Source="Cylinder.VCYL2AtEnd" Destination="vcyl2end" dx1="2138.889" />
+      <Connection Source="Cylinder.VCYL3AtHome" Destination="vcyl3home" dx1="2161.111" />
+      <Connection Source="Cylinder.VCYL3AtEnd" Destination="vcyl3end" dx1="2138.889" />
+      <Connection Source="Cylinder.CYL3AtMid" Destination="cyl3mid" dx1="2127.7776" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="PnpCylindersBA" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="HomeSensorRange" />
+        <With Var="EndSensorRange" />
+        <With Var="InitialPosition" />
+        <With Var="LoadType" />
+        <With Var="Loaded" />
+        <With Var="MidSensorRange" />
+        <With Var="CYL1Extend" />
+        <With Var="CYL2Extend" />
+        <With Var="CYL3Extend" />
+        <With Var="CYL3Retract" />
+        <With Var="VCYL1Extend" />
+        <With Var="VCYL2Extend" />
+        <With Var="VCYL3Extend" />
+        <With Var="CYL1MovingtDistance" />
+        <With Var="CYL1ForwardSpeed" />
+        <With Var="CYL1BackwardSpeed" />
+        <With Var="CYL2MovingtDistance" />
+        <With Var="CYL2ForwardSpeed" />
+        <With Var="CYL2BackwardSpeed" />
+        <With Var="CYL3MovingtDistance" />
+        <With Var="CYL3ForwardSpeed" />
+        <With Var="CYL3BackwardSpeed" />
+        <With Var="VCYL1MovingtDistance" />
+        <With Var="VCYL1ForwardSpeed" />
+        <With Var="VCYL1BackwardSpeed" />
+        <With Var="VCYL2MovingtDistance" />
+        <With Var="VCYL2ForwardSpeed" />
+        <With Var="VCYL3MovingtDistance" />
+        <With Var="VCYL3ForwardSpeed" />
+        <With Var="VCYL3BackwardSpeed" />
+        <With Var="VCYL2BackwardSpeed" />
+      </Event>
+      <Event Name="CLK" >
+        <With Var="LoadType" />
+        <With Var="Loaded" />
+      </Event>
+      <Event Name="FAULT" >
+      </Event>
+      <Event Name="RESUME" >
+      </Event>
+      <Event Name="CYL_IND" >
+        <With Var="CYL1Extend" />
+        <With Var="CYL2Extend" />
+        <With Var="CYL3Extend" />
+        <With Var="CYL3Retract" />
+        <With Var="VCYL1Extend" />
+        <With Var="VCYL2Extend" />
+        <With Var="VCYL3Extend" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="CYL1AbsolutePos" />
+        <With Var="CYL1AtHome" />
+        <With Var="CYL1AtEnd" />
+        <With Var="CYL1AtMid" />
+        <With Var="CYL2AbsolutePos" />
+        <With Var="CYL2AtHome" />
+        <With Var="CYL2AtEnd" />
+        <With Var="CYL2AtMid" />
+        <With Var="CYL3AbsolutePos" />
+        <With Var="CYL3AtHome" />
+        <With Var="CYL3AtEnd" />
+        <With Var="CYL3AtMid" />
+        <With Var="VCYL1AbsolutePos" />
+        <With Var="VCYL1AtHome" />
+        <With Var="VCYL1AtEnd" />
+        <With Var="VCYL1AtMid" />
+        <With Var="VCYL2AbsolutePos" />
+        <With Var="VCYL2AtHome" />
+        <With Var="VCYL2AtEnd" />
+        <With Var="VCYL2AtMid" />
+        <With Var="VCYL3AbsolutePos" />
+        <With Var="VCYL3AtHome" />
+        <With Var="VCYL3AtEnd" />
+        <With Var="VCYL3AtMid" />
+      </Event>
+      <Event Name="CHG" >
+        <With Var="CYL1AtHome" />
+        <With Var="CYL1AtEnd" />
+        <With Var="CYL1AtMid" />
+        <With Var="CYL2AtHome" />
+        <With Var="CYL2AtEnd" />
+        <With Var="CYL2AtMid" />
+        <With Var="CYL3AtHome" />
+        <With Var="CYL3AtEnd" />
+        <With Var="CYL3AtMid" />
+        <With Var="VCYL1AtHome" />
+        <With Var="VCYL1AtEnd" />
+        <With Var="VCYL1AtMid" />
+        <With Var="VCYL2AtHome" />
+        <With Var="VCYL2AtEnd" />
+        <With Var="VCYL2AtMid" />
+        <With Var="VCYL3AtHome" />
+        <With Var="VCYL3AtEnd" />
+        <With Var="VCYL3AtMid" />
+      </Event>
+      <Event Name="OFAULT" >
+      </Event>
+      <Event Name="CNF" >
+        <With Var="CYL1AbsolutePos" />
+        <With Var="CYL2AbsolutePos" />
+        <With Var="CYL3AbsolutePos" />
+        <With Var="VCYL1AbsolutePos" />
+        <With Var="VCYL2AbsolutePos" />
+        <With Var="VCYL3AbsolutePos" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="InitialPosition" Type="REAL" Comment="Initial position" />
+      <VarDeclaration Name="HomeSensorRange" Type="UINT" ArraySize="2" Comment="Detection range of home sensor" />
+      <VarDeclaration Name="MidSensorRange" Type="UINT" ArraySize="2" Comment="Detection range of home sensor" />
+      <VarDeclaration Name="EndSensorRange" Type="UINT" ArraySize="2" Comment="Detection range of end sensor" />
+      <VarDeclaration Name="Loaded" Type="BOOL" />
+      <VarDeclaration Name="LoadType" Type="UINT" />
+      <VarDeclaration Name="CYL1Extend" Type="BOOL" />
+      <VarDeclaration Name="CYL1MovingtDistance" Type="UINT" />
+      <VarDeclaration Name="CYL1ForwardSpeed" Type="UINT" />
+      <VarDeclaration Name="CYL1BackwardSpeed" Type="UINT" />
+      <VarDeclaration Name="CYL2Extend" Type="BOOL" />
+      <VarDeclaration Name="CYL2MovingtDistance" Type="UINT" />
+      <VarDeclaration Name="CYL2ForwardSpeed" Type="UINT" />
+      <VarDeclaration Name="CYL2BackwardSpeed" Type="UINT" />
+      <VarDeclaration Name="CYL3Extend" Type="BOOL" />
+      <VarDeclaration Name="CYL3Retract" Type="BOOL" />
+      <VarDeclaration Name="CYL3MovingtDistance" Type="UINT" />
+      <VarDeclaration Name="CYL3ForwardSpeed" Type="UINT" />
+      <VarDeclaration Name="CYL3BackwardSpeed" Type="UINT" />
+      <VarDeclaration Name="VCYL1Extend" Type="BOOL" />
+      <VarDeclaration Name="VCYL1MovingtDistance" Type="UINT" />
+      <VarDeclaration Name="VCYL1ForwardSpeed" Type="UINT" />
+      <VarDeclaration Name="VCYL1BackwardSpeed" Type="UINT" />
+      <VarDeclaration Name="VCYL2Extend" Type="BOOL" />
+      <VarDeclaration Name="VCYL2MovingtDistance" Type="UINT" />
+      <VarDeclaration Name="VCYL2ForwardSpeed" Type="UINT" />
+      <VarDeclaration Name="VCYL2BackwardSpeed" Type="UINT" />
+      <VarDeclaration Name="VCYL3Extend" Type="BOOL" />
+      <VarDeclaration Name="VCYL3MovingtDistance" Type="UINT" />
+      <VarDeclaration Name="VCYL3ForwardSpeed" Type="UINT" />
+      <VarDeclaration Name="VCYL3BackwardSpeed" Type="UINT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="CYL1AbsolutePos" Type="UINT" Comment="Current position" />
+      <VarDeclaration Name="CYL1AtHome" Type="BOOL" Comment="Detected at home position" />
+      <VarDeclaration Name="CYL1AtEnd" Type="BOOL" Comment="Detected at end position" />
+      <VarDeclaration Name="CYL1AtMid" Type="BOOL" />
+      <VarDeclaration Name="CYL2AbsolutePos" Type="UINT" Comment="Current position" />
+      <VarDeclaration Name="CYL2AtHome" Type="BOOL" Comment="Detected at home position" />
+      <VarDeclaration Name="CYL2AtEnd" Type="BOOL" Comment="Detected at end position" />
+      <VarDeclaration Name="CYL2AtMid" Type="BOOL" />
+      <VarDeclaration Name="CYL3AbsolutePos" Type="UINT" Comment="Current position" />
+      <VarDeclaration Name="CYL3AtHome" Type="BOOL" Comment="Detected at home position" />
+      <VarDeclaration Name="CYL3AtEnd" Type="BOOL" Comment="Detected at end position" />
+      <VarDeclaration Name="CYL3AtMid" Type="BOOL" />
+      <VarDeclaration Name="VCYL1AbsolutePos" Type="UINT" Comment="Current position" />
+      <VarDeclaration Name="VCYL1AtHome" Type="BOOL" Comment="Detected at home position" />
+      <VarDeclaration Name="VCYL1AtEnd" Type="BOOL" Comment="Detected at end position" />
+      <VarDeclaration Name="VCYL1AtMid" Type="BOOL" />
+      <VarDeclaration Name="VCYL2AbsolutePos" Type="UINT" Comment="Current position" />
+      <VarDeclaration Name="VCYL2AtHome" Type="BOOL" Comment="Detected at home position" />
+      <VarDeclaration Name="VCYL2AtEnd" Type="BOOL" Comment="Detected at end position" />
+      <VarDeclaration Name="VCYL2AtMid" Type="BOOL" />
+      <VarDeclaration Name="VCYL3AbsolutePos" Type="UINT" Comment="Current position" />
+      <VarDeclaration Name="VCYL3AtHome" Type="BOOL" Comment="Detected at home position" />
+      <VarDeclaration Name="VCYL3AtEnd" Type="BOOL" Comment="Detected at end position" />
+      <VarDeclaration Name="VCYL3AtMid" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="CYL1" Type="GenericCylinderModelType2" x="933.3333" y="77.77777" />
+    <FB Name="CYL2" Type="GenericCylinderModelType2" x="4538.8887" y="77.77777" />
+    <FB Name="CYL3" Type="GenericCylinderModelType1" x="7855.555" y="77.77777" />
+    <FB Name="VCYL1" Type="GenericCylinderModelType2" x="911.1111" y="2561.111" />
+    <FB Name="VCYL2" Type="GenericCylinderModelType2" x="4583.333" y="2561.111" />
+    <FB Name="VCYL3" Type="GenericCylinderModelType2" x="7849.9995" y="2561.111" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="CYL1.INIT" dx1="827.7778" />
+      <Connection Source="CYL1.INITO" Destination="CYL2.INIT" dx1="83.33333" dx2="81.25" dy="-1.0" />
+      <Connection Source="CYL2.INITO" Destination="CYL3.INIT" dx1="1033.3333" />
+      <Connection Source="CYL3.INITO" Destination="VCYL1.INIT" dx1="983.3333" dx2="344.44443" dy="2266.6665" />
+      <Connection Source="VCYL1.INITO" Destination="VCYL2.INIT" dx1="1044.4445" />
+      <Connection Source="VCYL2.INITO" Destination="VCYL3.INIT" dx1="83.33333" dx2="81.25" dy="-1.0" />
+      <Connection Source="VCYL3.INITO" Destination="INITO" dx1="8761.11" />
+      <Connection Source="VCYL3.OFAULT" Destination="OFAULT" dx1="8794.444" />
+      <Connection Source="VCYL2.OFAULT" Destination="VCYL3.FAULT" dx1="105.55555" dx2="106.25" dy="-1.0" />
+      <Connection Source="VCYL1.OFAULT" Destination="VCYL2.FAULT" dx1="1127.7777" />
+      <Connection Source="CYL2.OFAULT" Destination="CYL3.FAULT" dx1="1111.1111" />
+      <Connection Source="CYL1.OFAULT" Destination="CYL2.FAULT" dx1="105.55555" dx2="106.25" dy="-1.0" />
+      <Connection Source="FAULT" Destination="CYL1.FAULT" dx1="788.88885" />
+      <Connection Source="CLK" Destination="CYL1.CLK" dx1="827.7778" />
+      <Connection Source="CLK" Destination="CYL2.CLK" dx1="4433.333" />
+      <Connection Source="CLK" Destination="CYL3.CLK" dx1="7749.9995" />
+      <Connection Source="CLK" Destination="VCYL1.CLK" dx1="805.55554" />
+      <Connection Source="CLK" Destination="VCYL2.CLK" dx1="4477.778" />
+      <Connection Source="CLK" Destination="VCYL3.CLK" dx1="7744.4443" />
+      <Connection Source="CYL1.CHG" Destination="CHG" dx1="1827.7777" />
+      <Connection Source="CYL2.CHG" Destination="CHG" dx1="5433.333" />
+      <Connection Source="CYL3.CHG" Destination="CHG" dx1="8750.0" />
+      <Connection Source="VCYL1.CHG" Destination="CHG" dx1="1805.5555" />
+      <Connection Source="VCYL2.CHG" Destination="CHG" dx1="5477.7773" />
+      <Connection Source="VCYL3.CHG" Destination="CHG" dx1="8744.444" />
+      <Connection Source="VCYL3.CNF" Destination="CNF" dx1="8738.889" />
+      <Connection Source="VCYL2.CNF" Destination="CNF" dx1="5472.222" />
+      <Connection Source="VCYL1.CNF" Destination="CNF" dx1="1799.9999" />
+      <Connection Source="CYL3.CNF" Destination="CNF" dx1="8744.444" />
+      <Connection Source="CYL2.CNF" Destination="CNF" dx1="5427.7773" />
+      <Connection Source="CYL1.CNF" Destination="CNF" dx1="1822.2222" />
+      <Connection Source="RESUME" Destination="CYL1.RESUME" dx1="761.1111" />
+      <Connection Source="RESUME" Destination="CYL2.RESUME" dx1="4366.6665" />
+      <Connection Source="RESUME" Destination="CYL3.RESUME" dx1="7683.333" />
+      <Connection Source="RESUME" Destination="VCYL1.RESUME" dx1="738.88885" />
+      <Connection Source="RESUME" Destination="VCYL2.RESUME" dx1="4411.111" />
+      <Connection Source="RESUME" Destination="VCYL3.RESUME" dx1="7677.7773" />
+      <Connection Source="CYL_IND" Destination="VCYL3.CYL_IND" dx1="7677.7773" />
+      <Connection Source="CYL_IND" Destination="CYL1.CYL_IND" dx1="761.1111" />
+      <Connection Source="CYL_IND" Destination="CYL2.CYL_IND" dx1="4366.6665" />
+      <Connection Source="CYL_IND" Destination="CYL3.CYL_IND" dx1="7683.333" />
+      <Connection Source="CYL_IND" Destination="VCYL1.CYL_IND" dx1="738.88885" />
+      <Connection Source="CYL_IND" Destination="VCYL2.CYL_IND" dx1="4411.111" />
+      <Connection Source="CYL3.OFAULT" Destination="VCYL1.FAULT" dx1="777.7778" dx2="505.55554" dy="1877.7777" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="HomeSensorRange" Destination="CYL1.HomeSensorRange" dx1="627.7778" />
+      <Connection Source="HomeSensorRange" Destination="CYL2.HomeSensorRange" dx1="4233.333" />
+      <Connection Source="HomeSensorRange" Destination="CYL3.HomeSensorRange" dx1="7549.9995" />
+      <Connection Source="HomeSensorRange" Destination="VCYL1.HomeSensorRange" dx1="605.55554" />
+      <Connection Source="HomeSensorRange" Destination="VCYL2.HomeSensorRange" dx1="4277.778" />
+      <Connection Source="HomeSensorRange" Destination="VCYL3.HomeSensorRange" dx1="7544.4443" />
+      <Connection Source="MidSensorRange" Destination="VCYL3.MidSensorRange" dx1="7572.222" />
+      <Connection Source="MidSensorRange" Destination="CYL1.MidSensorRange" dx1="655.55554" />
+      <Connection Source="MidSensorRange" Destination="CYL2.MidSensorRange" dx1="4261.111" />
+      <Connection Source="MidSensorRange" Destination="CYL3.MidSensorRange" dx1="7577.7773" />
+      <Connection Source="MidSensorRange" Destination="VCYL1.MidSensorRange" dx1="633.3333" />
+      <Connection Source="MidSensorRange" Destination="VCYL2.MidSensorRange" dx1="4305.555" />
+      <Connection Source="EndSensorRange" Destination="CYL1.EndSensorRange" dx1="655.55554" />
+      <Connection Source="EndSensorRange" Destination="CYL2.EndSensorRange" dx1="4261.111" />
+      <Connection Source="EndSensorRange" Destination="CYL3.EndSensorRange" dx1="7577.7773" />
+      <Connection Source="EndSensorRange" Destination="VCYL1.EndSensorRange" dx1="633.3333" />
+      <Connection Source="EndSensorRange" Destination="VCYL2.EndSensorRange" dx1="4305.555" />
+      <Connection Source="EndSensorRange" Destination="VCYL3.EndSensorRange" dx1="7572.222" />
+      <Connection Source="InitialPosition" Destination="CYL1.InitialPosition" dx1="700.0" />
+      <Connection Source="InitialPosition" Destination="CYL2.InitialPosition" dx1="4305.555" />
+      <Connection Source="InitialPosition" Destination="CYL3.InitialPosition" dx1="7622.222" />
+      <Connection Source="InitialPosition" Destination="VCYL1.InitialPosition" dx1="677.7778" />
+      <Connection Source="InitialPosition" Destination="VCYL2.InitialPosition" dx1="4350.0" />
+      <Connection Source="InitialPosition" Destination="VCYL3.InitialPosition" dx1="7616.6665" />
+      <Connection Source="Loaded" Destination="CYL1.Loaded" dx1="783.3333" />
+      <Connection Source="Loaded" Destination="CYL2.Loaded" dx1="4388.8887" />
+      <Connection Source="Loaded" Destination="CYL3.Loaded" dx1="7705.555" />
+      <Connection Source="Loaded" Destination="VCYL1.Loaded" dx1="761.1111" />
+      <Connection Source="Loaded" Destination="VCYL2.Loaded" dx1="4433.333" />
+      <Connection Source="Loaded" Destination="VCYL3.Loaded" dx1="7699.9995" />
+      <Connection Source="LoadType" Destination="CYL1.LoadType" dx1="750.0" />
+      <Connection Source="LoadType" Destination="CYL2.LoadType" dx1="4355.555" />
+      <Connection Source="LoadType" Destination="CYL3.LoadType" dx1="7672.222" />
+      <Connection Source="LoadType" Destination="VCYL1.LoadType" dx1="727.7778" />
+      <Connection Source="LoadType" Destination="VCYL2.LoadType" dx1="4400.0" />
+      <Connection Source="LoadType" Destination="VCYL3.LoadType" dx1="7666.6665" />
+      <Connection Source="CYL1Extend" Destination="CYL1.Extend" dx1="716.6666" />
+      <Connection Source="CYL2Extend" Destination="CYL2.Extend" dx1="4322.222" />
+      <Connection Source="CYL3Extend" Destination="CYL3.Extend" dx1="7638.8887" />
+      <Connection Source="CYL3Retract" Destination="CYL3.Retract" dx1="7638.8887" />
+      <Connection Source="VCYL1Extend" Destination="VCYL1.Extend" dx1="677.7778" />
+      <Connection Source="VCYL2Extend" Destination="VCYL2.Extend" dx1="4350.0" />
+      <Connection Source="VCYL3Extend" Destination="VCYL3.Extend" dx1="7616.6665" />
+      <Connection Source="VCYL1ForwardSpeed" Destination="VCYL1.ForwardSpeed" dx1="583.3333" />
+      <Connection Source="VCYL1BackwardSpeed" Destination="VCYL1.BackwardSpeed" dx1="561.1111" />
+      <Connection Source="VCYL1MovingtDistance" Destination="VCYL1.MovingtDistance" dx1="550.0" />
+      <Connection Source="VCYL2ForwardSpeed" Destination="VCYL2.ForwardSpeed" dx1="4255.555" />
+      <Connection Source="VCYL2BackwardSpeed" Destination="VCYL2.BackwardSpeed" dx1="4233.333" />
+      <Connection Source="VCYL2MovingtDistance" Destination="VCYL2.MovingtDistance" dx1="4222.222" />
+      <Connection Source="VCYL2MovingtDistance" Destination="VCYL3.MovingtDistance" dx1="7488.8887" />
+      <Connection Source="VCYL1BackwardSpeed" Destination="VCYL3.BackwardSpeed" dx1="7499.9995" />
+      <Connection Source="VCYL1ForwardSpeed" Destination="VCYL3.ForwardSpeed" dx1="7522.222" />
+      <Connection Source="CYL3MovingtDistance" Destination="CYL3.MovingtDistance" dx1="7511.111" />
+      <Connection Source="CYL3BackwardSpeed" Destination="CYL3.BackwardSpeed" dx1="7522.222" />
+      <Connection Source="CYL3ForwardSpeed" Destination="CYL3.ForwardSpeed" dx1="7544.4443" />
+      <Connection Source="CYL2ForwardSpeed" Destination="CYL2.ForwardSpeed" dx1="4227.778" />
+      <Connection Source="CYL2BackwardSpeed" Destination="CYL2.BackwardSpeed" dx1="4205.555" />
+      <Connection Source="CYL2MovingtDistance" Destination="CYL2.MovingtDistance" dx1="4194.4443" />
+      <Connection Source="CYL1MovingtDistance" Destination="CYL1.MovingtDistance" dx1="588.88885" />
+      <Connection Source="CYL1BackwardSpeed" Destination="CYL1.BackwardSpeed" dx1="600.0" />
+      <Connection Source="CYL1ForwardSpeed" Destination="CYL1.ForwardSpeed" dx1="622.22217" />
+      <Connection Source="CYL1.AbsolutePos" Destination="CYL1AbsolutePos" dx1="1999.9999" />
+      <Connection Source="CYL2.AbsolutePos" Destination="CYL2AbsolutePos" dx1="5605.555" />
+      <Connection Source="CYL3.AbsolutePos" Destination="CYL3AbsolutePos" dx1="8922.222" />
+      <Connection Source="VCYL1.AbsolutePos" Destination="VCYL1AbsolutePos" dx1="1994.4443" />
+      <Connection Source="VCYL2.AbsolutePos" Destination="VCYL2AbsolutePos" dx1="5666.6665" />
+      <Connection Source="VCYL3.AbsolutePos" Destination="VCYL3AbsolutePos" dx1="8933.333" />
+      <Connection Source="CYL1.AtHome" Destination="CYL1AtHome" dx1="1944.4443" />
+      <Connection Source="CYL1.AtEnd" Destination="CYL1AtEnd" dx1="1916.6666" />
+      <Connection Source="CYL1.AtMid" Destination="CYL1AtMid" dx1="1916.6666" />
+      <Connection Source="CYL2.AtHome" Destination="CYL2AtHome" dx1="5550.0" />
+      <Connection Source="CYL2.AtEnd" Destination="CYL2AtEnd" dx1="5522.222" />
+      <Connection Source="CYL2.AtMid" Destination="CYL2AtMid" dx1="5522.222" />
+      <Connection Source="CYL3.AtHome" Destination="CYL3AtHome" dx1="8866.666" />
+      <Connection Source="CYL3.AtEnd" Destination="CYL3AtEnd" dx1="8838.889" />
+      <Connection Source="CYL3.AtMid" Destination="CYL3AtMid" dx1="8838.889" />
+      <Connection Source="VCYL1.AtHome" Destination="VCYL1AtHome" dx1="1938.8888" />
+      <Connection Source="VCYL1.AtEnd" Destination="VCYL1AtEnd" dx1="1911.1111" />
+      <Connection Source="VCYL1.AtMid" Destination="VCYL1AtMid" dx1="1911.1111" />
+      <Connection Source="VCYL2.AtHome" Destination="VCYL2AtHome" dx1="5611.111" />
+      <Connection Source="VCYL2.AtEnd" Destination="VCYL2AtEnd" dx1="5583.333" />
+      <Connection Source="VCYL2.AtMid" Destination="VCYL2AtMid" dx1="5583.333" />
+      <Connection Source="VCYL3.AtHome" Destination="VCYL3AtHome" dx1="8877.777" />
+      <Connection Source="VCYL3.AtEnd" Destination="VCYL3AtEnd" dx1="8850.0" />
+      <Connection Source="VCYL3.AtMid" Destination="VCYL3AtMid" dx1="8850.0" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

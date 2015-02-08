@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="verticalcylinder3" Comment="Basic Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Majid Sorouri" Date="2011-02-26" Remarks="Template" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="vc_up" />
+        <With Var="vc_down" />
+        <With Var="c1home" />
+        <With Var="c2home" />
+        <With Var="pp0" />
+        <With Var="c1permitDown" />
+        <With Var="c2PermitDown" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="vc_up" />
+        <With Var="vc_down" />
+        <With Var="c1home" />
+        <With Var="c2home" />
+        <With Var="pp0" />
+      </Event>
+      <Event Name="IN_CMD" >
+        <With Var="c1permitDown" />
+        <With Var="vc_up" />
+        <With Var="vc_down" />
+        <With Var="c1home" />
+        <With Var="c2home" />
+        <With Var="pp0" />
+        <With Var="c2PermitDown" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="DownToPick" />
+        <With Var="DownToDrop" />
+        <With Var="vc_Done" />
+        <With Var="vcMoveOut" />
+      </Event>
+      <Event Name="CNF" >
+        <With Var="vcMoveOut" />
+        <With Var="DownToPick" />
+        <With Var="DownToDrop" />
+        <With Var="vc_Done" />
+      </Event>
+      <Event Name="OUT_CMD" >
+        <With Var="DownToPick" />
+        <With Var="DownToDrop" />
+      </Event>
+      <Event Name="OUT_CMD2" >
+        <With Var="vc_Done" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="vc_up" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="vc_down" Type="BOOL" />
+      <VarDeclaration Name="c1home" Type="BOOL" />
+      <VarDeclaration Name="c2home" Type="BOOL" />
+      <VarDeclaration Name="pp0" Type="BOOL" />
+      <VarDeclaration Name="c1permitDown" Type="BOOL" />
+      <VarDeclaration Name="c2PermitDown" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="vcMoveOut" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="DownToPick" Type="BOOL" />
+      <VarDeclaration Name="DownToDrop" Type="BOOL" />
+      <VarDeclaration Name="vc_Done" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="1511.1111" y="200.0" >
+      </ECState>
+      <ECState Name="INIT" Comment="Initialization" x="2383.3333" y="205.55554" >
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="GoUp" x="2488.8887" y="2355.5554" >
+        <ECAction Algorithm="Up" Output="CNF" />
+      </ECState>
+      <ECState Name="GoDown" x="2455.5554" y="1088.8888" >
+        <ECAction Algorithm="Down" Output="CNF" />
+      </ECState>
+      <ECState Name="DownToPick" x="3050.0" y="1688.8888" >
+        <ECAction Algorithm="Pick" Output="OUT_CMD" />
+      </ECState>
+      <ECState Name="DownToDrop" x="1922.2222" y="1688.8888" >
+        <ECAction Algorithm="Drop" Output="OUT_CMD" />
+      </ECState>
+      <ECState Name="Up" x="2444.4443" y="600.0" >
+        <ECAction Algorithm="Finish" Output="OUT_CMD2" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1966.6666" y="116.666664" />
+      <ECTransition Source="DownToDrop" Destination="GoUp" Condition="IN_CMD" x="2261.111" y="1955.5554" />
+      <ECTransition Source="GoDown" Destination="DownToPick" Condition="REQ&#38;vc_down AND NOT (c1home AND c2home)" x="3516.6665" y="1344.4443" />
+      <ECTransition Source="GoDown" Destination="DownToDrop" Condition="REQ&#38;c1home AND c2home AND vc_down" x="2033.3333" y="1372.2222" />
+      <ECTransition Source="GoUp" Destination="Up" Condition="REQ&#38;vc_up" x="961.1111" y="1272.2222" />
+      <ECTransition Source="DownToPick" Destination="GoUp" Condition="IN_CMD" x="3050.0" y="1999.9999" />
+      <ECTransition Source="Up" Destination="GoDown" Condition="IN_CMD&#38;c1permitDown AND c2PermitDown" x="2927.7776" y="844.4444" />
+      <ECTransition Source="INIT" Destination="Up" Condition="1" x="2494.4443" y="388.8889" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+    <ST Text="vcMoveOut:=FALSE;&#10;DownToPick:=FALSE;&#10;DownToDrop:=FALSE;&#10;vc_Done:=TRUE;&#10;System.out.println(&#34;VertCyl INIT&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="Down" >
+    <ST Text="vcMoveOut:=TRUE;&#10;vc_Done:=FALSE;&#10;System.out.println(&#34;VertCyl Down&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="Up" >
+    <ST Text="vcMoveOut:=FALSE;&#10;System.out.println(&#34;VertCyl Up&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="Pick" >
+    <ST Text="DownToPick:=TRUE;&#10;DownToDrop:=FALSE;&#10;System.out.println(&#34;VertCyl Pick&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="Drop" >
+    <ST Text="DownToPick:=FALSE;&#10;DownToDrop:=TRUE;&#10;System.out.println(&#34;VertCyl Drop&#34;);&#10;" />
+  </Algorithm>
+  <Algorithm Name="Finish" >
+    <ST Text="vc_Done:=TRUE;&#10;System.out.println(&#34;VertCyl Finish&#34;);&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

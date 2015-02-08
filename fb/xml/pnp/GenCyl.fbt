@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="GenCyl" Comment="Basic Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="Majid Sorouri" Date="2011-02-26" Remarks="Template" />
+  <CompilerInfo header="package fb.rt.pnp;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="chome" />
+        <With Var="pp1" />
+        <With Var="pp2" />
+        <With Var="pp3" />
+        <With Var="cend" />
+        <With Var="vcPermitMove" />
+        <With Var="ID" />
+      </Event>
+      <Event Name="REQ" >
+        <With Var="chome" />
+        <With Var="cend" />
+        <With Var="pp1" />
+        <With Var="pp2" />
+        <With Var="pp3" />
+        <With Var="vcPermitMove" />
+        <With Var="ID" />
+      </Event>
+      <Event Name="IN_CMD" >
+        <With Var="vcPermitMove" />
+        <With Var="pp3" />
+        <With Var="pp2" />
+        <With Var="pp1" />
+        <With Var="cend" />
+        <With Var="chome" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="cMoveOut" />
+        <With Var="cMoveIn" />
+        <With Var="AllowVcDown" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="cMoveOut" />
+        <With Var="cMoveIn" />
+        <With Var="AllowVcDown" />
+      </Event>
+      <Event Name="OUT_CMD" >
+        <With Var="AllowVcDown" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="chome" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="cend" Type="BOOL" />
+      <VarDeclaration Name="pp1" Type="BOOL" />
+      <VarDeclaration Name="pp2" Type="BOOL" />
+      <VarDeclaration Name="pp3" Type="BOOL" />
+      <VarDeclaration Name="vcPermitMove" Type="BOOL" />
+      <VarDeclaration Name="ID" Type="INT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="cMoveOut" Type="BOOL" />
+      <VarDeclaration Name="cMoveIn" Type="BOOL" />
+      <VarDeclaration Name="AllowVcDown" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="1122.2222" y="211.1111" >
+      </ECState>
+      <ECState Name="INIT" Comment="Initialization" x="1988.8888" y="249.99998" >
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="c1home" Comment="Normal execution" x="722.22217" y="888.88885" >
+        <ECAction Algorithm="AllowVcDown" Output="OUT_CMD" />
+      </ECState>
+      <ECState Name="Getpp1or3" x="3772.2222" y="966.6666" >
+        <ECAction Algorithm="Get1or3" Output="CNF" />
+      </ECState>
+      <ECState Name="Getpp2or3" x="3805.5554" y="2205.5554" >
+        <ECAction Algorithm="Get2or3" Output="CNF" />
+      </ECState>
+      <ECState Name="GoBack" x="666.6666" y="1377.7777" >
+        <ECAction Algorithm="GoBack" Output="CNF" />
+        <ECAction Algorithm="BlockVcDown" Output="OUT_CMD" />
+      </ECState>
+      <ECState Name="c1end" x="2455.5554" y="1788.8888" >
+        <ECAction Algorithm="AllowVcDown" Output="OUT_CMD" />
+      </ECState>
+      <ECState Name="wait" x="2283.3333" y="561.1111" >
+        <ECAction Algorithm="BlockVcDown" Output="OUT_CMD" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1577.7777" y="150.0" />
+      <ECTransition Source="INIT" Destination="wait" Condition="1" x="2316.6665" y="377.77777" />
+      <ECTransition Source="c1home" Destination="wait" Condition="IN_CMD&#38;vcPermitMove" x="1405.5555" y="472.2222" />
+      <ECTransition Source="c1end" Destination="GoBack" Condition="IN_CMD&#38;vcPermitMove" x="1294.4443" y="2244.4443" />
+      <ECTransition Source="GoBack" Destination="c1home" Condition="REQ&#38;chome" x="494.44443" y="1205.5555" />
+      <ECTransition Source="Getpp1or3" Destination="c1end" Condition="REQ&#38;cend" x="4116.6665" y="1455.5555" />
+      <ECTransition Source="wait" Destination="Getpp1or3" Condition="REQ&#38;chome AND pp1 AND ID=1 OR(pp3 AND NOT pp1 AND NOT  pp2)" x="5027.7773" y="711.1111" />
+      <ECTransition Source="wait" Destination="c1end" Condition="REQ&#38;chome AND ID=1 AND NOT pp1 AND pp2" x="1911.1111" y="1138.8888" />
+      <ECTransition Source="wait" Destination="Getpp2or3" Condition="REQ&#38;chome AND NOT pp1 AND ID=2 AND (pp2 OR pp3)" x="4472.222" y="1788.8888" />
+      <ECTransition Source="Getpp2or3" Destination="c1end" Condition="REQ&#38;cend" x="2488.8887" y="2155.5554" />
+      <ECTransition Source="wait" Destination="c1end" Condition="REQ&#38;chome AND pp1 AND ID=2" x="2794.4443" y="1350.0" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+    <ST Text="cMoveOut:=FALSE;&#10;cMoveIn:=TRUE;&#10;System.out.println(&#34;GenCyl INIT &#34; + this);&#10;" />
+  </Algorithm>
+  <Algorithm Name="REQ" Comment="Normally executed algorithm" >
+    <ST Text="System.out.println(&#34;GenCyl REQ &#34; + this);&#10;" />
+  </Algorithm>
+  <Algorithm Name="Get2or3" >
+    <ST Text="cMoveOut:=TRUE;&#10;cMoveIn:=FALSE;&#10;System.out.println(&#34;GenCyl Get2or3 &#34; + this);&#10;" />
+  </Algorithm>
+  <Algorithm Name="Get1or3" >
+    <ST Text="cMoveOut:=TRUE;&#10;cMoveIn:=FALSE;&#10;System.out.println(&#34;GenCyl Get1or3 &#34; + this);&#10;" />
+  </Algorithm>
+  <Algorithm Name="GoBack" >
+    <ST Text="cMoveIn:=TRUE;&#10;cMoveOut:=FALSE;&#10;System.out.println(&#34;GenCyl GoBack &#34; + this);&#10;" />
+  </Algorithm>
+  <Algorithm Name="AllowVcDown" >
+    <ST Text="AllowVcDown:=TRUE;&#10;System.out.println(&#34;GenCyl AllowVcDown &#34; + this);&#10;" />
+  </Algorithm>
+  <Algorithm Name="BlockVcDown" >
+    <ST Text="AllowVcDown:=FALSE;&#10;System.out.println(&#34;GenCyl BlockVcDown &#34; + this);&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>
